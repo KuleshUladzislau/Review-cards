@@ -1,20 +1,20 @@
-import { Tabs } from '@radix-ui/themes'
-import s from 'tabsSwitcher.module.scss'
+import React, { FormEvent } from 'react'
+
+import * as Tabs from '@radix-ui/react-tabs'
 
 type TabsProps = {
-  tabsName?: string[]
-  disabled?: boolean
+  tabsName: string
+  disabled: boolean
 }
 
-export const TabsSwitcher = ({ tabsName, disabled }: TabsProps) => {
-  // const tabsTrigger = tabsName.map(t => (
-  //   <Tabs.Trigger key={t} value={t}>
-  //     {t}
-  //   </Tabs.Trigger>
-  // ))
+export const TabsSwitcher: React.FC<TabsProps> = ({ tabsName, disabled }: TabsProps) => {
+  const handleTabChange = (value: string) => {
+    console.log('Selected value:', value)
+    // Вы можете выполнить здесь любую логику, основанную на выбранном значении вкладки
+  }
 
   return (
-    <Tabs.Root defaultValue="account">
+    <Tabs.Root defaultValue="account" onValueChange={handleTabChange}>
       <Tabs.List>
         <Tabs.Trigger value="account">Account</Tabs.Trigger>
         <Tabs.Trigger value="documents">Documents</Tabs.Trigger>
