@@ -20,8 +20,13 @@ export const Button = <T extends ElementType = 'button'>(props: ButtonProps<T>) 
   } = props
 
   return (
-    <Component className={`${s[variant]} ${fullWidth ? s.fullWidth : ''} ${className}`} {...rest}>
-      <div
+    <Component
+      className={`${s[variant]} ${fullWidth ? s.fullWidth : ''} ${className} ${
+        Component === 'a' ? s.asLink : ''
+      }`}
+      {...rest}
+    >
+      <span
         style={{
           display: 'flex',
           gap: '10px',
@@ -32,7 +37,7 @@ export const Button = <T extends ElementType = 'button'>(props: ButtonProps<T>) 
       >
         {icon}
         {rest.children}
-      </div>
+      </span>
     </Component>
   )
 }

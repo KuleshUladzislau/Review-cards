@@ -4,7 +4,7 @@ import { Icon } from './styles/assets/icons/icon'
 
 function App() {
   return (
-    <Button variant={'primary'} as={'button'}>
+    <Button variant={'primary'} as={'a'} href={''}>
       <Icon />
       Button
     </Button>

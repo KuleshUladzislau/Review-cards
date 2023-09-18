@@ -1,3 +1,15 @@
+$color-light-100: var(--color-light-100);
+$color-accent-500: var(--color-accent-500);
+$color-accent-300: var(--color-accent-300);
+$color-accent-700: var(--color-accent-700);
+$color-accent-900: var(--color-accent-900);
+$color-dark-300: var(--color-dark-300);
+$color-dark-100: var(--color-dark-100);
+$color-dark-500: var(--color-dark-500);
+$color-dark-900: var(--color-dark-900);
+$color-info-700: var(--color-info-700);
+
+
 @mixin button($all, $gap, $padding-top, $padding-bottom, $padding-inline , $color, $backGroundColor,  $border, $border-radius, $box-shadow) {
   all: $all;
 
@@ -127,4 +139,10 @@
 .fullWidth {
   width: 100%;
   text-align: center;
+}
+
+.asLink{
+  cursor: pointer;
+  user-select: none;
+  display: inline-block;
 }
