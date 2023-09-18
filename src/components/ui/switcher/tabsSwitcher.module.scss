@@ -7,29 +7,38 @@
   border: 1px solid var(--color-dark-300, #4C4C4C);
   background: none;
   text-transform: capitalize;
-  color:var(--color-light-100);
+  color: var(--color-light-100);
   box-sizing: border-box;
-
+  transition: background-color 0.3s ease;
 }
 
-.default{
- @include defaultSwitcher;
+.default {
+  @include defaultSwitcher;
+
+  &:hover {
+
+    border: 1px solid var(--dark-100, #808080);
+    background: var(--dark-300, #4C4C4C);
+  }
+
+  &:focus {
+    border: 1px solid var(--primary-500, #8C61FF);
+    background: var(--primary-500, #8C61FF);
+  }
+
+
+  &:disabled {
+
+  }
+
+  &:active {
+    border: 1px solid var(--info-900, #234E99);
+    background: var(--dark-700, #171717);
+  }
+
 }
-
-.default:hover{
-
-  border-radius: 2px;
-  border: 1px solid var(--dark-100, #808080);
-  background: var(--dark-300, #4C4C4C);
-}
-
-.default:focus{
-  border-radius: 1px;
-  border: 1px solid var(--info-900, #234E99);
-  background: var(--dark-700, #171717);
-}
-
-.default:disabled{
-
-
+.active {
+  @include  defaultSwitcher;
+  border: 1px solid var(--primary-500, #8C61FF);
+  background: var(--primary-500, #8C61FF);
 }
