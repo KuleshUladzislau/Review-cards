@@ -16,6 +16,8 @@ export const Button = ({
   ...rest
 }: ButtonProps) => {
   return (
-    <button className={`${s[variant]} ${fullWidth ? s.fullWidth : ''} ${className}`} {...rest} />
+    <button className={`${s[variant]} ${fullWidth ? s.fullWidth : ''} ${className}`} {...rest}>
+      {rest.children}
+    </button>
   )
 }
