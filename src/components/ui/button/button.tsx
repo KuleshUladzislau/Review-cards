@@ -5,7 +5,7 @@ import s from './button.module.scss'
 export type ButtonProps<T extends ElementType = 'button'> = {
   variant?: 'primary' | 'secondary' | 'tertiary' | 'link'
   fullWidth?: boolean
-  as: T
+  as?: T
   icon?: ReactNode
 } & ComponentPropsWithoutRef<T>
 
