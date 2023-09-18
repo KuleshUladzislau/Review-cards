@@ -15,9 +15,16 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
+export const TwoButton: Story = {
   args: {
     tabsName: ['one', 'two'],
+  },
+}
+
+export const TwoButtonDisabled: Story = {
+  args: {
+    tabsName: ['one', 'two'],
+    disabled:true
   },
 }
 
@@ -27,8 +34,11 @@ export const ThreeButton: Story = {
   },
 }
 
-export const FourButton: Story = {
+export const ThreeButtonDisabled: Story = {
   args: {
-    tabsName: ['one', 'two', 'three', 'four'],
+    tabsName: ['one', 'two', 'three'],
+    disabled: true
   },
 }
+
+
