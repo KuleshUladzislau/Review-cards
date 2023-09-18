@@ -3,7 +3,7 @@ import s from './modal.module.scss'
 type Modal = {
   open: boolean
   setOpen: (active: boolean) => void
-  children: React.ReactNode
+  children?: React.ReactNode
   title?: string
 }
 
