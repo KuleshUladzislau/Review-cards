@@ -5,6 +5,7 @@
   font-weight: var(--font-weight-regular);
   padding: 6px 24px;
   border: 1px solid var(--color-dark-300, #4C4C4C);
+
   background: none;
   text-transform: capitalize;
   color: var(--color-light-100);
@@ -39,9 +40,25 @@
     background: var(--dark-700, #171717);
   }
 
+  &:first-child{
+    border-radius: 2px 0px 0px 2px;
+  }
+  &:last-child{
+    border-radius: 0px 2px 2px 0px;
+  }
+
+
+
 }
 .active {
   @include  defaultSwitcher;
   border: 1px solid var(--primary-500, #8C61FF);
   background: var(--primary-500, #8C61FF);
+
+  &:first-child{
+    border-radius: 2px 0px 0px 2px;
+  }
+  &:last-child{
+    border-radius: 0px 2px 2px 0px;
+  }
 }
