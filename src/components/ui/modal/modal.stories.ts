@@ -11,10 +11,23 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const DefaultModal: Story = {
+export const ModalWithTitle: Story = {
   args: {
     open: true,
     children: 'HI!',
     title: 'Modal Title',
+  },
+}
+
+export const ModalWithoutTitle: Story = {
+  args: {
+    open: true,
+    children: 'HI!',
+  },
+}
+
+export const ModalWithoutChildren: Story = {
+  args: {
+    open: true,
   },
 }
