@@ -6,6 +6,10 @@ const meta = {
   title: 'Components/TabsSwitcher',
   component: TabsSwitcher,
   tags: ['autodocs'],
+  argTypes: {
+    tabsName: ['all', 'completed'],
+    onChange: () => {},
+  },
 } satisfies Meta<typeof TabsSwitcher>
 
 export default meta
@@ -13,6 +17,18 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    tabsName:['all','completed']
+    tabsName: ['one', 'two'],
+  },
+}
+
+export const ThreeButton: Story = {
+  args: {
+    tabsName: ['one', 'two', 'three'],
+  },
+}
+
+export const FourButton: Story = {
+  args: {
+    tabsName: ['one', 'two', 'three', 'four'],
   },
 }
