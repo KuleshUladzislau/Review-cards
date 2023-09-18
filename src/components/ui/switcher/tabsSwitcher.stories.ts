@@ -24,7 +24,7 @@ export const TwoButton: Story = {
 export const TwoButtonDisabled: Story = {
   args: {
     tabsName: ['one', 'two'],
-    disabled:true
+    disabled: true,
   },
 }
 
@@ -37,8 +37,6 @@ export const ThreeButton: Story = {
 export const ThreeButtonDisabled: Story = {
   args: {
     tabsName: ['one', 'two', 'three'],
-    disabled: true
+    disabled: true,
   },
 }
-
-
