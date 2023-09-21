@@ -12,10 +12,26 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Primary: Story = {
+export const TextfieldDefault: Story = {
   args: {
-    variant: 'primary',
-    children: 'Primary Textfield',
-    disabled: false,
+    type: 'text',
+    label: 'Input',
+    placeholder: 'Input',
+    disabled: true,
+  },
+}
+
+export const TextfieldWithError: Story = {
+  args: {
+    type: 'text',
+    label: 'Input',
+    placeholder: 'Input',
+    errorMessage: 'Error',
+  },
+}
+
+export const TextfieldPassword: Story = {
+  args: {
+    type: 'password',
   },
 }
