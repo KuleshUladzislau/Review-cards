@@ -1,8 +1,10 @@
 import c from './card.module.scss'
 
-type cardProps = {}
+type cardProps = {
+  children: React.ReactNode
+}
 export const Card = (props: cardProps) => {
-  const {} = props
+  const { children } = props
 
-  return <div className={c.cardWrapper}></div>
+  return <div className={c.cardWrapper}>{children}</div>
 }
