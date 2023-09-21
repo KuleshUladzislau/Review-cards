@@ -7,6 +7,7 @@ export type ButtonProps<T extends ElementType = 'button'> = {
   fullWidth?: boolean
   as?: T
   icon?: ReactNode
+  onClick: () => void
 } & ComponentPropsWithoutRef<T>
 
 export const Button = <T extends ElementType = 'button'>(props: ButtonProps<T>) => {
@@ -15,12 +16,14 @@ export const Button = <T extends ElementType = 'button'>(props: ButtonProps<T>) 
     fullWidth,
     className,
     icon,
+    onClick,
     as: Component = 'button',
     ...rest
   } = props
 
   return (
     <Component
+      onClick={onClick}
       className={`${s[variant]} ${fullWidth ? s.fullWidth : ''} ${className} ${
         Component === 'a' ? s.asLink : ''
       }`}

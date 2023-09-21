@@ -3,6 +3,7 @@ import { useState } from 'react'
 import type { Meta } from '@storybook/react'
 
 import { Button } from '../button'
+import { Card } from '../card/card'
 
 import { Modal, ModalType } from './modal.tsx'
 
@@ -66,6 +67,28 @@ export const ModalWithTitle = {
             in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
             cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est labor.
           </div>
+        </Modal>
+      </>
+    )
+  },
+}
+
+export const ModalWithCard = {
+  render: (args: ModalType) => {
+    const [open, setOpen] = useState(false)
+
+    return (
+      <>
+        <Button as="button" variant="primary" onClick={() => setOpen(true)}>
+          open Modal
+        </Button>
+        <Modal {...args} open={open} setOpen={setOpen} title={'close modal'}>
+          <Card>
+            delete card
+            <Button variant={'primary'} onClick={() => setOpen(false)}>
+              close
+            </Button>
+          </Card>
         </Modal>
       </>
     )
