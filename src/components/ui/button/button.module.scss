@@ -72,7 +72,7 @@ $color-info-700: var(--color-info-700);
   }
 
   &:active {
-    background-color: var(--color-dark-500);
+    background-color: #333;
     border: 2px solid var(--color-dark-500)
   }
 
@@ -87,7 +87,7 @@ $color-info-700: var(--color-info-700);
   @include button(unset, 10px, 6px, 6px, 28px, var(--color-accent-500), rgba(255, 255, 255, 0), 1px solid var(--color-accent-500), 4px, none);
 
   &:hover {
-    background-color: var(--color-dark-500);
+    background-color: #333;
     border: 1px solid var(--color-accent-700);
   }
 
