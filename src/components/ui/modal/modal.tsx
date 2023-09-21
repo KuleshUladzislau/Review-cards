@@ -1,13 +1,16 @@
-import s from './modal.module.scss'
+import { ComponentPropsWithoutRef } from 'react'
 
-type Modal = {
+import s from './modal.module.scss'
+import closeCross from '../../../assets/icons/crossClose.png'
+
+export type ModalType = {
   open: boolean
   setOpen: (active: boolean) => void
   children?: React.ReactNode
   title?: string
-}
+} & ComponentPropsWithoutRef<'div'>
 
-export const Modal = ({ open, setOpen, children, title }: Modal) => {
+export const Modal = ({ open, setOpen, children, title }: ModalType) => {
   const transformStyle = open ? s.modalContainer : s.active
 
   return (
@@ -17,7 +20,7 @@ export const Modal = ({ open, setOpen, children, title }: Modal) => {
           {title && (
             <div className={s.title}>
               <h4>{title}</h4>
-              <button onClick={() => setOpen(false)}>x</button>
+              <img src={closeCross}  onClick={() => setOpen(false)} />
             </div>
           )}
           {children}
