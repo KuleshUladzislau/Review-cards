@@ -17,7 +17,7 @@ export const Defalut = {
   render: () => {
     const pageSize = [10, 20, 30, 50, 100]
     const [currentPage, setCurrentPage] = useState(1)
-    const totalCount = 200
+    const totalCount = 400
 
     return (
       <Pagination

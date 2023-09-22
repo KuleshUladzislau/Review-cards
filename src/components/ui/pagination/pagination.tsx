@@ -35,6 +35,8 @@ export const Pagination = (props: PaginationProps) => {
     const rangeEnd =
       currentPage <= 4 ? currentPage + (5 - currentPage) : currentPage + rightSiblingCount
 
+    // pagesCount - currentPage < 7 ? :
+
     if (rangeStart > 1) {
       pageNumbers.push(1)
       if (rangeStart > 2) {
