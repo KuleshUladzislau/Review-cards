@@ -7,7 +7,7 @@ const meta = {
   component: RadioButton,
   tags: ['autodocs'],
   argTypes: {
-    onChange: (value: string) => {},
+    onChange: () => {},
   },
 } satisfies Meta<typeof RadioButton>
 

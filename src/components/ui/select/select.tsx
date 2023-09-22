@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/default
 import React, { useState } from 'react'
 
 import * as Select from '@radix-ui/react-select'
