@@ -1,0 +1,15 @@
+.cardWrapper {
+  display: flex;
+  flex-flow: column;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+
+  width: 420px;
+  padding: 33px 36px 25px;
+
+  word-wrap: anywhere;
+
+  background-color: var(--color-dark-700);
+  border: 1px solid #313131;
+}
