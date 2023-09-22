@@ -42,7 +42,7 @@ export const SelectCustom = (props: SelectProps) => {
       disabled={disabled}
       {...restProps}
     >
-      <Select.Trigger className={s.trigger}>
+      <Select.Trigger className={`${s.trigger} ${className}`}>
         <Select.Value>{selectedValue}</Select.Value>
         <Select.Icon className={s.icon}>
           <img src={layer} className={open ? s.downArrow : ''} />

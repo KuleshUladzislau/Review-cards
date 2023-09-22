@@ -16,22 +16,20 @@ type Story = StoryObj<typeof meta>
 
 export const DefaultSelect: Story = {
   args: {
-    options: ['appleapple', 'orangeapple', 'threeapple'],
+    options: ['apple', 'banana', 'orange'],
     className: '',
   },
 }
 
 export const DisabledSelect: Story = {
   args: {
-    options: ['one', 'two', 'three'],
+    options: ['apple', 'banana', 'orange'],
     disabled: true,
   },
 }
 
 export const TestForPagination: Story = {
-    args: {
-        options: ['100', '200', '300','400'],
-    },
+  args: {
+    options: ['100', '200', '300', '400'],
+  },
 }
-
-
