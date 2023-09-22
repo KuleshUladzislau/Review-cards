@@ -1,7 +1,8 @@
 import { ComponentPropsWithoutRef } from 'react'
 
-import s from './modal.module.scss'
 import closeCross from '../../../assets/icons/crossClose.png'
+
+import s from './modal.module.scss'
 
 export type ModalType = {
   open: boolean
@@ -20,7 +21,7 @@ export const Modal = ({ open, setOpen, children, title }: ModalType) => {
           {title && (
             <div className={s.title}>
               <h4>{title}</h4>
-              <img src={closeCross}  onClick={() => setOpen(false)} />
+              <img src={closeCross} onClick={() => setOpen(false)} />
             </div>
           )}
           {children}

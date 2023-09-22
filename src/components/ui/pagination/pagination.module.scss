@@ -1,0 +1,38 @@
+@mixin pagination($all,$width,$height, $text-align, $color ,$backGroundColor, $border, $borderRadius) {
+  all: $all;
+
+  width: $width;
+  height: $height;
+
+  color: var($color);
+  text-align: $text-align;
+
+  background-color: $backGroundColor;
+  border: 1px solid $border;
+  border-radius: $borderRadius;
+}
+
+.pageStyle {
+  @include pagination(unset, 24px, 24px, center, --color-light-100, rgb(255 255 255 / 0%), rgb(255 255 255 / 0%), 2px);
+
+  &:hover {
+    color: var(--color-light-100);
+    background-color: var(--color-dark-300);
+    border-radius: 2px;
+  }
+
+  &:focus {
+    border: 1px solid var(--color-info-900);
+    border-radius: 2px;
+  }
+
+}
+
+.activePageStyle {
+  @include pagination(unset, 24px, 24px, center, --color-dark-900, var(--color-light-100), var(--color-light-100), 2px);
+
+  &:hover {
+    color: var(--color-dark-900);
+    background-color: var(--color-light-100);
+  }
+}
