@@ -20,7 +20,7 @@ export const Modal = ({ open, setOpen, children, title }: ModalType) => {
           {title && (
             <div className={s.title}>
               <h4>{title}</h4>
-              <img src={closeCross}  onClick={() => setOpen(false)} />
+              <img src={closeCross} onClick={() => setOpen(false)} />
             </div>
           )}
           {children}
