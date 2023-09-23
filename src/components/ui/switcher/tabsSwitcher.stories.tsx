@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Card } from '../card'
 
 import { TabsSwitcher } from './tabsSwitcher.tsx'
 

@@ -1,16 +1,12 @@
-import {FC, ReactNode, useState} from 'react'
+import { FC, useState } from 'react'
 
 import * as Tabs from '@radix-ui/react-tabs'
-
 import { clsx } from 'clsx'
 
 import s from './tabsSwitcher.module.scss'
 
-
-
-
 type TabsProps = {
-  tabs: string []
+  tabs: string[]
   disabled?: boolean
   className?: string
   onChange: (value: string) => void

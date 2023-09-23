@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/default
 import React, { useState } from 'react'
 
 import * as Select from '@radix-ui/react-select'
@@ -46,7 +45,7 @@ export const SelectCustom = (props: SelectProps) => {
       <Select.Trigger className={`${s.trigger} ${className}`}>
         <Select.Value>{selectedValue}</Select.Value>
         <Select.Icon className={s.icon}>
-          <img src={layer} className={open ? s.downArrow : ''} />
+          <img src={layer} alt={'down'} className={open ? s.downArrow : ''} />
         </Select.Icon>
       </Select.Trigger>
       <Select.Portal>
