@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useState} from 'react'
 
 import * as Tabs from '@radix-ui/react-tabs'
 import { clsx } from 'clsx'

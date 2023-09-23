@@ -5,11 +5,16 @@
   justify-content: space-between;
   flex-direction: row;
   background: none;
-  margin-bottom: -5px;
-  height: 36px;
+  margin-bottom: -4px;
+  padding: 5px;
   border: 1px solid var(--dark-300, #4C4C4C);
   text-transform: capitalize;
   cursor: pointer;
+
+
+  &[data-state='open'] .icon {
+    transform:rotate(180deg);
+  }
 }
 
 .trigger:focus{
@@ -18,13 +23,18 @@
   border: 1px solid var(--info-700, #2F68CC);
 }
 
+.trigger:hover{
+  background: var(--dark-500, #333);
+}
+
+
+
 .trigger:disabled{
   opacity: 0.5;
 }
 
 .content{
   width: var(--radix-select-trigger-width);
-  max-height: var(--radix-select-content-available-height);
   border: 1px solid var(--dark-300, #4C4C4C);
   border-top:none;
   text-transform: capitalize;
@@ -51,11 +61,9 @@
 .icon{
   display: flex;
   margin-left: 10px;
-}
-.downArrow{
-    transform: rotate(180deg);
 
 }
+
 
 
 
