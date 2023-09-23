@@ -26,12 +26,40 @@ export const TextfieldWithError: Story = {
     type: 'text',
     label: 'Input',
     placeholder: 'Input',
-    errorMessage: 'Error',
+    errorMessage: 'Error!',
   },
 }
 
 export const TextfieldPassword: Story = {
   args: {
     type: 'password',
+    label: 'Input',
+    placeholder: 'Password',
+  },
+}
+
+export const TextfieldPasswordWithError: Story = {
+  args: {
+    type: 'password',
+    label: 'Input',
+    placeholder: 'Password',
+    errorMessage: 'Error!',
+  },
+}
+
+export const TextfieldSearch: Story = {
+  args: {
+    type: 'search',
+    placeholder: 'Input search',
+    search: true,
+  },
+}
+
+export const TextfieldSearchWithError: Story = {
+  args: {
+    type: 'search',
+    placeholder: 'Input search',
+    errorMessage: 'Error!',
+    search: true,
   },
 }
