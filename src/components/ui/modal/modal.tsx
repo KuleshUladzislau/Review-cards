@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ForwardedRef, forwardRef} from 'react'
+import { ComponentPropsWithoutRef } from 'react'
 
 import closeCross from '../../../assets/icons/crossClose.png'
 
@@ -11,39 +11,22 @@ export type ModalType = {
   title?: string
 } & ComponentPropsWithoutRef<'div'>
 
-export const Modal = forwardRef<ForwardedRef<HTMLDivElement>, ModalType>(
-  (
-    {
-      open,
-      setOpen,
-      children,
-      title
-    },
-    ref
-  ) => {
-    const transformStyle = open ? s.modalContainer : s.active
+export const Modal = ({ open, setOpen, children, title }: ModalType) => {
+  const transformStyle = open ? s.modalContainer : s.active
 
-    return (
-      <div
-        ref={ref as ForwardedRef<HTMLDivElement>}
-        className={transformStyle}
-        onClick={() => setOpen(false)}
-      >
-        <div
-          className={s.content}
-          onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => e.stopPropagation()}
-        >
-          <div className={s.contentContainer}>
-            {title && (
-              <div className={s.title}>
-                <h4>{title}</h4>
-                <img src={closeCross} onClick={() => setOpen(false)} />
-              </div>
-            )}
-            <div>{children}</div>
-          </div>
+  return (
+    <div className={transformStyle} onClick={() => setOpen(false)}>
+      <div className={s.content} onClick={(e: any) => e.stopPropagation()}>
+        <div className={s.contentContainer}>
+          {title && (
+            <div className={s.title}>
+              <h4>{title}</h4>
+              <img src={closeCross} onClick={() => setOpen(false)} />
+            </div>
+          )}
+          {children}
         </div>
       </div>
-    )
-  }
-)
+    </div>
+  )
+}

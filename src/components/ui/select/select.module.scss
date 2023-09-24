@@ -1,25 +1,10 @@
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1 ;
-  }
-}
-
-
-
-
-
-
 .trigger {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
   background: none;
-  min-width: 50px;
   margin-bottom: -4px;
   padding: 5px;
   border: 1px solid var(--dark-300, #4C4C4C);
@@ -28,17 +13,8 @@
 
 
   &[data-state='open'] .icon {
-    transform: rotate(180deg);
-    transition: all 0.3s ease-in-out;
+    transform:rotate(180deg);
   }
-
-  &[data-state='closed'] .icon {
-    transition: all 0.3s ease-in-out;
-  }
-
-
-
-
 }
 
 .trigger:focus{
@@ -49,7 +25,6 @@
 
 .trigger:hover{
   background: var(--dark-500, #333);
-  transition: background-color 0.3s ease-in-out;
 }
 
 
@@ -63,13 +38,6 @@
   border: 1px solid var(--dark-300, #4C4C4C);
   border-top:none;
   text-transform: capitalize;
-
-
-
-  &[data-state='open']{
-    animation: fadeIn 0.5s ease;
-
-  }
 
 
 }
@@ -89,7 +57,6 @@
 
 .item:hover {
   background: var(--primary-900, #382766);
-
 }
 .icon{
   display: flex;

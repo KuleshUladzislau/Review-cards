@@ -16,8 +16,6 @@
   background: transparent;
   border: 2px solid var(--primary-500, #8C61FF);
   position: relative;
-
-
 }
 
 .item::after {
@@ -30,7 +28,6 @@
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.1);
   z-index: -1;
-  transition: all 0.3s ease-in-out;
 }
 
 
@@ -58,15 +55,5 @@ background: var(--dark-500, #333);
   height: 7px;
   border-radius: 50%;
   background: var(--primary-500, #8C61FF);
-  opacity: 1;
-  animation: fadeIn 0.3s ease;
 }
 
-@keyframes fadeIn {
-  from{
-    opacity: 0;
-  }
-  to{
-    opacity: 1;
-  }
-}

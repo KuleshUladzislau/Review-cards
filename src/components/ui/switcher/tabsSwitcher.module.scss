@@ -16,7 +16,6 @@
   &:hover {
     border: 1px solid var(--dark-100, #808080);
     background: var(--dark-300, #4c4c4c);
-    transition: all 0.3s ease-in-out;
   }
 
 
@@ -32,7 +31,10 @@
     opacity: 0.5;
   }
 
-
+  &:active {
+    border: 1px solid var(--info-900, #234e99);
+    background: var(--dark-700, #171717);
+  }
 
   &:first-child {
     border-radius: 2px 0px 0px 2px;
