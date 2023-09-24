@@ -69,6 +69,11 @@ export const Pagination = (props: PaginationProps) => {
     return pageNumbers
   }
 
+  const onPageSizeHandler = (value:string)=>{
+    console.log(value)
+  }
+
+
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
       <div>
@@ -90,7 +95,7 @@ export const Pagination = (props: PaginationProps) => {
         </button>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-        Показать <SelectCustom options={['10', '20', '30', '40', '50']} defaultValue={'10'} onChange={() => {}} /> на
+        Показать <SelectCustom  options={['10', '20', '30', '40', '50']} defaultValue={'10'} onValueChange={onPageSizeHandler} /> на
         на странице
       </div>
     </div>

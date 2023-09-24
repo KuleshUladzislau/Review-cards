@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from 'react'
+import { ComponentPropsWithoutRef, FC } from 'react'
 
 import * as Select from '@radix-ui/react-select'
 
@@ -6,16 +6,22 @@ import layer from '../../../assets/icons/Layer2.svg'
 
 import s from './select.module.scss'
 
-
 type SelectProps = {
   options: string[]
   className?: string
   placeHolder?: string
 } & ComponentPropsWithoutRef<typeof Select.Root>
 
-export const SelectCustom = (props: SelectProps) => {
-  const { options,defaultValue, placeHolder, onValueChange, value, className, disabled, ...restProps } = props
-
+export const SelectCustom: FC<SelectProps> = ({
+  options,
+  defaultValue,
+  placeHolder,
+  onValueChange,
+  value,
+  className,
+  disabled,
+  ...restProps
+}) => {
   const mapedOptions = options?.map(o => (
     <Select.Item key={o} value={o} className={s.item}>
       <Select.ItemText className={s.itemText}>{o}</Select.ItemText>
@@ -37,7 +43,7 @@ export const SelectCustom = (props: SelectProps) => {
         </Select.Icon>
       </Select.Trigger>
       <Select.Portal>
-        <Select.Content  className={s.content} position="popper">
+        <Select.Content className={s.content} position="popper">
           <Select.Viewport>
             <Select.Group>{mapedOptions}</Select.Group>
             <Select.Separator />

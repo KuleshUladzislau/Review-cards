@@ -22,10 +22,8 @@ export const RadioButton = ({ onValueChange, options, defaultValue, className }:
   })
 
   return (
-    <form>
-      <RadioGroup.Root onValueChange={onValueChange} defaultValue={defaultValue}>
-        {buttons}
-      </RadioGroup.Root>
-    </form>
+    <RadioGroup.Root onValueChange={onValueChange} defaultValue={defaultValue}>
+      {buttons}
+    </RadioGroup.Root>
   )
 }

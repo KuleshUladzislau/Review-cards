@@ -1,7 +1,6 @@
-import { FC, useState} from 'react'
+import { ComponentPropsWithoutRef, FC } from 'react'
 
 import * as Tabs from '@radix-ui/react-tabs'
-import { clsx } from 'clsx'
 
 import s from './tabsSwitcher.module.scss'
 
@@ -10,38 +9,24 @@ type TabsProps = {
   disabled?: boolean
   className?: string
   onChange: (value: string) => void
-}
+} & ComponentPropsWithoutRef<typeof Tabs.Root>
 
 export const TabsSwitcher: FC<TabsProps> = ({
   tabs,
   disabled = false,
-  className,
   onChange,
+  defaultValue,
 }: TabsProps) => {
-  const [selectedValue, setSelectedValue] = useState(tabs[0])
-  const handleTabChange = (value: string) => {
-    setSelectedValue(value)
-    onChange(value)
-  }
-
   const mapedTabs = tabs.map(t => {
-    const classNames = clsx(
-      {
-        [s.active]: selectedValue === t,
-        [s.default]: selectedValue !== t,
-      },
-      className
-    )
-
     return (
-      <Tabs.Trigger key={t} value={t} className={classNames} disabled={disabled}>
+      <Tabs.Trigger key={t} value={t} className={s.default} disabled={disabled}>
         {t}
       </Tabs.Trigger>
     )
   })
 
   return (
-    <Tabs.Root defaultValue={selectedValue} onValueChange={handleTabChange}>
+    <Tabs.Root defaultValue={defaultValue} onValueChange={onChange}>
       <Tabs.List>{mapedTabs}</Tabs.List>
     </Tabs.Root>
   )

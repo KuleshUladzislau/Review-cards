@@ -16,8 +16,5 @@ export const DefaultSelect: Story = {
   args: {
     options: ['apple', 'banana', 'orange'],
     placeHolder: 'choose options...',
-    defaultValue: 'apple'
   },
 }
-
-
