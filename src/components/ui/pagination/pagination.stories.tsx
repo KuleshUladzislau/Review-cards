@@ -15,16 +15,17 @@ export default meta
 
 export const Defalut = {
   render: () => {
-    const pageSize = [10, 20, 30, 50, 100]
+    const [pageSize, setPageSize] = useState(10)
     const [currentPage, setCurrentPage] = useState(1)
-    const totalCount = 400
+    const totalCount = 100
 
     return (
       <Pagination
         totalCount={totalCount}
-        pageSize={pageSize[0]}
+        pageSize={pageSize}
+        onPageSizeChange={setPageSize}
         currentPage={currentPage}
-        onPageChange={setCurrentPage}
+        onCurrentPageChange={setCurrentPage}
       ></Pagination>
     )
   },
