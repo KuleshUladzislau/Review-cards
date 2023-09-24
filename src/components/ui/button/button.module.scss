@@ -9,9 +9,20 @@ $color-dark-500: var(--color-dark-500);
 $color-dark-900: var(--color-dark-900);
 $color-info-700: var(--color-info-700);
 
-
-@mixin button($all, $gap, $padding-top, $padding-bottom, $padding-inline , $color, $backGroundColor,  $border, $border-radius, $box-shadow) {
+@mixin button(
+  $all,
+  $gap,
+  $padding-top,
+  $padding-bottom,$padding-inline,
+  $color,
+  $backGroundColor,
+  $border,
+  $border-radius,
+  $box-shadow
+) {
   all: $all;
+
+  cursor: pointer;
 
   gap: $gap;
 
@@ -25,12 +36,21 @@ $color-info-700: var(--color-info-700);
   border: $border;
   border-radius: $border-radius;
   box-shadow: $box-shadow;
-
 }
 
-
 .primary {
-  @include button(unset, 10px, 6px, 6px, 28px, var(--color-light-100), var(--color-accent-500), 2px solid var(--color-accent-500), 4px, 0 4px 18px 0 #8C61FF59);
+  @include button(
+                  unset,
+                  10px,
+                  6px,
+                  6px,
+                  28px,
+                  var(--color-light-100),
+                  var(--color-accent-500),
+                  2px solid var(--color-accent-500),
+                  4px,
+                  0 4px 18px 0 #8c61ff59
+  );
 
   user-select: none;
 
@@ -41,14 +61,13 @@ $color-info-700: var(--color-info-700);
 
   &:focus {
     background-color: var(--color-accent-500);
-    border: 2px solid var(--color-info-700)
+    border: 2px solid var(--color-info-700);
   }
 
   &:active {
     background-color: var(--color-accent-700);
-    border: 2px solid var(--color-accent-700)
+    border: 2px solid var(--color-accent-700);
   }
-
 
   &:disabled {
     color: var(--color-light-900);
@@ -58,8 +77,18 @@ $color-info-700: var(--color-info-700);
 }
 
 .secondary {
-
-  @include button(unset, 10px, 6px, 6px, 28px, var(--color-light-100), var(--color-dark-300), 2px solid var(--color-dark-300), 4px, 0 4px 4px 0 #4D566021);
+  @include button(
+                  unset,
+                  10px,
+                  6px,
+                  6px,
+                  28px,
+                  var(--color-light-100),
+                  var(--color-dark-300),
+                  2px solid var(--color-dark-300),
+                  4px,
+                  0 4px 4px 0 #4d566021
+  );
 
   &:hover {
     background-color: var(--color-dark-100);
@@ -68,12 +97,12 @@ $color-info-700: var(--color-info-700);
 
   &:focus {
     background-color: var(--color-dark-300);
-    border: 2px solid var(--color-info-700)
+    border: 2px solid var(--color-info-700);
   }
 
   &:active {
     background-color: #333;
-    border: 2px solid var(--color-dark-500)
+    border: 2px solid var(--color-dark-500);
   }
 
   &:disabled {
@@ -84,7 +113,18 @@ $color-info-700: var(--color-info-700);
 }
 
 .tertiary {
-  @include button(unset, 10px, 6px, 6px, 28px, var(--color-accent-500), rgba(255, 255, 255, 0), 1px solid var(--color-accent-500), 4px, none);
+  @include button(
+                  unset,
+                  10px,
+                  6px,
+                  6px,
+                  28px,
+                  var(--color-accent-500),
+                  rgba(255, 255, 255, 0),
+                  1px solid var(--color-accent-500),
+                  4px,
+                  none
+  );
 
   &:hover {
     background-color: #333;
@@ -110,7 +150,18 @@ $color-info-700: var(--color-info-700);
 }
 
 .link {
-  @include button(unset, 10px, 6px, 6px, 28px, var(--color-accent-500), rgba(255, 255, 255, 0), 2px solid rgb(0 0 0 / 0%), 4px, none);
+  @include button(
+                  unset,
+                  10px,
+                  6px,
+                  6px,
+                  28px,
+                  var(--color-accent-500),
+                  rgba(255, 255, 255, 0),
+                  2px solid rgb(0 0 0 / 0%),
+                  4px,
+                  none
+  );
 
   padding: 6px 12px;
 
@@ -140,9 +191,8 @@ $color-info-700: var(--color-info-700);
   text-align: center;
 }
 
-.asLink{
+.asLink {
   cursor: pointer;
   user-select: none;
   display: inline-block;
-
 }
