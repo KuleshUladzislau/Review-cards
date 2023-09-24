@@ -47,7 +47,7 @@ export const SelectCustom = forwardRef<ElementRef<typeof Select.Root>, SelectPro
           </Select.Icon>
         </Select.Trigger>
         <Select.Portal>
-          <Select.Content className={s.content} position="popper">
+          <Select.Content className={s.content} position="popper" >
             <Select.Viewport>
               <Select.Group>{mapedOptions}</Select.Group>
               <Select.Separator />
