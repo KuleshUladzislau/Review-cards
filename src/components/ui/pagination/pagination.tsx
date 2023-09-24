@@ -32,9 +32,6 @@ export const Pagination: React.FC<PaginationProps> = ({
   const renderPageNumbers = (): (number | string)[] => {
     const pageNumbers: (number | string)[] = []
 
-    // if (pagesCount <= 1) {
-    // }
-
     const leftSiblingCount = Math.min(+siblingCount, currentPage - 1)
     const rightSiblingCount = Math.min(+siblingCount, pagesCount - currentPage)
 
