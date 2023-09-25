@@ -9,13 +9,7 @@ type Props = {
   className?: string
 } & ComponentPropsWithoutRef<typeof RadioGroup.Root>
 
-export const RadioButton = ({
-  onValueChange,
-  options,
-  defaultValue,
-  className,
-  ...restProps
-}: Props) => {
+export const RadioButton = ({ onValueChange, options, defaultValue, className }: Props) => {
   const buttons = options?.map(b => {
     return (
       <div className={s.container} key={b}>
@@ -28,7 +22,7 @@ export const RadioButton = ({
   })
 
   return (
-    <RadioGroup.Root onValueChange={onValueChange} defaultValue={defaultValue} {...restProps}>
+    <RadioGroup.Root onValueChange={onValueChange} defaultValue={defaultValue}>
       {buttons}
     </RadioGroup.Root>
   )

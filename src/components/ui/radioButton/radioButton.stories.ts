@@ -17,6 +17,6 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     options: ['one', 'two', 'three'],
-    defaultValue:'one'
+    defaultValue: 'one',
   },
 }

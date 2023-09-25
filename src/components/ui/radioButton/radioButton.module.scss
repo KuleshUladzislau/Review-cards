@@ -1,9 +1,8 @@
 .container {
   display: flex;
   align-items: center;
-  gap:10px;
+  gap: 10px;
 }
-
 
 .item {
   display: flex;
@@ -14,10 +13,8 @@
   height: 16px;
   border-radius: 50%;
   background: transparent;
-  border: 2px solid var(--primary-500, #8C61FF);
+  border: 2px solid var(--primary-500, #8c61ff);
   position: relative;
-
-
 }
 
 .item::after {
@@ -30,43 +27,27 @@
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.1);
   z-index: -1;
-  transition: all 0.3s ease-in-out;
 }
 
-
-
 .item:hover::after {
-background: var(--dark-500, #333);
+  background: var(--dark-500, #333);
 }
 
 .item:active::after {
   background: var(--primary-900, #382766);
 }
 
-.item:disabled{
+.item:disabled {
   opacity: 0.5;
   pointer-events: none;
 }
 
-
-
-.indicator{
+.indicator {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--primary-500, #8C61FF);
-  opacity: 1;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from{
-    opacity: 0;
-  }
-  to{
-    opacity: 1;
-  }
+  background: var(--primary-500, #8c61ff);
 }

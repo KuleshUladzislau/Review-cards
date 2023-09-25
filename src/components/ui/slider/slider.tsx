@@ -1,39 +1,35 @@
+import { ComponentPropsWithoutRef } from 'react'
+
 import * as Slider from '@radix-ui/react-slider'
 
 import s from './slider.module.scss'
 
 type SliderProps = {
-  onChange: (value: number | number[]) => void
-  disable?: boolean
-  min: number
-  max: number
-  step?: number
-}
+  onChange?: (value: number[]) => void
+} & ComponentPropsWithoutRef<typeof Slider.Root>
 
-export const SliderCustom = (props: SliderProps) => {
-  const { onChange, min, max, step, disable } = props
-
-  const onVolumeChangeHandler = (values: number[]) => {
-    onChange(values)
-  }
-
+export const SliderCustom: React.FC<SliderProps> = ({
+  onValueChange,
+  step = 1,
+  disabled,
+  min,
+  max,
+  value,
+  defaultValue,
+  ...restProps
+}) => {
   return (
-    <form
-      style={{
-        display: 'flex',
-        textAlign: 'center',
-        alignItems: 'center',
-        gap: '12px',
-      }}
-    >
-      <div className={s.boxValue}>{min}</div>
+    <div className={s.sliderWrapper}>
+      <span className={s.boxValue}>{value![0]}</span>
       <Slider.Root
         className={s.SliderRoot}
-        defaultValue={[min, max]}
+        defaultValue={defaultValue}
         step={step}
+        min={min}
         max={max}
-        onValueChange={onVolumeChangeHandler}
-        disabled={disable}
+        onValueChange={onValueChange}
+        disabled={disabled}
+        {...restProps}
       >
         <Slider.Track className={s.SliderTrack}>
           <Slider.Range className={s.SliderRange} />
@@ -41,7 +37,7 @@ export const SliderCustom = (props: SliderProps) => {
         <Slider.Thumb className={s.SliderThumb} />
         <Slider.Thumb className={s.SliderThumb} />
       </Slider.Root>
-      <div className={s.boxValue}>{max}</div>
-    </form>
+      <span className={s.boxValue}>{value![1]}</span>
+    </div>
   )
 }

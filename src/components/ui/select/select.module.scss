@@ -1,77 +1,39 @@
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1 ;
-  }
-}
-
-
-
-
-
-
 .trigger {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
   background: none;
-  min-width: 50px;
   margin-bottom: -4px;
   padding: 5px;
-  border: 1px solid var(--dark-300, #4C4C4C);
+  border: 1px solid var(--dark-300, #4c4c4c);
   text-transform: capitalize;
   cursor: pointer;
 
-
   &[data-state='open'] .icon {
     transform: rotate(180deg);
-    transition: all 0.3s ease-in-out;
   }
-
-  &[data-state='closed'] .icon {
-    transition: all 0.3s ease-in-out;
-  }
-
-
-
-
 }
 
-.trigger:focus{
+.trigger:focus {
   outline: none;
   border-radius: 2px;
-  border: 1px solid var(--info-700, #2F68CC);
+  border: 1px solid var(--info-700, #2f68cc);
 }
 
-.trigger:hover{
+.trigger:hover {
   background: var(--dark-500, #333);
-  transition: background-color 0.3s ease-in-out;
 }
 
-
-
-.trigger:disabled{
+.trigger:disabled {
   opacity: 0.5;
 }
 
-.content{
+.content {
   width: var(--radix-select-trigger-width);
-  border: 1px solid var(--dark-300, #4C4C4C);
-  border-top:none;
+  border: 1px solid var(--dark-300, #4c4c4c);
+  border-top: none;
   text-transform: capitalize;
-
-
-
-  &[data-state='open']{
-    animation: fadeIn 0.5s ease;
-
-  }
-
-
 }
 
 .item {
@@ -82,25 +44,14 @@
   cursor: pointer;
 }
 
-
-.item:focus{
+.item:focus {
   outline: none;
 }
 
 .item:hover {
   background: var(--primary-900, #382766);
-
 }
-.icon{
+.icon {
   display: flex;
   margin-left: 10px;
-
 }
-
-
-
-
-
-
-
-
