@@ -22,10 +22,11 @@ button {
 .dropdownMenuContent {
   position: relative;
 
-  min-width: 130px;
+  min-width: 80px;
   padding: 12px;
 
   background-color: var(--color-dark-700);
+  border: 1px solid var(--color-dark-300);
   border-radius: 6px;
   box-shadow:
     0 10px 38px -10px rgb(22 23 24 / 35%),
@@ -48,7 +49,7 @@ button {
   height: 7px;
 
   background-color: var(--color-dark-700);
-  border: 1px solid var(--color-dark-500);
+  border: 1px solid var(--color-dark-300);
   border-top: none;
   border-left: none;
 }
@@ -76,7 +77,7 @@ button {
   }
 
   &:not(:last-of-type) {
-    border-bottom: 1px solid var(--color-dark-500);
+    border-bottom: 1px solid var(--color-dark-300);
   }
 
   &:hover,
@@ -87,7 +88,7 @@ button {
   &[data-disabled] {
     pointer-events: none;
     cursor: unset;
-    color: var(--color-action-disabled);
+    opacity: 0.5;
   }
 }
 

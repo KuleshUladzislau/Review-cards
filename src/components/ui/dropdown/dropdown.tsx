@@ -27,7 +27,7 @@ export const CustomDropdown = ({ trigger, children, className, style }: Dropdown
   return (
     <DropdownMenu.Root open={open} onOpenChange={setOpen}>
       <DropdownMenu.Trigger asChild>
-        <button className={s.iconButton} aria-label="Customise options">
+        <button className={s.iconButton} aria-label="dropdown options">
           {trigger}
         </button>
       </DropdownMenu.Trigger>
