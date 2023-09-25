@@ -1,0 +1,47 @@
+.table {
+}
+
+.thead {
+  flex: 1;
+  padding: 5px;
+}
+
+.tbody {
+  text-align: left;
+}
+
+.tRow {
+  border: 1px solid var(--dark-500, #333);
+}
+
+.theadCell {
+  padding: 6px 24px;
+}
+
+.tCell {
+  padding: 6px 24px;
+  border-bottom: 1px solid var(--dark-500, #333);
+}
+
+.tCell:last-child {
+  text-align: right;
+}
+
+.table {
+  border-collapse: collapse;
+
+  width: 100%;
+
+  text-align: left;
+
+  background: var(--dark-900, #000);
+  border-bottom: 1px solid var(--dark-500, #333);
+}
+
+.thead {
+  background: var(--dark-500, #333);
+}
+
+.arrow {
+  position: absolute;
+}
