@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { CustomDropdown, CustomDropdownItemWithIcon } from './dropdown.tsx'
+import { CustomDropdown, CustomDropdownItem, CustomDropdownItemWithIcon } from './dropdown.tsx'
 
 import { Delete, DropdownMenu, Edit, Play } from '@/assets'
 
@@ -22,6 +22,9 @@ export const DropdownDefault: Story = {
     trigger: <DropdownMenu />,
     children: (
       <>
+        {/*<CustomDropdownItem>*/}
+        {/*  <h1>111</h1>*/}
+        {/*</CustomDropdownItem>*/}
         <CustomDropdownItemWithIcon title={'Learn'} icon={<Play />} />
         <CustomDropdownItemWithIcon title={'Edit'} icon={<Edit />} />
         <CustomDropdownItemWithIcon title={'Delete'} icon={<Delete />} />
@@ -32,6 +35,10 @@ export const DropdownDefault: Story = {
 
 export const DropdownWithAvatar: Story = {
   args: {
-    trigger: <Avatar />,
+    trigger: (
+      <button>
+        <Avatar />
+      </button>
+    ),
   },
 }
