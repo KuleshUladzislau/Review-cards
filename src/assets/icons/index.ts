@@ -1,1 +1,11 @@
-export * from './Layer 2.svg'
+// export * from './Layer 2.svg'
+
+export { default as Search } from './Search'
+export { default as Delete } from './Delete'
+export { default as Edit } from './Edit'
+export { default as Play } from './Play'
+export { default as Logout } from './Logout'
+export { default as Profile } from './Profile'
+export { default as DropdownMenu } from './DropdownMenu'
+export { default as EyeOff } from './EyeOff'
+export { default as EyeOn } from './EyeOn'

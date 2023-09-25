@@ -37,6 +37,10 @@
     background: var(--color-dark-700);
   }
 
+  &:disabled {
+    pointer-events: none;
+  }
+
   &.error {
     color: var(--color-danger-300);
     border-color: var(--color-danger-300);
