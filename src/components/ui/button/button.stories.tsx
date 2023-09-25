@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import EyeOn from '../../../assets/icons/EyeOn'
+
 import { Button } from './button'
 
 const meta = {
@@ -59,5 +61,18 @@ export const AsLink: Story = {
     variant: 'primary',
     children: 'Link that looks like a button',
     as: 'a',
+  },
+}
+
+export const ButtonWithIcons = {
+  render: () => {
+    const onClickHandler = () => {}
+
+    return (
+      <Button variant={'primary'} onClick={onClickHandler}>
+        <EyeOn />
+        LogOut
+      </Button>
+    )
   },
 }

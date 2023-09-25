@@ -1,20 +1,16 @@
-import React from 'react'
+import { ComponentPropsWithoutRef } from 'react'
 
 import * as RadioGroup from '@radix-ui/react-radio-group'
 
 import s from './radioButton.module.scss'
 
 type Props = {
-  onChange: (value: string) => void
-  buttons: string[]
+  options: string[]
   className?: string
-}
+} & ComponentPropsWithoutRef<typeof RadioGroup.Root>
 
-export const RadioButton = ({ onChange, buttons, className }: Props) => {
-  const onChangeHandler = (value: string) => {
-    onChange(value)
-  }
-  const items = buttons?.map(b => {
+export const RadioButton = ({ onValueChange, options, defaultValue, className }: Props) => {
+  const buttons = options?.map(b => {
     return (
       <div className={s.container} key={b}>
         <RadioGroup.Item className={`${s.item} ${className}`} value={b} id={b}>
@@ -26,10 +22,8 @@ export const RadioButton = ({ onChange, buttons, className }: Props) => {
   })
 
   return (
-    <form>
-      <RadioGroup.Root onValueChange={onChangeHandler} defaultValue={buttons[0]}>
-        {items}
-      </RadioGroup.Root>
-    </form>
+    <RadioGroup.Root onValueChange={onValueChange} defaultValue={defaultValue}>
+      {buttons}
+    </RadioGroup.Root>
   )
 }

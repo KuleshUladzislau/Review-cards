@@ -1,41 +1,43 @@
+import { SelectCustom } from '../select/select.tsx'
+
 import p from './pagination.module.scss'
 
 export type PaginationProps = {
   totalCount: number
   currentPage: number
   pageSize: number
-  onPageChange: (page: number | string) => void
-  siblingCount?: number
+  onPageSizeChange: (value: number) => void
+  onCurrentPageChange: (page: number | string) => void
+  siblingCount?: number | string
 }
 
-export const Pagination = (props: PaginationProps) => {
-  const { totalCount, currentPage, pageSize, siblingCount = 1, onPageChange } = props
-
+export const Pagination: React.FC<PaginationProps> = ({
+  totalCount,
+  currentPage,
+  pageSize,
+  siblingCount = 1,
+  onPageSizeChange,
+  onCurrentPageChange,
+}) => {
   const pagesCount = Math.ceil(totalCount / pageSize)
 
   const onNext = () => {
-    onPageChange(currentPage + 1)
+    onCurrentPageChange(currentPage + 1)
   }
 
   const onPrevious = () => {
-    onPageChange(currentPage - 1)
+    onCurrentPageChange(currentPage - 1)
   }
 
   const renderPageNumbers = (): (number | string)[] => {
     const pageNumbers: (number | string)[] = []
 
-    if (pagesCount <= 1) {
-      return pageNumbers
-    }
-
-    const leftSiblingCount = Math.min(siblingCount, currentPage - 1)
-    const rightSiblingCount = Math.min(siblingCount, pagesCount - currentPage)
+    const leftSiblingCount = Math.min(+siblingCount, currentPage - 1)
+    const rightSiblingCount = Math.min(+siblingCount, pagesCount - currentPage)
 
     const rangeStart = currentPage - leftSiblingCount
     const rangeEnd =
       currentPage <= 4 ? currentPage + (5 - currentPage) : currentPage + rightSiblingCount
-
-    // pagesCount - currentPage < 7 ? :
 
     if (rangeStart > 1) {
       pageNumbers.push(1)
@@ -54,32 +56,50 @@ export const Pagination = (props: PaginationProps) => {
       if (rangeEnd < pagesCount - 1) {
         pageNumbers.push('...')
       }
+
       pageNumbers.push(pagesCount)
     }
+
+    // if (pageNumbers[pageNumbers.length-1] - currentPage === 2  ) {
+    //   pageNumbers.splice(2,0,(pageNumbers[2]-1))
+    // }
 
     return pageNumbers
   }
 
+  const onPageSizeHandler = (value: string) => {
+    onPageSizeChange(+value)
+  }
+
   return (
-    <div>
-      <button className={p.pageStyle} onClick={onPrevious} disabled={currentPage === 1}>
-        {'<'}
-      </button>
-      {renderPageNumbers().map((el, i) => (
-        <button
-          key={i}
-          className={`${currentPage === el ? p.activePageStyle : ''} ${p.pageStyle}`}
-          onClick={() => onPageChange(el)}
-        >
-          {el}
+    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+      <div>
+        <button className={p.pageStyle} onClick={onPrevious} disabled={currentPage === 1}>
+          {'<'}
         </button>
-      ))}
-      <button className={p.pageStyle} onClick={onNext} disabled={currentPage === pagesCount}>
-        {'>'}
-      </button>
-      <span>
-        Показать <button>100</button> на странице
-      </span>
+        {renderPageNumbers().map((el, i) => (
+          <button
+            key={i}
+            className={`${currentPage === el ? p.activePageStyle : ''} ${p.pageStyle}`}
+            onClick={() => onCurrentPageChange(el)}
+            disabled={el === '...'}
+          >
+            {el}
+          </button>
+        ))}
+        <button className={p.pageStyle} onClick={onNext} disabled={currentPage === pagesCount}>
+          {'>'}
+        </button>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        Показать{' '}
+        <SelectCustom
+          options={['10', '20', '30', '40', '50']}
+          defaultValue={pageSize.toString()}
+          onValueChange={onPageSizeHandler}
+        />{' '}
+        на странице
+      </div>
     </div>
   )
 }

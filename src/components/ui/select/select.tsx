@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ComponentPropsWithoutRef, FC } from 'react'
 
 import * as Select from '@radix-ui/react-select'
 
@@ -8,26 +8,20 @@ import s from './select.module.scss'
 
 type SelectProps = {
   options: string[]
-  onChange: (value: string) => void
   className?: string
-  disabled?: boolean
-}
+  placeHolder?: string
+} & ComponentPropsWithoutRef<typeof Select.Root>
 
-export const SelectCustom = (props: SelectProps) => {
-  const { options, onChange, className, disabled, ...restProps } = props
-
-  const [selectedValue, setSelectedValue] = useState(options[0])
-  const [open, setOpen] = useState(false)
-
-  const handleValueChange = (value: string) => {
-    setSelectedValue(value)
-    onChange(value)
-  }
-
-  const onOpenChange = (open: boolean) => {
-    setOpen(open)
-  }
-
+export const SelectCustom: FC<SelectProps> = ({
+  options,
+  defaultValue,
+  placeHolder,
+  onValueChange,
+  value,
+  className,
+  disabled,
+  ...restProps
+}) => {
   const mapedOptions = options?.map(o => (
     <Select.Item key={o} value={o} className={s.item}>
       <Select.ItemText className={s.itemText}>{o}</Select.ItemText>
@@ -36,16 +30,16 @@ export const SelectCustom = (props: SelectProps) => {
 
   return (
     <Select.Root
-      onValueChange={handleValueChange}
-      value={selectedValue}
-      onOpenChange={onOpenChange}
+      onValueChange={onValueChange}
+      defaultValue={defaultValue}
       disabled={disabled}
+      value={value}
       {...restProps}
     >
       <Select.Trigger className={`${s.trigger} ${className}`}>
-        <Select.Value>{selectedValue}</Select.Value>
+        <Select.Value placeholder={placeHolder} />
         <Select.Icon className={s.icon}>
-          <img src={layer} alt={'down'} className={open ? s.downArrow : ''} />
+          <img src={layer} />
         </Select.Icon>
       </Select.Trigger>
       <Select.Portal>
