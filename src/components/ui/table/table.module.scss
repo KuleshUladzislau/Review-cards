@@ -1,0 +1,33 @@
+.table {
+  user-select: none;
+  border-collapse: collapse;
+  min-width: 100%;
+}
+
+.tableHeader {
+  border-collapse: collapse;
+  background-color: var(--color-dark-300);
+  border: none;
+}
+
+.tHead {
+  height: 36px;
+  padding: 6px 24px;
+  text-align: left;
+}
+
+.tRow {
+  height: 36px;
+  padding: 6px 24px;
+  text-align: left;
+  border: 1px solid var(--color-dark-700);
+}
+
+.tableBody {
+  text-align: center;
+
+}
+
+.tData {
+  padding: 6px 24px;
+}

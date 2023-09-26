@@ -96,4 +96,3 @@ export const getFinalType = (type: ComponentProps<'input'>['type'], showPassword
 
   return type
 }
-
