@@ -1,16 +1,6 @@
-<<<<<<< HEAD
-import { useState } from 'react'
 
-import { Meta, StoryObj } from '@storybook/react'
 
-import { Tables } from './tables.tsx'
 
-const meta = {
-  title: 'Components/Tables',
-  component: Tables,
-  tags: ['autodocs'],
-} satisfies Meta<typeof Tables>
-=======
 import { Meta, StoryObj } from '@storybook/react'
 
 import { Play, Delete, Edit } from '../../../assets/icons'
@@ -23,15 +13,16 @@ const meta = {
   component: Table,
   tags: ['autodocs'],
 } satisfies Meta<typeof Table>
->>>>>>> origin/main
+
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-<<<<<<< HEAD
+
 export const Default: Story = {
   args: {},
-=======
+}
+
 export const TableDefault: Story = {
   args: {
     children: <></>,
@@ -93,5 +84,4 @@ export const TableDefaults = {
       </Table>
     )
   },
->>>>>>> origin/main
 }
