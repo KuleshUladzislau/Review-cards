@@ -62,7 +62,10 @@ export const TableDefaults = {
     return (
       <Table>
         <TableHeader>
-          <TRow>{tRowsMapped}</TRow>
+          <TRow>
+            {tRowsMapped}
+            {/*<THead />*/}
+          </TRow>
         </TableHeader>
         <TableBody>{tDataMapped}</TableBody>
       </Table>
