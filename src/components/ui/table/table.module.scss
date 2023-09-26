@@ -1,3 +1,12 @@
-.table{
-  background-color: #4c8dff;
+.table {
+  min-width: 100%;
+}
+
+.tableHead {
+  height: 36px;
+  background-color: var(--color-dark-100);
+}
+
+.tableRow {
+  //background-color: var(--color-dark-700);
 }
