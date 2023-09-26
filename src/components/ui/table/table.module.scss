@@ -4,9 +4,18 @@
 
 .tableHead {
   height: 36px;
-  background-color: var(--color-dark-100);
+  background-color: var(--color-dark-300);
 }
 
 .tableRow {
-  //background-color: var(--color-dark-700);
+  border: 1px solid white;
+}
+
+.tableBody{
+  text-align: center;
+  border: 1px solid white;
+}
+
+.tableData {
+  border: 1px solid white;
 }

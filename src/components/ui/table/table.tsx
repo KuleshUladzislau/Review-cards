@@ -30,22 +30,22 @@ export const Table: React.FC<tableType> = ({ children, className }) => {
   return <table className={className}>{children}</table>
 }
 
-export const TableHeader: React.FC<TableHeadType> = ({ children, className }) => {
-  return <thead className={className}>{children}</thead>
+export const TableHeader: React.FC<TableHeadType> = ({ children }) => {
+  return <thead>{children}</thead>
 }
 
-export const TableBody: React.FC<TableBodyType> = ({ children }) => {
-  return <tbody>{children}</tbody>
+export const THead: React.FC<THType> = ({ children, className }) => {
+  return <th className={className}>{children}</th>
+}
+
+export const TableBody: React.FC<TableBodyType> = ({ children, className }) => {
+  return <tbody className={className}>{children}</tbody>
 }
 
 export const TRow: React.FC<TRType> = ({ children, className }) => {
   return <tr className={className}>{children}</tr>
 }
 
-export const THead: React.FC<THType> = ({ children }) => {
-  return <th>{children}</th>
-}
-
-export const TData: React.FC<TDType> = ({ children }) => {
-  return <td>{children}</td>
+export const TData: React.FC<TDType> = ({ children, className }) => {
+  return <td className={className}>{children}</td>
 }
