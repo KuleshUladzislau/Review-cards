@@ -24,7 +24,7 @@ export const TableDefaults = {
   render: () => {
     const tRows = ['Name', 'Cards', 'Last Updated', 'Created by']
     const tRowsMapped = tRows.map((el, i) => (
-      <THead key={i} className={t.tableHead}>
+      <THead colSpan={i === tRows.length - 1 ? 2 : 0} key={i} className={t.tableHead}>
         {el}
       </THead>
     ))
@@ -50,12 +50,16 @@ export const TableDefaults = {
         <TData>{el.name}</TData>
         <TData>{el.cards}</TData>
         <TData>{el.lastUpdate}</TData>
-        <TData>{el.createdBy}</TData>
-        <TData>
-          <Play />
-          <Edit />
-          <Delete />
-        </TData>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <TData>{el.createdBy}</TData>
+          <TData>
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <Play />
+              <Edit />
+              <Delete />
+            </div>
+          </TData>
+        </div>
       </TRow>
     ))
 
