@@ -1,5 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react'
 
+import { Play, Delete, Edit } from '../../../assets/icons'
+
 import { Table, TableHeader, TableBody, TRow, THead, TData } from './table'
 import t from './table.module.scss'
 
@@ -44,20 +46,25 @@ export const TableDefaults = {
     ]
 
     const tDataMapped = Tdata.map((el: DataT) => (
-      <TRow key={el.id} className={t.tableRow}>
+      <TRow key={el.id}>
         <TData>{el.name}</TData>
         <TData>{el.cards}</TData>
         <TData>{el.lastUpdate}</TData>
         <TData>{el.createdBy}</TData>
+        <TData>
+          <Play />
+          <Edit />
+          <Delete />
+        </TData>
       </TRow>
     ))
 
     return (
-      <Table className={t.table}>
+      <Table>
         <TableHeader>
-          <TRow className={t.tableRow}>{tRowsMapped}</TRow>
+          <TRow>{tRowsMapped}</TRow>
         </TableHeader>
-        <TableBody className={t.tableBody}>{tDataMapped}</TableBody>
+        <TableBody>{tDataMapped}</TableBody>
       </Table>
     )
   },

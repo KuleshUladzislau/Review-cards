@@ -2,9 +2,14 @@
   min-width: 100%;
 }
 
+.TableHeader{
+  background-color: var(--color-dark-300);
+}
+
 .tableHead {
   height: 36px;
-  background-color: var(--color-dark-300);
+
+  //background-color: var(--color-dark-300);
 }
 
 .tableRow {
@@ -17,5 +22,5 @@
 }
 
 .tableData {
-  border: 1px solid white;
+  //border: 1px solid white;
 }
