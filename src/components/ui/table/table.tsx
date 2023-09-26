@@ -38,8 +38,8 @@ export const THead: React.FC<THType> = ({ children }) => {
   return <th className={t.tableHead}>{children}</th>
 }
 
-export const TableBody: React.FC<TableBodyType> = ({ children }) => {
-  return <tbody className={t.tableBody}>{children}</tbody>
+export const TableBody: React.FC<TableBodyType> = ({ children, className }) => {
+  return <tbody className={t.tableBody + className}>{children}</tbody>
 }
 
 export const TRow: React.FC<TRType> = ({ children }) => {
