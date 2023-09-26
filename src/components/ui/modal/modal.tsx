@@ -14,14 +14,15 @@ export type ModalType = {
 export const Modal = ({ open, setOpen, children, title }: ModalType) => {
   const transformStyle = open ? s.modalContainer : s.active
 
+
   return (
-    <div className={transformStyle} onClick={() => setOpen(false)}>
+    <div className={transformStyle} onClick={() => setOpen(!open)}>
       <div className={s.content} onClick={(e: any) => e.stopPropagation()}>
         <div className={s.contentContainer}>
           {title && (
             <div className={s.title}>
               <h4>{title}</h4>
-              <img src={closeCross} onClick={() => setOpen(false)} />
+              <img src={closeCross} onClick={() => setOpen(!open)} />
             </div>
           )}
           {children}
