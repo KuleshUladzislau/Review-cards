@@ -20,7 +20,7 @@
 .item::after {
   content: '';
   position: absolute;
-  left: 6px;
+  left:7.5px;
   transform: translateX(-50%);
   width: 32px;
   height: 32px;
@@ -31,10 +31,12 @@
 
 .item:hover::after {
   background: var(--dark-500, #333);
+  transition: all 0.4s ease-in-out;
 }
 
 .item:active::after {
   background: var(--primary-900, #382766);
+
 }
 
 .item:disabled {
@@ -46,8 +48,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 7px;
-  height: 7px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: var(--primary-500, #8c61ff);
+  animation: fadeIn 0.2s ease;
+
+}
+
+
+@keyframes fadeIn {
+
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+
+
 }

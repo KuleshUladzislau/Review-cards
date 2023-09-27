@@ -12,7 +12,16 @@
 
   &[data-state='open'] .icon {
     transform: rotate(180deg);
+    transition: all 0.2s ease-in-out;
   }
+
+  &[data-state='closed'] .icon {
+    transition: all 0.3s ease-in-out;
+  }
+
+
+
+
 }
 
 .trigger:focus {
@@ -34,6 +43,7 @@
   border: 1px solid var(--dark-300, #4c4c4c);
   border-top: none;
   text-transform: capitalize;
+  animation: fadeIn 0.5s ease;
 }
 
 .item {
@@ -54,4 +64,13 @@
 .icon {
   display: flex;
   margin-left: 10px;
+}
+
+@keyframes fadeIn {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
 }

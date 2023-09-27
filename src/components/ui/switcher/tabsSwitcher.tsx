@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, FC } from 'react'
+import { ComponentPropsWithoutRef, ElementRef,  forwardRef } from 'react'
 
 import * as Tabs from '@radix-ui/react-tabs'
 
@@ -11,23 +11,28 @@ type TabsProps = {
   onChange: (value: string) => void
 } & ComponentPropsWithoutRef<typeof Tabs.Root>
 
-export const TabsSwitcher: FC<TabsProps> = ({
-  tabs,
-  disabled = false,
-  onChange,
-  defaultValue,
-}: TabsProps) => {
-  const mapedTabs = tabs.map(t => {
-    return (
-      <Tabs.Trigger key={t} value={t} className={s.default} disabled={disabled}>
-        {t}
-      </Tabs.Trigger>
-    )
-  })
+export const TabsSwitcher = forwardRef<ElementRef<typeof Tabs.Root>, TabsProps>((
+  {
+     tabs,
+     disabled = false,
+     onChange,
+     className,
+     defaultValue
+   },
+   ref
+  ) => {
+    const mapedTabs = tabs.map(t => {
+      return (
+        <Tabs.Trigger key={t} value={t} className={`${s.default} ${className}`} disabled={disabled}>
+          {t}
+        </Tabs.Trigger>
+      )
+    })
 
-  return (
-    <Tabs.Root defaultValue={defaultValue} onValueChange={onChange}>
-      <Tabs.List>{mapedTabs}</Tabs.List>
-    </Tabs.Root>
-  )
-}
+    return (
+      <Tabs.Root defaultValue={defaultValue} ref={ref} onValueChange={onChange}>
+        <Tabs.List>{mapedTabs}</Tabs.List>
+      </Tabs.Root>
+    )
+  }
+)
