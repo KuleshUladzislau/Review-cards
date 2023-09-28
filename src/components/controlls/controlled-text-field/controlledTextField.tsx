@@ -12,9 +12,11 @@ export const ControlledTextField = <TFieldValues extends FieldValues>({
   shouldUnregister,
   control,
   ...textFieldProps
-}: ControlledTextFieldProps<TFieldValues>) => {
+}: ControlledTextFieldProps<TFieldValues>
+) => {
+
   const {
-    field: { onChange, value },
+    field: { onChange, value = '' },
   } = useController({
     name,
     control,
