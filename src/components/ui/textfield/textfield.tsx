@@ -9,7 +9,7 @@ import { Typography } from '../typography'
 
 import s from './textfield.module.scss'
 
-type TextfieldProps = {
+export type TextfieldProps = {
   onValueChange?: (value: string) => void
   errorMessage?: string
   containerProps?: ComponentProps<'div'>
