@@ -6,7 +6,7 @@ import type { TextfieldProps } from '../../ui/textfield'
 export type ControlledTextFieldProps<TFieldValues extends FieldValues> =
   UseControllerProps<TFieldValues> & Omit<TextfieldProps, 'onChange' | 'value'>
 
-export const controlledTextField = <TFieldValues extends FieldValues>({
+export const ControlledTextField = <TFieldValues extends FieldValues>({
   name,
   rules,
   shouldUnregister,
