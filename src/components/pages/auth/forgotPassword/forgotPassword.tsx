@@ -50,7 +50,7 @@ export const ForgotPassword = () => {
           Did you remember your password?
         </Typography>
         <Button variant={'link'} onClick={() => {}}>
-          Try logging in
+          <Typography variant={'link1'}>Try logging in</Typography>
         </Button>
       </Card>
     </form>
