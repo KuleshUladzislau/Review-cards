@@ -1,6 +1,6 @@
-import { zodResolver } from '@hookform/resolvers/zod'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { z } from 'zod'
+
+import { SubmitHandler} from 'react-hook-form'
+
 
 import { ControlledTextField } from '../../../controlls'
 import { Button } from '../../../ui/button'
@@ -8,19 +8,10 @@ import { Card } from '../../../ui/card'
 import { Typography } from '../../../ui/typography'
 
 import s from './forgotPassword.module.scss'
+import { useForgotPassword } from './useForgotPassword.ts'
 
 export const ForgotPassword = () => {
-  const forgotPasswordSchema = z.object({
-    email: z.string().email(),
-  })
-
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<{ email: string }>({
-    resolver: zodResolver(forgotPasswordSchema),
-  })
+  const { handleSubmit, control } = useForgotPassword()
 
   const onSubmit: SubmitHandler<{ email: string }> = data => {
     console.log(data)
@@ -37,7 +28,6 @@ export const ForgotPassword = () => {
           name="email"
           control={control}
           label="Email"
-          errorMessage={errors.email?.message}
         />
 
         <Typography variant="overline" as={'label'} className={s.description}>

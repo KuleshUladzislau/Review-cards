@@ -16,7 +16,7 @@ export const ControlledTextField = <TFieldValues extends FieldValues>({
 ) => {
 
   const {
-    field: { onChange, value = '' },
+    field: { onChange, value },
   } = useController({
     name,
     control,
