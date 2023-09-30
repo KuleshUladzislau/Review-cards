@@ -2,6 +2,7 @@ import { FC } from 'react'
 
 import * as Checkbox from '@radix-ui/react-checkbox'
 import { CheckIcon } from '@radix-ui/react-icons'
+import { clsx } from 'clsx'
 
 import { Typography } from '../typography'
 
@@ -13,6 +14,7 @@ export type CheckboxProps = {
   checked?: boolean
   variant: 'default' | 'withText'
   checkBoxText?: string
+  className?: string
 }
 
 export const SuperCheckbox: FC<CheckboxProps> = ({
@@ -20,11 +22,17 @@ export const SuperCheckbox: FC<CheckboxProps> = ({
   onChange,
   checked,
   checkBoxText,
+  className,
 }) => {
+  const classNames = {
+    checkBoxBlock: clsx(s.checkBoxBlock, className),
+    checkBox: clsx(s.checkboxRoot, checked && s.active),
+  }
+
   return (
-    <div className={s.checkBoxBlock}>
+    <div className={classNames.checkBoxBlock}>
       <Checkbox.Root
-        className={`${s.checkboxRoot} ${checked ? s.active : s.unActive}`}
+        className={classNames.checkBox}
         id="c1"
         checked={checked}
         onCheckedChange={onChange}

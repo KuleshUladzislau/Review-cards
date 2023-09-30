@@ -1,10 +1,22 @@
+import { CSSProperties, ReactNode } from 'react'
+
+import { clsx } from 'clsx'
+
 import c from './card.module.scss'
 
 export type cardProps = {
-  children?: React.ReactNode
+  children?: ReactNode
+  className?: string
+  style?: CSSProperties
 }
 export const Card = (props: cardProps) => {
-  const { children } = props
+  const { children, style, className } = props
 
-  return <div className={c.cardWrapper}>{children}</div>
+  const classNames = { card: clsx(c.cardWrapper, className) }
+
+  return (
+    <div style={style} className={classNames.card}>
+      {children}
+    </div>
+  )
 }

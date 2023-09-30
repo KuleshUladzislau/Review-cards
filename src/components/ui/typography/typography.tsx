@@ -1,4 +1,4 @@
-import { ElementType, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
 
 import s from './typography.module.scss'
 
@@ -26,7 +26,7 @@ export const Typography = <T extends ElementType>({
   children,
   className,
   ...restProps
-}: TypographyProps<T>) => {
+}: TypographyProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof TypographyProps<T>>) => {
   const classNames = `${s[variant]} ${className}`
   const Component = as || 'p'
 
