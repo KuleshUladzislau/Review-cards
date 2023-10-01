@@ -2,7 +2,6 @@ import { FC } from 'react'
 
 import ArrowUp from '../../../assets/icons/ArrowUp.tsx'
 import { SelectCustom } from '../select/select.tsx'
-import s from '../table/table.module.scss'
 
 import p from './pagination.module.scss'
 
