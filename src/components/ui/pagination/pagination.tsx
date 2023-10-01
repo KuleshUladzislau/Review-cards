@@ -1,6 +1,10 @@
-import p from './pagination.module.scss'
+import { FC } from 'react'
 
-import { SelectCustom } from '@/components/ui/select'
+import ArrowUp from '../../../assets/icons/ArrowUp.tsx'
+import { SelectCustom } from '../select/select.tsx'
+import s from '../table/table.module.scss'
+
+import p from './pagination.module.scss'
 
 export type PaginationProps = {
   totalCount: number
@@ -11,7 +15,7 @@ export type PaginationProps = {
   siblingCount?: number | string
 }
 
-export const Pagination: React.FC<PaginationProps> = ({
+export const Pagination: FC<PaginationProps> = ({
   totalCount,
   currentPage,
   pageSize,
@@ -60,10 +64,6 @@ export const Pagination: React.FC<PaginationProps> = ({
       pageNumbers.push(pagesCount)
     }
 
-    // if (pageNumbers[pageNumbers.length-1] - currentPage === 2  ) {
-    //   pageNumbers.splice(2,0,(pageNumbers[2]-1))
-    // }
-
     return pageNumbers
   }
 
@@ -75,7 +75,7 @@ export const Pagination: React.FC<PaginationProps> = ({
     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
       <div>
         <button className={p.pageStyle} onClick={onPrevious} disabled={currentPage === 1}>
-          {'<'}
+          <ArrowUp />
         </button>
         {renderPageNumbers().map((el, i) => (
           <button
@@ -88,16 +88,16 @@ export const Pagination: React.FC<PaginationProps> = ({
           </button>
         ))}
         <button className={p.pageStyle} onClick={onNext} disabled={currentPage === pagesCount}>
-          {'>'}
+          <ArrowUp />
         </button>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-        Показать{' '}
+        Показать
         <SelectCustom
           options={['10', '20', '30', '40', '50']}
           defaultValue={pageSize.toString()}
           onValueChange={onPageSizeHandler}
-        />{' '}
+        />
         на странице
       </div>
     </div>

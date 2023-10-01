@@ -6,6 +6,7 @@ export type ButtonProps<T extends ElementType = 'button'> = {
   variant?: 'primary' | 'secondary' | 'tertiary' | 'link'
   fullWidth?: boolean
   as?: T
+  onClick?: () => void
 } & ComponentPropsWithoutRef<T>
 
 export const Button = <T extends ElementType = 'button'>(props: ButtonProps<T>) => {
@@ -21,22 +22,12 @@ export const Button = <T extends ElementType = 'button'>(props: ButtonProps<T>) 
   return (
     <Component
       onClick={onClick}
-      className={`${s[variant]} ${fullWidth ? s.fullWidth : ''} ${className} ${
+      className={`${s.button} ${s[variant]} ${fullWidth ? s.fullWidth : ''} ${className} ${
         Component === 'a' ? s.asLink : ''
       }`}
       {...rest}
     >
-      <span
-        style={{
-          display: 'flex',
-          gap: '10px',
-          justifyContent: 'center',
-          alignItems: 'center',
-          textAlign: 'center',
-        }}
-      >
-        {rest.children}
-      </span>
+      <span className={s.valueBox}>{rest.children}</span>
     </Component>
   )
 }
