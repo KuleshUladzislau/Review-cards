@@ -13,7 +13,8 @@ $color-info-700: var(--color-info-700);
   $all,
   $gap,
   $padding-top,
-  $padding-bottom,$padding-inline,
+  $padding-bottom,
+  $padding-inline,
   $color,
   $backGroundColor,
   $border,
@@ -40,16 +41,16 @@ $color-info-700: var(--color-info-700);
 
 .primary {
   @include button(
-                  unset,
-                  10px,
-                  6px,
-                  6px,
-                  28px,
-                  var(--color-light-100),
-                  var(--color-accent-500),
-                  2px solid var(--color-accent-500),
-                  4px,
-                  0 4px 18px 0 #8c61ff59
+    unset,
+    10px,
+    6px,
+    6px,
+    28px,
+    var(--color-light-100),
+    var(--color-accent-500),
+    2px solid var(--color-accent-500),
+    4px,
+    0 4px 18px 0 #8c61ff59
   );
 
   user-select: none;
@@ -78,16 +79,16 @@ $color-info-700: var(--color-info-700);
 
 .secondary {
   @include button(
-                  unset,
-                  10px,
-                  6px,
-                  6px,
-                  28px,
-                  var(--color-light-100),
-                  var(--color-dark-300),
-                  2px solid var(--color-dark-300),
-                  4px,
-                  0 4px 4px 0 #4d566021
+    unset,
+    10px,
+    6px,
+    6px,
+    28px,
+    var(--color-light-100),
+    var(--color-dark-300),
+    2px solid var(--color-dark-300),
+    4px,
+    0 4px 4px 0 #4d566021
   );
 
   &:hover {
@@ -114,16 +115,16 @@ $color-info-700: var(--color-info-700);
 
 .tertiary {
   @include button(
-                  unset,
-                  10px,
-                  6px,
-                  6px,
-                  28px,
-                  var(--color-accent-500),
-                  rgba(255, 255, 255, 0),
-                  1px solid var(--color-accent-500),
-                  4px,
-                  none
+    unset,
+    10px,
+    6px,
+    6px,
+    28px,
+    var(--color-accent-500),
+    rgba(255, 255, 255, 0),
+    1px solid var(--color-accent-500),
+    4px,
+    none
   );
 
   &:hover {
@@ -151,16 +152,16 @@ $color-info-700: var(--color-info-700);
 
 .link {
   @include button(
-                  unset,
-                  10px,
-                  6px,
-                  6px,
-                  28px,
-                  var(--color-accent-500),
-                  rgba(255, 255, 255, 0),
-                  2px solid rgb(0 0 0 / 0%),
-                  4px,
-                  none
+    unset,
+    10px,
+    6px,
+    6px,
+    28px,
+    var(--color-accent-500),
+    rgba(255, 255, 255, 0),
+    2px solid rgb(0 0 0 / 0%),
+    4px,
+    none
   );
 
   padding: 6px 12px;

@@ -9,15 +9,8 @@ type Props = {
   className?: string
 } & ComponentPropsWithoutRef<typeof RadioGroup.Root>
 
-export const RadioButton = forwardRef<ElementRef<typeof RadioGroup.Root>, Props>((
- {
-  onValueChange,
-  options,
-  defaultValue,
-  className
- },
- ref
-    ) => {
+export const RadioButton = forwardRef<ElementRef<typeof RadioGroup.Root>, Props>(
+  ({ onValueChange, options, defaultValue, className }, ref) => {
     const buttons = options?.map(b => {
       return (
         <div className={s.container} key={b}>

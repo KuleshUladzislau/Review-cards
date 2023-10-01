@@ -11,15 +11,8 @@ export type ModalType = {
   title?: string
 } & ComponentPropsWithoutRef<'div'>
 
-export const Modal = forwardRef<ForwardedRef<HTMLDivElement>, ModalType>((
-  {
-    open,
-    setOpen,
-    children,
-    title
-  },
-    ref
-    ) => {
+export const Modal = forwardRef<ForwardedRef<HTMLDivElement>, ModalType>(
+  ({ open, setOpen, children, title }, ref) => {
     const transformStyle = open ? s.modalContainer : s.active
 
     return (

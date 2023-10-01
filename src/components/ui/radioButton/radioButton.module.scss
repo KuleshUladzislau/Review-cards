@@ -21,7 +21,7 @@
 .item::after {
   content: '';
   position: absolute;
-  left:6px;
+  left: 6px;
   transform: translateX(-50%);
   width: 32px;
   height: 32px;
@@ -37,7 +37,6 @@
 
 .item:active::after {
   background: var(--primary-900, #382766);
-
 }
 
 .item:disabled {
@@ -54,18 +53,13 @@
   border-radius: 50%;
   background: var(--primary-500, #8c61ff);
   animation: fadeIn 0.2s ease;
-
 }
 
-
 @keyframes fadeIn {
-
-  from{
+  from {
     opacity: 0;
   }
-  to{
+  to {
     opacity: 1;
   }
-
-
 }
