@@ -1,4 +1,5 @@
 import { SubmitHandler } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
 import s from './forgotPassword.module.scss'
 import { useForgotPassword } from './useForgotPassword.ts'
@@ -17,30 +18,33 @@ export const ForgotPassword = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={s.formContainer}>
-      <Card>
-        <Typography variant="h1" as="h1">
+      <Card className={s.contentWrapper}>
+        <Typography variant="large" as="h1" className={s.title}>
           Forgot your password?
         </Typography>
 
-        <ControlledTextField
-          name="email"
-          control={control}
-          label="Email"
-          errorMessage={errors.email?.message}
-        />
+        <div className={s.containerInput}>
+          <ControlledTextField
+            name="email"
+            control={control}
+            label="Email"
+            errorMessage={errors.email?.message}
+            className={s.input}
+          />
+        </div>
 
-        <Typography variant="overline" as={'label'} className={s.description}>
+        <Typography variant="body2" as={'label'} className={s.description}>
           Enter your email address and we will send you further instructions
         </Typography>
-        <Button variant="primary" type={'submit'} fullWidth className={s.submitButton}>
+        <Button variant="primary" className={s.submitButton}>
           Send Instructions
         </Button>
-        <Typography variant="overline" as="div">
+        <Typography variant="body2" className={s.rememberPassword}>
           Did you remember your password?
         </Typography>
 
-        <Typography variant={'link1'} as={'link'}>
-          Try logging in
+        <Typography variant={'link1'} className={s.link}>
+          <Link to={'/'}>Try logging in</Link>
         </Typography>
       </Card>
     </form>
