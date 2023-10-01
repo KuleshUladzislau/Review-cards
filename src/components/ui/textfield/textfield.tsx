@@ -2,12 +2,11 @@ import { ChangeEvent, ComponentProps, ComponentPropsWithoutRef, forwardRef, useS
 
 import { clsx } from 'clsx'
 
-import EyeOff from '../../../assets/icons/EyeOff.tsx'
-import EyeOn from '../../../assets/icons/EyeOn.tsx'
-import Search from '../../../assets/icons/Search.tsx'
 import { Typography } from '../typography'
 
 import s from './textfield.module.scss'
+
+import { EyeOff, EyeOn, Search } from '@/assets'
 
 export type TextfieldProps = {
   onValueChange?: (value: string) => void

@@ -2,9 +2,9 @@ import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
 import * as Select from '@radix-ui/react-select'
 
-import layer from '../../../assets/icons/Layer2.svg'
-
 import s from './select.module.scss'
+
+import Layer2 from '@/assets/icons/Layer2.tsx'
 
 type SelectProps = {
   options: string[]
@@ -14,16 +14,7 @@ type SelectProps = {
 
 export const SelectCustom = forwardRef<ElementRef<typeof Select.Root>, SelectProps>(
   (
-    {
-      options,
-      defaultValue,
-      placeHolder,
-      onValueChange,
-      value,
-      className,
-      disabled,
-      ...restProps
-    },
+    { options, defaultValue, placeHolder, onValueChange, value, className, disabled, ...restProps },
     ref
   ) => {
     const mapedOptions = options?.map(o => (
@@ -43,7 +34,7 @@ export const SelectCustom = forwardRef<ElementRef<typeof Select.Root>, SelectPro
         <Select.Trigger ref={ref} className={`${s.trigger} ${className}`}>
           <Select.Value placeholder={placeHolder} />
           <Select.Icon className={s.icon}>
-            <img src={layer} />
+            <Layer2 />
           </Select.Icon>
         </Select.Trigger>
         <Select.Portal>

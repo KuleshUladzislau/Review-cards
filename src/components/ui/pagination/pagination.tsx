@@ -1,6 +1,6 @@
-import { SelectCustom } from '../select/select.tsx'
-
 import p from './pagination.module.scss'
+
+import { SelectCustom } from '@/components/ui/select'
 
 export type PaginationProps = {
   totalCount: number
