@@ -1,15 +1,17 @@
 import { DevTool } from '@hookform/devtools'
+import { Link } from 'react-router-dom'
 
 import { ControlledTextField } from '../../controlls/'
 
 import s from './signIn.module.scss'
 import { SignInValuesForm, useSignInForm } from './useSignInForm'
 
+import { ControlledCheckbox } from '@/components/controlls/controlled-checkbox/controlled-checkbox.tsx'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { SuperCheckbox } from '@/components/ui/checkbox'
 import { Typography } from '@/components/ui/typography'
-import { Link } from 'react-router-dom'
+
+
 
 type SignInProps = {
   onSubmit: (data: SignInValuesForm) => void
@@ -40,7 +42,7 @@ export const SignIn = ({ onSubmit }: SignInProps) => {
             errorMessage={errors.password?.message}
           />
         </div>
-        <SuperCheckbox variant={'withText'} checkBoxText={'Remember me'} checked />
+        <ControlledCheckbox control={control} name={'rememberMe'} label={'Remember me'} />
         <Typography
           className={s.forgotPassword}
           as={Link}
