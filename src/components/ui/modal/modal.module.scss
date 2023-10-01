@@ -1,57 +1,53 @@
-@keyframes fadeIn {
-  from {
-    transform: translateY(-400%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-.modalContainer {
-  display: flex;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
+.overlay{
   position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  transform: scale(1);
-  background: rgba(0, 0, 0, 0.7);
+  inset: 0;
+  background-color: rgb(0 0 0 / 50%);
 }
 
 .content {
-  margin: auto;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: center;
-  flex-flow: column nowrap;
-  animation: fadeIn 1s ease;
-  animation-fill-mode: forwards;
+  width: 532px;
+  border-radius: 6px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: fadeIn 0.7s ease;
 }
-.contentContainer {
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  flex-grow: 0;
-  min-height: 300px;
-  min-width: 300px;
-  max-width: 500px;
-  word-break: break-word;
-  background: rgba(var(--dark-500, 51, 51, 51), 0.3);
-  overflow: auto;
-}
+
 .title {
-  padding: 18px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 50px;
-  min-width: 300px;
+  padding: 18px 24px;
+  border-radius: 2px 2px 0px 0px;
   border: 1px solid var(--dark-500, #333);
+  background: var(--dark-700, #171717);
 }
 
-.modalContainer.active {
-  transform: scale(0);
+.buttonClose{
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-dark-300);
+  }
+
+  &:active {
+    background-color: var(--color-dark-100);
+  }
 }
+
+@keyframes fadeIn {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 50%;
+  }
+}
+
+
