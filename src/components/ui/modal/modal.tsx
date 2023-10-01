@@ -1,41 +1,47 @@
-import { ComponentPropsWithoutRef, ForwardedRef, forwardRef } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
-import closeCross from '../../../assets/icons/crossClose.png'
+import * as Dialog from '@radix-ui/react-dialog'
 
 import s from './modal.module.scss'
 
+import { Cross } from '@/assets'
+import { Card } from '@/components/ui/card'
+import { Typography } from '@/components/ui/typography'
+
 export type ModalType = {
-  open: boolean
-  setOpen: (active: boolean) => void
   children?: React.ReactNode
   title?: string
-} & ComponentPropsWithoutRef<'div'>
+  className?: string
+  setOpen: (value: boolean) => void
+} & ComponentPropsWithoutRef<typeof Dialog.Root>
 
-export const Modal = forwardRef<ForwardedRef<HTMLDivElement>, ModalType>(
-  ({ open, setOpen, children, title }, ref) => {
-    const transformStyle = open ? s.modalContainer : s.active
-
+export const Modal = forwardRef<ElementRef<'div'>, ModalType>(
+  ({ open, title, setOpen, children, ...restProps }, ref) => {
     return (
-      <div
-        ref={ref as ForwardedRef<HTMLDivElement>}
-        className={transformStyle}
-        onClick={() => setOpen(false)}
-      >
-        <div
-          className={s.content}
-          onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => e.stopPropagation()}
-        >
-          <div className={s.contentContainer}>
-            {title && (
-              <div className={s.title}>
-                <h4>{title}</h4>
-                <img src={closeCross} onClick={() => setOpen(false)} />
+      <Dialog.Root open={open} onOpenChange={setOpen} {...restProps}>
+        {open && (
+          <Dialog.Portal forceMount>
+            <Dialog.Overlay className={s.overlay} forceMount />
+            <Dialog.Content>
+              <div className={s.content} ref={ref}>
+                <Card>
+                  {title && (
+                    <header className={s.title}>
+                      <Typography variant={'h2'} as={'h2'}>
+                        {title}
+                      </Typography>
+                      <Dialog.Close className={s.buttonClose}>
+                        <Cross />
+                      </Dialog.Close>
+                    </header>
+                  )}
+                  <div>{children}</div>
+                </Card>
               </div>
-            )}
-            <div>{children}</div>
-          </div>
-        </div>
-      </div>
+            </Dialog.Content>
+          </Dialog.Portal>
+        )}
+      </Dialog.Root>
     )
   }
 )
