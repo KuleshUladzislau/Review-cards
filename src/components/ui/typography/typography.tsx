@@ -19,7 +19,7 @@ export type TypographyProps<T extends ElementType> = {
     | 'link2'
   children?: ReactNode
   className?: string
-}
+} & ComponentPropsWithoutRef<T>
 export const Typography = <T extends ElementType>({
   as,
   variant = 'body1',

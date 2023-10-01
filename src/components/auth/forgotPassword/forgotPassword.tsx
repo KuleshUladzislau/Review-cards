@@ -39,7 +39,9 @@ export const ForgotPassword = () => {
           Did you remember your password?
         </Typography>
 
-        <Typography variant={'link1'}>Try logging in</Typography>
+        <Typography variant={'link1'} as={'link'}>
+          Try logging in
+        </Typography>
       </Card>
     </form>
   )
