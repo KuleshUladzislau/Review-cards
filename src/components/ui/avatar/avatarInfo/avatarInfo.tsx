@@ -1,5 +1,6 @@
-import { Typography } from '../../typography'
 import s from '../avatar.module.scss'
+
+import { Typography } from '@/components/ui/typography'
 
 type AvatarInfoProps = {
   userName?: string

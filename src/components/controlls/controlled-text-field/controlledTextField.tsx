@@ -1,7 +1,6 @@
 import { FieldValues, useController, UseControllerProps } from 'react-hook-form'
 
-import { Textfield } from '../../ui/textfield'
-import type { TextfieldProps } from '../../ui/textfield'
+import { Textfield, TextfieldProps } from '@/components/ui/textfield'
 
 export type ControlledTextFieldProps<TFieldValues extends FieldValues> =
   UseControllerProps<TFieldValues> & Omit<TextfieldProps, 'onChange' | 'value'>
@@ -12,9 +11,7 @@ export const ControlledTextField = <TFieldValues extends FieldValues>({
   shouldUnregister,
   control,
   ...textFieldProps
-}: ControlledTextFieldProps<TFieldValues>
-) => {
-
+}: ControlledTextFieldProps<TFieldValues>) => {
   const {
     field: { onChange, value },
   } = useController({
