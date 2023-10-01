@@ -9,7 +9,7 @@ import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
 
 export const ForgotPassword = () => {
-  const { handleSubmit, control } = useForgotPassword()
+  const { handleSubmit, control, errors } = useForgotPassword()
 
   const onSubmit: SubmitHandler<{ email: string }> = data => {
     console.log(data)
@@ -22,7 +22,7 @@ export const ForgotPassword = () => {
           Forgot your password?
         </Typography>
 
-        <ControlledTextField name="email" control={control} label="Email" />
+        <ControlledTextField name="email" control={control} label="Email" errorMessage={errors.email?.message} />
 
         <Typography variant="overline" as={'label'} className={s.description}>
           Enter your email address and we will send you further instructions

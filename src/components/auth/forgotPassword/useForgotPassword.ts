@@ -8,10 +8,18 @@ const forgotPasswordSchema = z.object({
 
 type FormValue = z.infer<typeof forgotPasswordSchema>
 export const useForgotPassword = () => {
-  const { handleSubmit, control } = useForm<FormValue>({
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<FormValue>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: { email: '' },
   })
 
-  return { handleSubmit, control }
+  return {
+    handleSubmit,
+    control,
+    errors,
+  }
 }
