@@ -1,9 +1,14 @@
 .formContainer {
   display: flex;
   flex-direction: column;
-  gap: 20px;
   width: 100%;
 }
+
+.input{
+  margin-bottom: 36px;
+}
+
 .submitButton {
-  width: 83%;
+  height: 28px;
+
 }

@@ -1,3 +1,5 @@
+
+
 .checkBoxBlock {
   display: flex;
   align-items: center;
@@ -11,11 +13,18 @@
     align-items: center;
     justify-content: center;
 
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 25px;
+    height: 25px;
 
-    border: 2px solid var(--color-light-900);
+    background: none;
     border-radius: 0.25rem;
+
+    &[data-state='unchecked']{
+      border: 2px solid var(--color-dark-100);
+    }
+    &[data-state='checked']{
+      border: none;
+    }
 
     &:focus {
       &::before {
@@ -36,7 +45,7 @@
       background-color: var(--color-dark-100);
     }
 
-    &:not(:disabled) {
+
       &:hover {
         &::before {
           content: '';
@@ -44,14 +53,14 @@
           position: absolute;
           z-index: -1;
 
-          width: calc(100% + 1.5625rem);
-          height: calc(100% + 1.5625rem);
+          width: calc(100% + 25px);
+          height: calc(100% + 25px);
 
-          background-color: var(--color-dark-500);
+
           border-radius: 50%;
         }
       }
-    }
+
   }
 
   .active {
@@ -64,10 +73,12 @@
       color: var(--color-dark-900);
 
       .icon {
-        width: 1.55rem;
-        height: 1.55rem;
+        width: 25px;
+        height:25px;
       }
     }
+
+
   }
 
   .checkboxRoot:disabled .checkboxIndicator {

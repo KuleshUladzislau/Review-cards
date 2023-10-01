@@ -15,5 +15,6 @@ export const Default: Story = {
   args: {
     name: 'Alexander',
     email: 'alexanders@mail.ru',
+    src:'https://imgv3.fotor.com/images/gallery/american-anime-stule-naked-man-avatar.jpg'
   },
 }

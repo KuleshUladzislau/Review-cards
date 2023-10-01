@@ -1,4 +1,4 @@
-import s from '../editeProfile.module.scss'
+import s from './profileInfo.module.scss'
 
 import { Edit, Logout } from '@/assets'
 import { Button } from '@/components/ui/button'
@@ -13,16 +13,18 @@ type Props = {
 export const ProfileInfo = ({ name, email, setEditeMode }: Props) => {
   const logout = () => {}
 
+  const onEditModHandler = () => setEditeMode(true)
+
   return (
     <>
-      <Typography variant="h3" as="div" className={s.nameContainer}>
+      <Typography variant="h3" as="h3" className={s.nameContainer}>
         {name}
-        <Edit onClick={() => setEditeMode(true)} />
+        <Edit onClick={onEditModHandler} />
       </Typography>
-      <Typography variant="overline" className={s.email}>
+      <Typography variant="body2" className={s.email}>
         {email}
       </Typography>
-      <Button variant="secondary" onClick={logout}>
+      <Button variant="secondary" onClick={logout} className={s.button}>
         <Logout />
         Logout
       </Button>

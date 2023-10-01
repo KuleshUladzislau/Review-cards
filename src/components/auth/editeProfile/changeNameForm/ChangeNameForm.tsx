@@ -22,15 +22,15 @@ export const ChangeName = ({ name, setEditeMode }: Props) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={s.formContainer}>
-      <ControlledTextField
-        label={'Nickname'}
-        name="profileName"
-        control={control}
-        errorMessage={errors.profileName?.message}
-      />
-      <Button type={'submit'} className={s.submitButton}>
-        Save Changes
-      </Button>
+      <div className={s.input}>
+        <ControlledTextField
+          label={'Nickname'}
+          name="profileName"
+          control={control}
+          errorMessage={errors.profileName?.message}
+        />
+      </div>
+      <Button className={s.submitButton}>Save Changes</Button>
     </form>
   )
 }

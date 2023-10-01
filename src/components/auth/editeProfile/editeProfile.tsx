@@ -5,25 +5,26 @@ import s from './editeProfile.module.scss'
 import { ProfileInfo } from './profileInfo/profileInfo'
 
 import { Edit } from '@/assets'
-import { Avatar } from '@/components/ui/avatar/avatar.tsx'
+
 import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
 
 type Props = {
   name: string
   email: string
+  src: string
 }
 
-export const EditeProfile = ({ name, email }: Props) => {
+export const EditeProfile = ({ name, email, src }: Props) => {
   const [editeMode, setEditeMode] = useState(false)
 
   return (
-    <Card>
-      <Typography variant="h1" as="h1">
+    <Card className={s.container}>
+      <Typography variant="h1" as="h1" className={s.title}>
         Personal Information
       </Typography>
       <div className={s.avatarContainer}>
-        <Avatar />
+        <img src={src} alt={'img'} className={s.img} />
         {!editeMode && <Edit className={s.edit} />}
       </div>
       {!editeMode && <ProfileInfo name={name} email={email} setEditeMode={setEditeMode} />}
