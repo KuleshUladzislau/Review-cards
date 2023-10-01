@@ -23,7 +23,7 @@ export const SignIn = ({ onSubmit }: SignInProps) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <DevTool control={control} />
-      <Card style={{ alignItems: 'stretch' }}>
+      <Card className={s.card}>
         <Typography className={s.signIn} variant={'large'}>
           Sign In
         </Typography>
