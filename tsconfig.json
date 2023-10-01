@@ -21,22 +21,13 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true
-  },
-  "types": [
-    "node"
-  ],
-  "paths": {
-    "@/*": [
-      "./src/*"
-    ]
-  },
-  "include": [
-    "src"
-  ],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
+    "allowSyntheticDefaultImports": true,
+    "types": ["node"],
+    "paths": {
+      "@/*": ["./src/*"]
     }
-  ]
+  },
+
+  "include": ["src"],
+  "references": [{"path": "./tsconfig.node.json"}]
 }

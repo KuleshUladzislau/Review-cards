@@ -3,9 +3,10 @@ import { useState } from 'react'
 import type { Meta } from '@storybook/react'
 
 import { Button } from '../button'
-import { Card } from '../card/card'
 
 import { Modal, ModalType } from './modal.tsx'
+
+import { Card } from '@/components/ui/card'
 
 const meta = {
   title: 'Components/Modal',
