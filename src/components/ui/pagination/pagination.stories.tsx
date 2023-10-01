@@ -24,7 +24,7 @@ export const Defalut = {
         pageSize={pageSize}
         onPageSizeChange={setPageSize}
         currentPage={currentPage}
-        onCurrentPageChange={() => setCurrentPage}
+        onCurrentPageChange={setCurrentPage}
       ></Pagination>
     )
   },
