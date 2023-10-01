@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import EyeOn from '../../../assets/icons/EyeOn'
-
-import { Button } from './button'
+import { EyeOn } from '@/assets'
+import { Button } from '@/components/ui/button/button.tsx'
+import { Typography } from '@/components/ui/typography'
 
 const meta = {
   title: 'Components/Button',
@@ -56,23 +56,20 @@ export const FullWidth: Story = {
     fullWidth: true,
   },
 }
-export const AsLink: Story = {
+export const ButtonAsLink: Story = {
   args: {
     variant: 'primary',
     children: 'Link that looks like a button',
     as: 'a',
   },
 }
-
-export const ButtonWithIcons = {
-  render: () => {
-    const onClickHandler = () => {}
-
-    return (
-      <Button variant={'primary'} onClick={onClickHandler}>
-        <EyeOn />
-        LogOut
-      </Button>
-    )
+export const ButtonWithIcons: Story = {
+  args: {
+    variant: 'primary',
+    children: (
+      <>
+        <EyeOn /> <Typography variant={'body1'}>With Icon</Typography>
+      </>
+    ),
   },
 }

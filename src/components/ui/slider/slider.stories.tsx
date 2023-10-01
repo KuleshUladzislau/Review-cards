@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import type { Meta } from '@storybook/react'
 
-import { SliderCustom } from '../slider/slider'
+import { SliderCustom } from '@/components/ui/slider'
 
 const meta = {
   title: 'Components/Slider',
@@ -12,7 +12,6 @@ const meta = {
 } satisfies Meta<typeof SliderCustom>
 
 export default meta
-
 export const Default = {
   render: () => {
     const min = 0
@@ -33,5 +32,3 @@ export const Default = {
     )
   },
 }
-
-//storyDocs, args: OnChange
