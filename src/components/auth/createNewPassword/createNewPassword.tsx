@@ -1,9 +1,7 @@
-import React from 'react'
-
-import { Button } from '../../../ui/button'
-import { Card } from '../../../ui/card'
-import { Textfield } from '../../../ui/textfield'
-import { Typography } from '../../../ui/typography'
+import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+import { Textfield } from '@/components/ui/textfield'
+import { Typography } from '@/components/ui/typography'
 
 export const CreateNewPassword = () => {
   return (

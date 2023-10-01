@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import EyeOn from '../../../assets/icons/EyeOn'
-import { Typography } from '../typography'
-
-import { Button } from './button'
+import { EyeOn } from '@/assets'
+import { Button } from '@/components/ui/button/button.tsx'
+import { Typography } from '@/components/ui/typography'
 
 const meta = {
   title: 'Components/Button',

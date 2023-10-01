@@ -2,9 +2,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useController, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { Button } from '../../ui/button'
-import { SuperCheckbox } from '../../ui/checkbox'
-import { Textfield } from '../../ui/textfield'
+import { Button } from '@/components/ui/button'
+import { SuperCheckbox } from '@/components/ui/checkbox'
+import { Textfield } from '@/components/ui/textfield'
+
 type FormValues = z.infer<typeof loginSchema>
 
 const loginSchema = z.object({

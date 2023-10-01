@@ -2,13 +2,12 @@ import { useState } from 'react'
 
 import type { Meta } from '@storybook/react'
 
-import { Pagination } from '../pagination'
+import { Pagination } from '@/components/ui/pagination'
 
 const meta = {
   title: 'Components/Pagination',
   component: Pagination,
   tags: ['autodocs'],
-  argTypes: {},
 } satisfies Meta<typeof Pagination>
 
 export default meta
@@ -25,7 +24,7 @@ export const Defalut = {
         pageSize={pageSize}
         onPageSizeChange={setPageSize}
         currentPage={currentPage}
-        onCurrentPageChange={setCurrentPage}
+        onCurrentPageChange={() => setCurrentPage}
       ></Pagination>
     )
   },

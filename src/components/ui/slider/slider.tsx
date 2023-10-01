@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from 'react'
+import { ComponentPropsWithoutRef, FC } from 'react'
 
 import * as Slider from '@radix-ui/react-slider'
 
@@ -8,7 +8,7 @@ type SliderProps = {
   onChange?: (value: number[]) => void
 } & ComponentPropsWithoutRef<typeof Slider.Root>
 
-export const SliderCustom: React.FC<SliderProps> = ({
+export const SliderCustom: FC<SliderProps> = ({
   onValueChange,
   step = 1,
   disabled,
