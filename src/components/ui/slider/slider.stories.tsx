@@ -12,7 +12,6 @@ const meta = {
 } satisfies Meta<typeof SliderCustom>
 
 export default meta
-
 export const Default = {
   render: () => {
     const min = 0
@@ -33,5 +32,3 @@ export const Default = {
     )
   },
 }
-
-//storyDocs, args: OnChange

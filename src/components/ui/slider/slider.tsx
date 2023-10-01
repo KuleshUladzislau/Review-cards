@@ -6,6 +6,7 @@ import s from './slider.module.scss'
 
 type SliderProps = {
   onChange?: (value: number[]) => void
+  value: string[] | number[]
 } & ComponentPropsWithoutRef<typeof Slider.Root>
 
 export const SliderCustom: FC<SliderProps> = ({
@@ -20,7 +21,7 @@ export const SliderCustom: FC<SliderProps> = ({
 }) => {
   return (
     <div className={s.sliderWrapper}>
-      <span className={s.boxValue}>{value![0]}</span>
+      <span className={s.boxValue}>{value[0]}</span>
       <Slider.Root
         className={s.SliderRoot}
         defaultValue={defaultValue}
@@ -37,7 +38,7 @@ export const SliderCustom: FC<SliderProps> = ({
         <Slider.Thumb className={s.SliderThumb} />
         <Slider.Thumb className={s.SliderThumb} />
       </Slider.Root>
-      <span className={s.boxValue}>{value![1]}</span>
+      <span className={s.boxValue}>{value[1]}</span>
     </div>
   )
 }
