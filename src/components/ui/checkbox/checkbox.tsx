@@ -12,17 +12,18 @@ export type CheckboxProps = {
   onChange?: (checked: boolean) => void
   disabled?: boolean
   checked?: boolean
-  variant: 'default' | 'withText'
-  checkBoxText?: string
+  label?: string
   className?: string
+  id?: string
 }
 
 export const SuperCheckbox: FC<CheckboxProps> = ({
   disabled = false,
   onChange,
   checked,
-  checkBoxText,
+  label,
   className,
+  id,
 }) => {
   const classNames = {
     checkBoxBlock: clsx(s.checkBoxBlock, className),
@@ -33,7 +34,7 @@ export const SuperCheckbox: FC<CheckboxProps> = ({
     <div className={classNames.checkBoxBlock}>
       <Checkbox.Root
         className={classNames.checkBox}
-        id="c1"
+        id={id}
         checked={checked}
         onCheckedChange={onChange}
         disabled={disabled}
@@ -42,9 +43,9 @@ export const SuperCheckbox: FC<CheckboxProps> = ({
           <CheckIcon className={s.icon} />
         </Checkbox.Indicator>
       </Checkbox.Root>
-      {checkBoxText && (
-        <label className={`${s.label} ${disabled ? s.labelDisabled : ''}`} htmlFor={'c1'}>
-          <Typography variant={'body2'}>{checkBoxText}</Typography>
+      {label && (
+        <label className={`${s.label} ${disabled ? s.labelDisabled : ''}`} htmlFor={id}>
+          <Typography variant={'body2'}>{label}</Typography>
         </label>
       )}
     </div>
