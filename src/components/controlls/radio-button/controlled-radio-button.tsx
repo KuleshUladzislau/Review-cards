@@ -1,9 +1,9 @@
 import { FieldValues, useController, UseControllerProps } from 'react-hook-form'
 
-import { RadioButton, RadioButtonProps } from '@/components/ui/radioButton/radioButton.tsx'
+import { RadioButton, RadioGroupProps } from '@/components/ui/radioButton/radioButton.tsx'
 
 type ControlledRadioButtonProps<TFieldValues extends FieldValues> =
-  UseControllerProps<TFieldValues> & Omit<RadioButtonProps, 'onChange' | 'value' | 'id'>
+  UseControllerProps<TFieldValues> & Omit<RadioGroupProps, 'onChange' | 'value' | 'id'>
 
 export const ControlledRadioButton = <TFieldValues extends FieldValues>({
   control,

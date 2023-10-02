@@ -12,22 +12,13 @@ type Options = {
   value: string
 }
 
-type Props = {
+export type RadioGroupProps = {
   options: Options[]
   className?: string
 } & ComponentPropsWithoutRef<typeof RadioGroup.Root>
 
-export const RadioButton = forwardRef<ElementRef<typeof RadioGroup.Root>, Props>(
-({
-   onValueChange,
-   options,
-   defaultValue,
-   className
- }
- ,
- ref
-) => {
-
+export const RadioButton = forwardRef<ElementRef<typeof RadioGroup.Root>, RadioGroupProps>(
+  ({ onValueChange, options, defaultValue, className }, ref) => {
     const buttons = options.map(b => <RadioItem value={b.value} key={b.title} title={b.title} />)
 
     return (
@@ -48,14 +39,7 @@ type RadioItemProps = {
 } & ComponentPropsWithoutRef<typeof RadioGroup.Item>
 
 const RadioItem = forwardRef<ElementRef<typeof RadioGroup.Item>, RadioItemProps>(
-({
-  className,
-  value,
-  id,
-  title
-   },
-   ref
-) => {
+  ({ className, value, id, title }, ref) => {
     const classNames = {
       item: clsx(s.item, className),
       indicator: clsx(s.indicator),
