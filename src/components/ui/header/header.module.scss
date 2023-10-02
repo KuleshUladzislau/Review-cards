@@ -1,4 +1,8 @@
 .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 136px;
   width: 100%;
   border-bottom: 1px solid var(--dark-500, #333);
   background: var(--dark-700, #171717);
@@ -7,3 +11,20 @@
   top: 0;
   left: 0;
 }
+
+
+
+.userInfo{
+  display: flex;
+  align-items: center;
+  gap:14px;
+
+}
+.itemUserInfo{
+  display: flex;
+  min-width: 198px;
+  gap:8px;
+}
+
+
+
