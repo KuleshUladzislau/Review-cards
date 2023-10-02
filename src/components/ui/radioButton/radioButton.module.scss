@@ -18,6 +18,7 @@
   cursor: pointer;
 }
 
+
 .item::after {
   content: '';
   position: absolute;
@@ -35,21 +36,24 @@
   transition: all 0.4s ease-in-out;
 }
 
+
+
 .item:active::after {
   background: var(--primary-900, #382766);
 }
 
-.item:disabled {
-  opacity: 0.5;
-  pointer-events: none;
+.item:focus ::after {
+  background: var(--primary-900, #382766);
 }
+
+
 
 .indicator {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: var(--primary-500, #8c61ff);
   animation: fadeIn 0.2s ease;
