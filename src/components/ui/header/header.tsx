@@ -8,8 +8,8 @@ import { HeaderMenu } from '@/components/ui/header/headerMenu/HeaderMenu.tsx'
 
 export type HeaderProps = {
   userName: string
-  userPhoto: string
-  isLoggedIn: boolean
+  userPhoto?: string
+  isLoggedIn?: boolean
   email?: string
 } & ComponentPropsWithoutRef<'header'>
 
