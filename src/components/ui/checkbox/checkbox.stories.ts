@@ -26,5 +26,3 @@ export const CheckboxWithText: Story = {
     label: 'Test',
   },
 }
-
-

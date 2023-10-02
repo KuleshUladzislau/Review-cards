@@ -1,17 +1,21 @@
-import { RadioProps } from '@radix-ui/react-radio-group'
-import { useController } from 'react-hook-form'
+import { FieldValues, useController, UseControllerProps } from 'react-hook-form'
 
-import { RadioButton } from '@/components/ui/radioButton/radioButton.tsx'
-type ControlledRadioButton = {
-  control: any
-} & RadioProps
-export const ControlledRadioButton = ({ control, ...rest }: ControlledRadioButton) => {
+import { RadioButton, RadioButtonProps } from '@/components/ui/radioButton/radioButton.tsx'
+
+type ControlledRadioButtonProps<TFieldValues extends FieldValues> =
+  UseControllerProps<TFieldValues> & Omit<RadioButtonProps, 'onChange' | 'value' | 'id'>
+
+export const ControlledRadioButton = <TFieldValues extends FieldValues>({
+  control,
+  name,
+  ...restProps
+}: ControlledRadioButtonProps<TFieldValues>) => {
   const {
-    field: {},
+    field: { value, onChange },
   } = useController({
-    name: '',
+    name,
     control,
   })
 
-  return <RadioButton />
+  return <RadioButton onValueChange={onChange} value={value} {...restProps} />
 }

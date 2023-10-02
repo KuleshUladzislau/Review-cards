@@ -1,4 +1,4 @@
-.container{
+.container {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -7,7 +7,7 @@
   padding: 33px;
 }
 
-.title{
+.title {
   margin-bottom: 27px;
 }
 
@@ -16,17 +16,16 @@
   align-items: flex-end;
   margin-bottom: 10px;
   position: relative;
-
 }
 
-.img{
+.img {
   width: 96px;
   height: 96px;
   border-radius: 50%;
   cursor: pointer;
   cursor: pointer;
 }
-.edit{
+.edit {
   position: absolute;
   right: 0;
   height: 24px;
@@ -34,7 +33,6 @@
   display: flex;
   border-radius: 5px;
   padding: 6px;
-  background:rgba(76, 76, 76, 1);
+  background: rgba(76, 76, 76, 1);
   cursor: pointer;
-
 }

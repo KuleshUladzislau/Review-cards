@@ -23,14 +23,14 @@
 
 .pageStyle {
   @include pagination(
-                  unset,
-                  24px,
-                  24px,
-                  center,
-                  --color-light-100,
-                  rgb(255 255 255 / 0%),
-                  rgb(255 255 255 / 0%),
-                  2px
+    unset,
+    24px,
+    24px,
+    center,
+    --color-light-100,
+    rgb(255 255 255 / 0%),
+    rgb(255 255 255 / 0%),
+    2px
   );
 
   align-items: center;
@@ -50,14 +50,14 @@
 
 .activePageStyle {
   @include pagination(
-                  unset,
-                  24px,
-                  24px,
-                  center,
-                  --color-dark-900,
-                  var(--color-light-100),
-                  var(--color-light-100),
-                  2px
+    unset,
+    24px,
+    24px,
+    center,
+    --color-dark-900,
+    var(--color-light-100),
+    var(--color-light-100),
+    2px
   );
 
   &:hover {
@@ -66,13 +66,12 @@
   }
 }
 
-
 .dotsStyle {
   all: unset;
 }
 
-@mixin arrowRotation($value){
-  rotate: $value
+@mixin arrowRotation($value) {
+  rotate: $value;
 }
 
 .arrowButtonsStyle {
@@ -80,22 +79,22 @@
   top: 6px;
 }
 
-.leftArrow{
-  @include arrowRotation(270deg)
+.leftArrow {
+  @include arrowRotation(270deg);
 }
 
-.rightArrow{
-  @include arrowRotation(90deg)
+.rightArrow {
+  @include arrowRotation(90deg);
 }
 
-.paginationWrapper{
+.paginationWrapper {
   display: flex;
   gap: 10px;
   align-items: center;
 }
 
-.selectWrapper{
+.selectWrapper {
   display: flex;
   gap: 10px;
-  align-items: center
+  align-items: center;
 }

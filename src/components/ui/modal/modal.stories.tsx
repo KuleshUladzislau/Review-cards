@@ -6,7 +6,6 @@ import { Button } from '../button'
 
 import { Modal, ModalType } from './modal.tsx'
 
-
 const meta = {
   title: 'Components/Modal',
   component: Modal,

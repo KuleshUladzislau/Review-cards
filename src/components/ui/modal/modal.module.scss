@@ -1,4 +1,4 @@
-.overlay{
+.overlay {
   position: fixed;
   inset: 0;
   background-color: rgb(0 0 0 / 50%);
@@ -25,7 +25,7 @@
   background: var(--dark-700, #171717);
 }
 
-.buttonClose{
+.buttonClose {
   display: flex;
   align-items: center;
   background: none;
@@ -49,5 +49,3 @@
     top: 50%;
   }
 }
-
-

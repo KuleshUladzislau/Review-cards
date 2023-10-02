@@ -5,7 +5,6 @@ import s from './editeProfile.module.scss'
 import { ProfileInfo } from './profileInfo/profileInfo'
 
 import { Edit } from '@/assets'
-
 import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
 

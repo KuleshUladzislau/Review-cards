@@ -1,30 +1,39 @@
+import { SubmitHandler } from 'react-hook-form'
+
+import c from './createNewPassword.module.scss'
+
+import { useCreateNewPassword } from '@/components/auth/createNewPassword/useCreateNewPassword.ts'
+import { ControlledTextField } from '@/components/controlls'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { Textfield } from '@/components/ui/textfield'
 import { Typography } from '@/components/ui/typography'
-
 export const CreateNewPassword = () => {
+  const { handleSubmit, control, errors } = useCreateNewPassword()
+
+  const onSubmit: SubmitHandler<{ password: string }> = data => {
+    console.log(data)
+  }
+
   return (
-    <Card>
-      <Typography variant={'h1'}>Create new password</Typography>
-      <Textfield label={'Password'} type={'password'}></Textfield>
-      <Typography variant={'body2'}>
-        Create new password and we will send you further instructions to email
-      </Typography>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginTop: '41px',
-          width: '80%',
-        }}
-      >
-        <Button onClick={() => {}} fullWidth={true} style={{ marginBottom: '60px' }}>
-          Create New Password
-        </Button>
-      </div>
-    </Card>
+    <form onSubmit={handleSubmit(onSubmit)} className={c.formContainer}>
+      <Card className={c.cardWrapper}>
+        <Typography variant={'large'} as={'h1'} className={c.title}>
+          Create new password
+        </Typography>
+        <ControlledTextField
+          name="password"
+          control={control}
+          label={'Password'}
+          type={'password'}
+          errorMessage={errors.password?.message}
+        />
+        <Typography variant={'body2'} className={c.description}>
+          Create new password and we will send you further instructions to email
+        </Typography>
+        <div className={c.buttonWrapper}>
+          <Button fullWidth={true}>Create New Password</Button>
+        </div>
+      </Card>
+    </form>
   )
 }

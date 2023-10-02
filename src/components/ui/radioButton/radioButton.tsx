@@ -4,12 +4,12 @@ import * as RadioGroup from '@radix-ui/react-radio-group'
 
 import s from './radioButton.module.scss'
 
-type Props = {
+export type RadioButtonProps = {
   options: string[]
   className?: string
 } & ComponentPropsWithoutRef<typeof RadioGroup.Root>
 
-export const RadioButton = forwardRef<ElementRef<typeof RadioGroup.Root>, Props>(
+export const RadioButton = forwardRef<ElementRef<typeof RadioGroup.Root>, RadioButtonProps>(
   ({ onValueChange, options, defaultValue, className }, ref) => {
     const buttons = options?.map(b => {
       return (

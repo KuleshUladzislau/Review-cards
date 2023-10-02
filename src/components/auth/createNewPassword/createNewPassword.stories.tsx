@@ -3,7 +3,7 @@ import type { Meta } from '@storybook/react'
 import { CreateNewPassword } from './createNewPassword.tsx'
 
 const meta = {
-  title: 'Components/auth/CreateNewPassword',
+  title: 'auth/CreateNewPassword',
   component: CreateNewPassword,
   tags: ['autodocs'],
   argTypes: {},
@@ -13,6 +13,6 @@ export default meta
 
 export const DefaultCreateNewPassword = {
   render: () => {
-    return <CreateNewPassword></CreateNewPassword>
+    return <CreateNewPassword />
   },
 }

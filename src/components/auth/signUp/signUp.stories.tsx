@@ -3,7 +3,7 @@ import type { Meta } from '@storybook/react'
 import { SignUp } from './signUp.tsx'
 
 const meta = {
-  title: 'Components/auth/signUp',
+  title: 'auth/signUp',
   component: SignUp,
   tags: ['autodocs'],
   argTypes: {},
