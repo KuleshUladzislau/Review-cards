@@ -1,9 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import Logo from '../../../assets/icons/Logo.tsx'
-import { Button } from '../button'
 
 import { Header } from './header.tsx'
+
 
 const meta = {
   title: 'Components/Header',
@@ -14,48 +13,18 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
-  render: args => {
-    return (
-      <div>
-        <Header>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-around',
-              padding: '10px',
-            }}
-          >
-            <Logo />
-            <Button onClick={() => {}} variant={'primary'} as={'button'}>
-              Sign in
-            </Button>
-          </div>
-        </Header>
-        <div style={{ padding: '200px' }}>
-          Lorem ipsum dolor sit amet,consectetur adipiscing elit, sed do eiusmod temper ut labore et
-          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-          cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est labor. Lorem
-          ipsum dolor sit amet,consectetur adipiscing elit, sed do eiusmod temper ut labore et
-          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-          cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est labor. Lorem
-          ipsum dolor sit amet,consectetur adipiscing elit, sed do eiusmod temper ut labore et
-          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-          cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est labor. Lorem
-          ipsum dolor sit amet,consectetur adipiscing elit, sed do eiusmod temper ut labore et
-          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-          cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est labor.
-        </div>
-      </div>
-    )
+export const AuthorizedUserHeader: Story = {
+  args: {
+    userName: 'Alexander',
+    isLoggedIn: true,
+    userPhoto: 'https://imgv3.fotor.com/images/gallery/american-anime-stule-naked-man-avatar.jpg',
+    email: 'alexander@mail.ru',
+  },
+}
+
+export const AnAuthorizedUser: Story = {
+  args: {
+    userName: 'Alexander',
+    isLoggedIn: false,
   },
 }

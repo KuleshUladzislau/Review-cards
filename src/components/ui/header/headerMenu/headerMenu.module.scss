@@ -1,0 +1,25 @@
+.itemUserInfo{
+  display: flex;
+  min-width: 198px;
+  gap:8px;
+}
+
+.photo{
+  display: flex;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 36px;
+}
+.userInfoContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+.userName{
+
+}
+
+.email{
+  color: var(--dark-100, #808080);
+}
