@@ -9,7 +9,11 @@ import { Typography } from '@/components/ui/typography'
 type HeaderMenuProps = Omit<HeaderProps, 'isLoggedIn'>
 export const HeaderMenu = ({ userName, email, userPhoto }: HeaderMenuProps) => {
   return (
-    <CustomDropdown trigger={<Avatar src={userPhoto} userName={userName} />}>
+    <CustomDropdown
+      trigger={<Avatar src={userPhoto} userName={userName} />}
+      className={s.dropDown}
+      align={'end'}
+    >
       <CustomDropdownItem className={s.itemUserInfo}>
         <img src={userPhoto} className={s.photo} />
         <div className={s.userInfoContainer}>

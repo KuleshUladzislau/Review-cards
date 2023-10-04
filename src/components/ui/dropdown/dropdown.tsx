@@ -1,4 +1,11 @@
-import { ComponentPropsWithoutRef, CSSProperties, ReactNode, useState } from 'react'
+import {
+  ComponentPropsWithoutRef,
+  CSSProperties,
+  ElementRef,
+  forwardRef,
+  ReactNode,
+  useState,
+} from 'react'
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { clsx } from 'clsx'
@@ -12,41 +19,45 @@ type DropdownProps = {
   children?: ReactNode
   className?: string
   style?: CSSProperties
+  align?: 'start' | 'center' | 'end'
 } & ComponentPropsWithoutRef<typeof DropdownMenu.Root>
 
-export const CustomDropdown = ({ trigger, children, className, style }: DropdownProps) => {
-  const [open, setOpen] = useState(false)
+export const CustomDropdown = forwardRef<ElementRef<typeof DropdownMenu.Trigger>, DropdownProps>(
+  ({ trigger, children, className, style, align }: DropdownProps, ref) => {
+    const [open, setOpen] = useState(false)
 
-  const classNames = {
-    content: clsx(s.dropdownMenuContent, className),
-    itemsWrap: clsx(s.itemsWrap),
-    arrowWrap: clsx(s.arrowWrap),
-    arrow: clsx(s.arrow),
+    const classNames = {
+      content: clsx(s.dropdownMenuContent, className),
+      itemsWrap: clsx(s.itemsWrap),
+      arrowWrap: clsx(s.arrowWrap),
+      arrow: clsx(s.arrow),
+    }
+
+    return (
+      <DropdownMenu.Root open={open} onOpenChange={setOpen}>
+        <DropdownMenu.Trigger asChild className={s.trigger} ref={ref}>
+          <button className={s.iconButton} aria-label="dropdown options">
+            {trigger}
+          </button>
+        </DropdownMenu.Trigger>
+        <DropdownMenu.Portal>
+          <DropdownMenu.Content
+            className={classNames.content}
+            sideOffset={8}
+            style={style}
+            onClick={event => event.stopPropagation()}
+            align={align}
+          >
+            <DropdownMenu.Arrow className={classNames.arrowWrap} asChild>
+              <div className={classNames.arrow} />
+            </DropdownMenu.Arrow>
+            <div className={classNames.itemsWrap}>{children}</div>
+          </DropdownMenu.Content>
+        </DropdownMenu.Portal>
+      </DropdownMenu.Root>
+    )
   }
-
-  return (
-    <DropdownMenu.Root open={open} onOpenChange={setOpen}>
-      <DropdownMenu.Trigger asChild>
-        <button className={s.iconButton} aria-label="dropdown options">
-          {trigger}
-        </button>
-      </DropdownMenu.Trigger>
-      <DropdownMenu.Portal>
-        <DropdownMenu.Content
-          className={classNames.content}
-          sideOffset={8}
-          style={style}
-          onClick={event => event.stopPropagation()}
-        >
-          <DropdownMenu.Arrow className={classNames.arrowWrap} asChild>
-            <div className={classNames.arrow} />
-          </DropdownMenu.Arrow>
-          <div className={classNames.itemsWrap}>{children}</div>
-        </DropdownMenu.Content>
-      </DropdownMenu.Portal>
-    </DropdownMenu.Root>
-  )
-}
+)
 
 type DropdownItemProps = {
   children?: ReactNode

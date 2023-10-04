@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { HeaderMenu } from '@/components/ui/header/headerMenu/HeaderMenu.tsx'
 
 export type HeaderProps = {
-  userName: string
+  userName?: string
   userPhoto?: string
   isLoggedIn?: boolean
   email?: string

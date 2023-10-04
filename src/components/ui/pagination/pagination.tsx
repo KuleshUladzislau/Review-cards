@@ -5,6 +5,11 @@ import p from './pagination.module.scss'
 import Arrow from '@/assets/icons/ArrowUp.tsx'
 import { SelectCustom } from '@/components/ui/select'
 
+type OptionsType = {
+  value: string
+  title: string
+}
+
 export type PaginationProps = {
   totalCount: number
   currentPage: number
@@ -12,6 +17,7 @@ export type PaginationProps = {
   onPageSizeChange: (value: number) => void
   onCurrentPageChange: (page: number | string) => void
   siblingCount?: number | string
+  options: OptionsType[]
 }
 
 const DOTS = '...'
@@ -61,6 +67,7 @@ export const Pagination: FC<PaginationProps> = ({
   siblingCount = 1,
   onPageSizeChange,
   onCurrentPageChange,
+  options,
 }) => {
   const pagesCount = Math.ceil(totalCount / pageSize)
 
@@ -111,7 +118,7 @@ export const Pagination: FC<PaginationProps> = ({
       <div className={p.selectWrapper}>
         Показать
         <SelectCustom
-          options={['10', '20', '30', '40', '50']}
+          options={options}
           defaultValue={pageSize.toString()}
           onValueChange={onPageSizeHandler}
         />
