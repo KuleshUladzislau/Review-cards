@@ -25,7 +25,6 @@ export const Defalut = {
       { title: '50', value: '50' },
     ]
 
-
     return (
       <Pagination
         totalCount={totalCount}
