@@ -5,6 +5,7 @@ import {
   RouteObject,
   RouterProvider,
 } from 'react-router-dom'
+import { PageNotFound } from '@/pages/page-not-found'
 
 const publicRoutes: RouteObject[] = [
   {
@@ -37,6 +38,10 @@ const privateRoutes: RouteObject[] = [
   {
     path: '/',
     element: <div>hello</div>,
+  },
+  {
+    path: '/*',
+    element: <PageNotFound/>,
   },
   {
     path: '/main',
