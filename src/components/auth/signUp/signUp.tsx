@@ -1,24 +1,19 @@
 import { FC, ReactNode } from 'react'
 
-import { SubmitHandler } from 'react-hook-form'
-
 import s from './signUp.module.scss'
 
-import { useSignUp } from '@/components/auth/signUp/useSignUp.ts'
+import { signUpForm, useSignUp } from '@/components/auth/signUp/useSignUp.ts'
 import { ControlledTextField } from '@/components/controlls'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
 
 type signUpTypes = {
+  onSubmit: (data: signUpForm) => void
   children?: ReactNode
 }
-export const SignUp: FC<signUpTypes> = () => {
+export const SignUp: FC<signUpTypes> = ({ onSubmit }) => {
   const { handleSubmit, control, errors } = useSignUp()
-
-  const onSubmit: SubmitHandler<{ email: string; password: string }> = data => {
-    console.log(data)
-  }
 
   return (
     <form className={s.formContainer} onSubmit={handleSubmit(onSubmit)}>

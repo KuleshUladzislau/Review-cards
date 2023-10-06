@@ -1,18 +1,19 @@
-import { SubmitHandler } from 'react-hook-form'
-
 import c from './createNewPassword.module.scss'
 
-import { useCreateNewPassword } from '@/components/auth/createNewPassword/useCreateNewPassword.ts'
+import {
+  createNewPasswordForm,
+  useCreateNewPassword,
+} from '@/components/auth/createNewPassword/useCreateNewPassword.ts'
 import { ControlledTextField } from '@/components/controlls'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
-export const CreateNewPassword = () => {
-  const { handleSubmit, control, errors } = useCreateNewPassword()
 
-  const onSubmit: SubmitHandler<{ password: string }> = data => {
-    console.log(data)
-  }
+type CreateNewPasswordProps = {
+  onSubmit: (data: createNewPasswordForm) => void
+}
+export const CreateNewPassword = ({ onSubmit }: CreateNewPasswordProps) => {
+  const { handleSubmit, control, errors } = useCreateNewPassword()
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={c.formContainer}>
