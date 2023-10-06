@@ -41,7 +41,7 @@ const privateRoutes: RouteObject[] = [
   },
   {
     path: '/*',
-    element: <PageNotFound/>,
+    element: <PageNotFound />,
   },
   {
     path: '/main',
@@ -52,8 +52,8 @@ const privateRoutes: RouteObject[] = [
     element: <div>Profile</div>,
   },
   {
-    path: '/desc/:id?',
-    element: <div>Desc</div>,
+    path: '/decks/:id?',
+    element: <div>Decks</div>,
   },
   {
     path: '/cards/:id?',
