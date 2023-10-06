@@ -5,16 +5,22 @@ import {
   RouteObject,
   RouterProvider,
 } from 'react-router-dom'
+
+import { Header } from '@/components/ui/header'
+import { Auth } from '@/pages/auth/auth-page'
+import { SignUpPage } from '@/pages/auth/sign-up-page'
+import { Layout } from '@/pages/Layout/layout.tsx'
 import { PageNotFound } from '@/pages/page-not-found'
+import { useGetMeQuery } from '@/services/auth/authService.ts'
 
 const publicRoutes: RouteObject[] = [
   {
     path: '/login',
-    element: <div>login</div>,
+    element: <Auth />,
   },
   {
-    path: '/signUp',
-    element: <div>Sign Up</div>,
+    path: '/sign-up',
+    element: <SignUpPage />,
   },
   {
     path: '/forgotPassword',
@@ -37,7 +43,7 @@ const publicRoutes: RouteObject[] = [
 const privateRoutes: RouteObject[] = [
   {
     path: '/',
-    element: <div>hello</div>,
+    element: <Layout />,
   },
   {
     path: '/*',
@@ -45,7 +51,7 @@ const privateRoutes: RouteObject[] = [
   },
   {
     path: '/main',
-    element: <div>Desc</div>,
+    element: <div style={{ marginTop: '300px' }}>Desc</div>,
   },
   {
     path: '/profile',
@@ -53,7 +59,7 @@ const privateRoutes: RouteObject[] = [
   },
   {
     path: '/decks/:id?',
-    element: <div>Decks</div>,
+    element: <div style={{ marginTop: '300px' }}>Decks</div>,
   },
   {
     path: '/cards/:id?',
@@ -66,9 +72,13 @@ const privateRoutes: RouteObject[] = [
 ]
 
 const PrivateRoutes = () => {
-  const isAuthenticated = true
+  const { data: me, isLoading } = useGetMeQuery()
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />
+  const isAuthenticated = !!me
+
+
+
+  return isAuthenticated ? <Layout /> : <Navigate to="/login" />
 }
 
 const router = createBrowserRouter([
@@ -80,5 +90,12 @@ const router = createBrowserRouter([
 ])
 
 export const Router = () => {
-  return <RouterProvider router={router} />
+  const { data } = useGetMeQuery()
+
+  return (
+    <>
+      {!!data && <Header />}
+      <RouterProvider router={router} />
+    </>
+  )
 }
