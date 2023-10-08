@@ -2,8 +2,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-export type signUpForm = z.infer<typeof signUpSchema>
-
 const signUpSchema = z
   .object({
     email: z.string().email(),
@@ -15,12 +13,15 @@ const signUpSchema = z
     path: ['confirmPassword'],
   })
 
+type SignUp = z.infer<typeof signUpSchema>
+export type SignUpData = Omit<SignUp, 'confirmPassword'>
+
 export const useSignUp = () => {
   const {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<signUpForm>({
+  } = useForm<SignUp>({
     resolver: zodResolver(signUpSchema),
   })
 

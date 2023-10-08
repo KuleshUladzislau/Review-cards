@@ -11,6 +11,7 @@ export type HeaderProps = {
   userPhoto?: string
   isLoggedIn?: boolean
   email?: string
+  logout?: () => void
 } & ComponentPropsWithoutRef<'header'>
 
 export const Header = forwardRef<HTMLHeadElement, HeaderProps>(
@@ -21,6 +22,7 @@ export const Header = forwardRef<HTMLHeadElement, HeaderProps>(
        className,
        userName,
        userPhoto,
+       logout,
        ...restPros
    },
    ref
@@ -29,7 +31,7 @@ export const Header = forwardRef<HTMLHeadElement, HeaderProps>(
       <header ref={ref} className={`${s.header} ${className}`} {...restPros}>
         <Logo />
         {!isLoggedIn && <Button>Sign In</Button>}
-        {isLoggedIn && <HeaderMenu {...{ userName, userPhoto, email }} />}
+        {isLoggedIn && <HeaderMenu {...{ userName, userPhoto, email, logout }} />}
       </header>
     )
   }

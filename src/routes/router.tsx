@@ -1,123 +1,72 @@
-import {
-  createBrowserRouter,
-  Navigate,
-  Outlet,
-  RouteObject,
-  RouterProvider,
-} from 'react-router-dom'
+import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom'
 
-import { Card } from '@/components/ui/card'
-import { Table, TBody, TCell, THead, THeadCell, TRow } from '@/components/ui/table/table.tsx'
+import { SignInPage } from '@/pages/auth/sign-in-page/SignInPage.tsx'
+import { SignUpPage } from '@/pages/auth/sign-up-page'
+import { Layout } from '@/pages/Layout/layout.tsx'
 import { PageNotFound } from '@/pages/page-not-found'
-import { useGetDecksQuery } from '@/services/baseApi.ts'
+import { useGetMeQuery } from '@/services/auth/authService.ts'
 
-const publicRoutes: RouteObject[] = [
-  {
-    path: '/login',
-    element: <div>login</div>,
-  },
-  {
-    path: '/signUp',
-    element: <div>Sign Up</div>,
-  },
-  {
-    path: '/forgotPassword',
-    element: <div>Forgot Password</div>,
-  },
-  {
-    path: '/forgotPassword-checkEmail',
-    element: <div>Check Email</div>,
-  },
-  {
-    path: '/createNewPassword',
-    element: <div>Create New Password</div>,
-  },
-  {
-    path: '/editeProfile',
-    element: <div>Edite Profile</div>,
-  },
-]
 
-const privateRoutes: RouteObject[] = [
-  {
-    path: '/',
-    element: <Desks />,
-  },
-  {
-    path: '/*',
-    element: <PageNotFound />,
-  },
-  {
-    path: '/main',
-    element: <div>Desc</div>,
-  },
-  {
-    path: '/profile',
-    element: <div>Profile</div>,
-  },
-  {
-    path: '/desc/:id?',
-    element: <div>Desc</div>,
-  },
-  {
-    path: '/cards/:id?',
-    element: <div>cards</div>,
-  },
-  {
-    path: '/learn/:id?',
-    element: <div>learn cards</div>,
-  },
-]
+function PrivateRoutes() {
+  const { data, isLoading } = useGetMeQuery()
 
-const PrivateRoutes = () => {
-  const isAuthenticated = true
+  const isAuthenticated = !!data
+
+  if (isLoading) return <div>loading</div>
 
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" />
 }
 
 const router = createBrowserRouter([
   {
-    element: <PrivateRoutes />,
-    children: privateRoutes,
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
+        element: <PrivateRoutes />,
+        children: [
+          {
+            path: '/*',
+            element: <PageNotFound />,
+          },
+          {
+            path: '/',
+            element: <div style={{ marginTop: '300px' }}>Desc</div>,
+          },
+          {
+            path: '/profile',
+            element: <div>Profile</div>,
+          },
+          {
+            path: '/decks/:id?',
+            element: <div style={{ marginTop: '300px' }}>Decks</div>,
+          },
+          {
+            path: '/cards/:id?',
+            element: <div>cards</div>,
+          },
+          {
+            path: '/learn/:id?',
+            element: <div>learn cards</div>,
+          },
+        ],
+      },
+      {
+        path: '/login',
+        element: <SignInPage />,
+      },
+      {
+        path: '/sign-up',
+        element: <SignUpPage />,
+      },
+    ],
   },
-  ...publicRoutes,
 ])
 
 export const Router = () => {
-  const result = useGetDecksQuery()
+  const { isLoading } = useGetMeQuery()
 
-  console.log(result)
+  if (isLoading) return <div>loading...</div>
 
   return <RouterProvider router={router} />
-}
-
-function Desks() {
-  const { data, error, isLoading } = useGetDecksQuery()
-
-  return (
-    <Card style={{ width: '1200px' }}>
-      <Table>
-        <THead>
-          <TRow>
-            <THeadCell>Name</THeadCell>
-            <THeadCell>Cards</THeadCell>
-            <THeadCell>Last Updated</THeadCell>
-            <THeadCell>Created by</THeadCell>
-            <THeadCell></THeadCell>
-          </TRow>
-        </THead>
-        <TBody>
-          {data?.items?.map(el => (
-            <TRow key={el.id}>
-              <TCell>{el.name}</TCell>
-              <TCell>{el.cardsCount}</TCell>
-              <TCell>{new Date(el.updated).toLocaleDateString()}</TCell>
-              <TCell>{el.author.name}</TCell>
-              <TCell></TCell>
-            </TRow>
-          ))}
-        </TBody>
-      </Table>
-    </Card>
-  )
 }

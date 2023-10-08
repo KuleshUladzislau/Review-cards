@@ -71,6 +71,7 @@ export const CustomDropdownItem = ({
   onSelect,
   disabled,
   className,
+  ...restProps
 }: DropdownItemProps) => {
   const classNames = {
     item: clsx(s.dropdownMenuItem, className),
@@ -82,6 +83,7 @@ export const CustomDropdownItem = ({
       style={style}
       disabled={disabled}
       className={classNames.item}
+      {...restProps}
     >
       {children}
     </DropdownMenu.Item>
