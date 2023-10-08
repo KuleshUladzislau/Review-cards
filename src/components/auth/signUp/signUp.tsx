@@ -1,27 +1,28 @@
-import { FC, ReactNode } from 'react'
+import { FC } from 'react'
 
 import { SubmitHandler } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
 import s from './signUp.module.scss'
 
-import { useSignUp } from '@/components/auth/signUp/useSignUp.ts'
+import { SignUpData, useSignUp } from '@/components/auth/signUp/useSignUp.ts'
 import { ControlledTextField } from '@/components/controlls'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
 
-type signUpTypes = {
-  children?: ReactNode
+type SignUpTypes = {
+  onSubmit: (data: SignUpData) => void
 }
-export const SignUp: FC<signUpTypes> = () => {
+export const SignUp: FC<SignUpTypes> = ({ onSubmit }) => {
   const { handleSubmit, control, errors } = useSignUp()
 
-  const onSubmit: SubmitHandler<{ email: string; password: string }> = data => {
-    console.log(data)
+  const onSubmitHandler: SubmitHandler<SignUpData> = data => {
+    onSubmit(data)
   }
 
   return (
-    <form className={s.formContainer} onSubmit={handleSubmit(onSubmit)}>
+    <form className={s.formContainer} onSubmit={handleSubmit(onSubmitHandler)}>
       <Card className={s.cardWrapper}>
         <Typography variant={'h1'}>Sign Up</Typography>
         <div className={s.textFieldWrapper}>
@@ -49,14 +50,12 @@ export const SignUp: FC<signUpTypes> = () => {
 
         <div className={s.buttonWrapper}>
           <Button fullWidth={true}>Sign Up</Button>
-          <a href={''}>
-            <Typography variant={'link1'} className={s.description}>
-              Already have an account?
-            </Typography>
-          </a>
-          <Button as={'a'} variant={'link'}>
+          <Typography variant={'link1'} className={s.description}>
+            Already have an account?
+          </Typography>
+          <Typography variant={'link1'} className={s.linkSignIn} as={Link} to={'/sign-in'}>
             Sign In
-          </Button>
+          </Typography>
         </div>
       </Card>
     </form>

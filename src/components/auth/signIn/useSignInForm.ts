@@ -17,7 +17,6 @@ export const useSignInForm = () => {
     formState: { errors },
   } = useForm<SignInValuesForm>({
     resolver: zodResolver(signInSchema),
-    mode: 'onChange',
     defaultValues: { email: '', password: '', rememberMe: false },
   })
 
