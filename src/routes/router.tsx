@@ -5,7 +5,7 @@ import { SignUpPage } from '@/pages/auth/sign-up-page'
 import { Layout } from '@/pages/Layout/layout.tsx'
 import { PageNotFound } from '@/pages/page-not-found'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
-
+import { Decks } from '@/pages/decks/decks.tsx'
 
 function PrivateRoutes() {
   const { data, isLoading } = useGetMeQuery()
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
           },
           {
             path: '/',
-            element: <div style={{ marginTop: '300px' }}>Desc</div>,
+            element: <Decks />,
           },
           {
             path: '/profile',
