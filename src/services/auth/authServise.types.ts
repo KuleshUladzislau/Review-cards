@@ -17,3 +17,8 @@ export type ResponseCreateNewAccount = {
   created: Date
   updated: Date
 }
+export type createNewPassword = {
+  html: string
+  email: string
+  subject: string
+}

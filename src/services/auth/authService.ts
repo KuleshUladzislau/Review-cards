@@ -1,5 +1,6 @@
 import {
   CreateNewAccount,
+  createNewPassword,
   LoginType,
   ResponseCreateNewAccount,
 } from '@/services/auth/authServise.types.ts'
@@ -54,9 +55,23 @@ export const authService = baseApi.injectEndpoints({
         }
       },
     }),
+    forgotPasswordEmail: builder.mutation<void, createNewPassword>({
+      query: () => ({
+        url: '/v1/auth/recover-password',
+        method: 'POST',
+        body: {
+          html: "<h1>Hi, ##name##</h1><p>Click <a href=\"##token##\">here</a> to recover your password</p>",
+          email: "kulesh_uladzislau@mail.ru",
+        },
+      }),
+    }),
   }),
 })
 
-export const { useGetMeQuery, useLoginMutation, useSignUpMutation, useLogoutMutation } = authService
-
-
+export const {
+  useGetMeQuery,
+  useLoginMutation,
+  useSignUpMutation,
+  useLogoutMutation,
+  useForgotPasswordEmailMutation,
+} = authService
