@@ -6,7 +6,10 @@ import {
   RouterProvider,
 } from 'react-router-dom'
 
+import { Card } from '@/components/ui/card'
+import { Table, TBody, TCell, THead, THeadCell, TRow } from '@/components/ui/table/table.tsx'
 import { PageNotFound } from '@/pages/page-not-found'
+import { useGetDecksQuery } from '@/services/baseApi.ts'
 
 const publicRoutes: RouteObject[] = [
   {
@@ -38,7 +41,7 @@ const publicRoutes: RouteObject[] = [
 const privateRoutes: RouteObject[] = [
   {
     path: '/',
-    element: <div>hello</div>,
+    element: <Desks />,
   },
   {
     path: '/*',
@@ -81,5 +84,40 @@ const router = createBrowserRouter([
 ])
 
 export const Router = () => {
+  const result = useGetDecksQuery()
+
+  console.log(result)
+
   return <RouterProvider router={router} />
+}
+
+function Desks() {
+  const { data, error, isLoading } = useGetDecksQuery()
+
+  return (
+    <Card style={{ width: '1200px' }}>
+      <Table>
+        <THead>
+          <TRow>
+            <THeadCell>Name</THeadCell>
+            <THeadCell>Cards</THeadCell>
+            <THeadCell>Last Updated</THeadCell>
+            <THeadCell>Created by</THeadCell>
+            <THeadCell></THeadCell>
+          </TRow>
+        </THead>
+        <TBody>
+          {data?.items?.map(el => (
+            <TRow key={el.id}>
+              <TCell>{el.name}</TCell>
+              <TCell>{el.cardsCount}</TCell>
+              <TCell>{new Date(el.updated).toLocaleDateString()}</TCell>
+              <TCell>{el.author.name}</TCell>
+              <TCell></TCell>
+            </TRow>
+          ))}
+        </TBody>
+      </Table>
+    </Card>
+  )
 }
