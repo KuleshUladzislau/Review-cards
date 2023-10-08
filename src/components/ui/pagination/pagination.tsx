@@ -3,15 +3,11 @@ import { FC } from 'react'
 import p from './pagination.module.scss'
 
 import Arrow from '@/assets/icons/ArrowUp.tsx'
-import { SelectCustom } from '@/components/ui/select'
+import { OptionsType, SelectCustom} from '@/components/ui/select'
 
-type OptionsType = {
-  value: string
-  title: string
-}
 
 export type PaginationProps = {
-  totalCount: number
+  totalCount: number | undefined
   currentPage: number
   pageSize: number
   onPageSizeChange: (value: number) => void
@@ -69,7 +65,8 @@ export const Pagination: FC<PaginationProps> = ({
   onCurrentPageChange,
   options,
 }) => {
-  const pagesCount = Math.ceil(totalCount / pageSize)
+  //Поставил временную заглушку!!!!!
+  const pagesCount = Math.ceil(totalCount! / pageSize)
 
   const onNext = () => {
     onCurrentPageChange(currentPage + 1)
@@ -116,13 +113,13 @@ export const Pagination: FC<PaginationProps> = ({
         </button>
       </div>
       <div className={p.selectWrapper}>
-        Показать
+        Show
         <SelectCustom
           options={options}
           defaultValue={pageSize.toString()}
           onValueChange={onPageSizeHandler}
         />
-        на странице
+        on the page
       </div>
     </div>
   )

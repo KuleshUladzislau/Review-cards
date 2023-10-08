@@ -15,7 +15,6 @@ type TabsProps = {
   tabs: SwitcherOptions[]
   disabled?: boolean
   className?: string
-  onValueChange: (value: string) => void
 } & ComponentPropsWithoutRef<typeof Tabs.Root>
 
 export const TabsSwitcher = forwardRef<ElementRef<typeof Tabs.Root>, TabsProps>(

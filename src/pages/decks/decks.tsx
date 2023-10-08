@@ -15,12 +15,15 @@ import {
 import { DecksTable } from '@/pages/decks/decksTable/decksTable.tsx'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
 import { useGetDecksQuery } from '@/services/decks/decksService.ts'
-import { setSearchByName } from '@/services/decks/decksSlice.ts'
+import { setCurrentPage, setPageSize, setSearchByName } from '@/services/decks/decksSlice.ts'
 import { useAppDispatch, useAppSelector } from '@/services/hooks.ts'
 
 export const Decks = () => {
   const switcherOptions = useAppSelector(state => state.decksSettings.switcherOptions)
+  const pageSizeOptions = useAppSelector(state => state.decksSettings.pageSizeOptions)
   const searchByName = useAppSelector(state => state.decksSettings.searchByName)
+  const currentPage = useAppSelector(state => state.decksSettings.currentPage)
+  const itemsPerPage = useAppSelector(state => state.decksSettings.itemsPerPage)
 
   const dispatch = useAppDispatch()
 
@@ -32,6 +35,8 @@ export const Decks = () => {
   const { data } = useGetDecksQuery({
     name: newSearchName,
     authorId: userId,
+    currentPage,
+    itemsPerPage: Number(itemsPerPage.value),
   })
 
   const { data: meData } = useGetMeQuery()
@@ -47,6 +52,14 @@ export const Decks = () => {
 
   const onSearchByNameHandler = (value: string) => {
     dispatch(setSearchByName({ searchName: value }))
+  }
+
+  const currentPageChangeHandler = (page: number | string) => {
+    dispatch(setCurrentPage({ currentPage: Number(page) }))
+  }
+
+  const pageSizeChangeHandler = (pageSize: number) => {
+    dispatch(setPageSize({ pageSize }))
   }
 
   return (
@@ -87,16 +100,12 @@ export const Decks = () => {
       </div>
       <DecksTable data={data} />
       <Pagination
-        totalCount={100}
-        currentPage={1}
-        pageSize={10}
-        onPageSizeChange={() => {}}
-        onCurrentPageChange={() => {}}
-        options={[
-          { title: '5', value: '5' },
-          { title: '7', value: '7' },
-          { title: '10', value: '10' },
-        ]}
+        totalCount={data?.pagination.totalItems}
+        currentPage={currentPage}
+        pageSize={Number(itemsPerPage.value)}
+        onPageSizeChange={pageSizeChangeHandler}
+        onCurrentPageChange={currentPageChangeHandler}
+        options={pageSizeOptions}
       />
     </div>
   )

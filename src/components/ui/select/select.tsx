@@ -7,9 +7,10 @@ import s from './select.module.scss'
 
 import Layer2 from '@/assets/icons/Layer2.tsx'
 
-type OptionsType = {
-  value: string
-  title: string
+//Изменил типы также как и в свитчере
+export type OptionsType = {
+  id: string
+  value: string | number
 }
 
 type SelectProps = {
@@ -23,9 +24,10 @@ export const SelectCustom = forwardRef<ElementRef<typeof Select.Trigger>, Select
     { options, defaultValue, placeHolder, onValueChange, value, className, disabled, ...restProps },
     ref
   ) => {
+    //Добавил toString на случай если number, нужен для запроса пагинации
     const mappedOptions = options?.map(o => (
-      <SelectItem key={o.title} value={o.value}>
-        {o.title}
+      <SelectItem key={o.id} value={o.value.toString()}>
+        {o.value}
       </SelectItem>
     ))
 
