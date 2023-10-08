@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Delete, Edit, Play } from '@/assets'
 import { Table, TableHead, TBody, TCell, TRow } from '@/components/ui'
 import { Column, Sort } from '@/components/ui/table/types.ts'
-import { useGetDecksQuery } from '@/services/decks/decksService.ts'
+import { GetDecksResponse } from '@/services/decks/types.ts'
 
 const columns: Column[] = [
   {
@@ -24,10 +24,12 @@ const columns: Column[] = [
   },
 ]
 
-export const DecksTable = () => {
-  const [sort, setSort] = useState<Sort>(null)
+type DecksTableProps = {
+  data: GetDecksResponse | undefined
+}
 
-  const { data } = useGetDecksQuery()
+export const DecksTable = ({ data }: DecksTableProps) => {
+  const [sort, setSort] = useState<Sort>(null)
 
   return (
     <Table>

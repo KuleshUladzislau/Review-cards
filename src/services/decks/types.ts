@@ -1,4 +1,4 @@
-export type GetDecksData = {
+export type GetDecksResponse = {
   items: GetDecksDataItems[]
   pagination: GetDecksDataPagination
   maxCardsCount: number
@@ -25,4 +25,14 @@ export type GetDecksDataPagination = {
   itemsPerPage: number
   totalPages: number
   totalItems: number
+}
+
+export type GetDecksRequest = {
+  minCardsCount?: string
+  maxCardsCount?: string
+  name?: string
+  authorId?: string
+  orderBy?: string
+  currentPage?: number
+  itemsPerPage?: number
 }

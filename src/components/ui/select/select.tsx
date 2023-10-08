@@ -19,16 +19,8 @@ type SelectProps = {
 } & ComponentPropsWithoutRef<typeof Select.Root>
 
 export const SelectCustom = forwardRef<ElementRef<typeof Select.Trigger>, SelectProps>(
-  ({
-     options,
-     defaultValue,
-     placeHolder,
-     onValueChange,
-     value,
-     className,
-     disabled,
-     ...restProps
-   },
+  (
+    { options, defaultValue, placeHolder, onValueChange, value, className, disabled, ...restProps },
     ref
   ) => {
     const mappedOptions = options?.map(o => (
