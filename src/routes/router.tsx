@@ -1,101 +1,72 @@
-import {
-  createBrowserRouter,
-  Navigate,
-  Outlet,
-  RouteObject,
-  RouterProvider,
-} from 'react-router-dom'
+import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom'
 
-import { Header } from '@/components/ui/header'
-import { Auth } from '@/pages/auth/auth-page'
+import { SignInPage } from '@/pages/auth/sign-in-page/SignInPage.tsx'
 import { SignUpPage } from '@/pages/auth/sign-up-page'
 import { Layout } from '@/pages/Layout/layout.tsx'
 import { PageNotFound } from '@/pages/page-not-found'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
 
-const publicRoutes: RouteObject[] = [
-  {
-    path: '/login',
-    element: <Auth />,
-  },
-  {
-    path: '/sign-up',
-    element: <SignUpPage />,
-  },
-  {
-    path: '/forgotPassword',
-    element: <div>Forgot Password</div>,
-  },
-  {
-    path: '/forgotPassword-checkEmail',
-    element: <div>Check Email</div>,
-  },
-  {
-    path: '/createNewPassword',
-    element: <div>Create New Password</div>,
-  },
-  {
-    path: '/editeProfile',
-    element: <div>Edite Profile</div>,
-  },
-]
 
-const privateRoutes: RouteObject[] = [
-  {
-    path: '/',
-    element: <Layout />,
-  },
-  {
-    path: '/*',
-    element: <PageNotFound />,
-  },
-  {
-    path: '/main',
-    element: <div style={{ marginTop: '300px' }}>Desc</div>,
-  },
-  {
-    path: '/profile',
-    element: <div>Profile</div>,
-  },
-  {
-    path: '/decks/:id?',
-    element: <div style={{ marginTop: '300px' }}>Decks</div>,
-  },
-  {
-    path: '/cards/:id?',
-    element: <div>cards</div>,
-  },
-  {
-    path: '/learn/:id?',
-    element: <div>learn cards</div>,
-  },
-]
+function PrivateRoutes() {
+  const { data, isLoading } = useGetMeQuery()
 
-const PrivateRoutes = () => {
-  const { data: me, isLoading } = useGetMeQuery()
+  const isAuthenticated = !!data
 
-  const isAuthenticated = !!me
+  if (isLoading) return <div>loading</div>
 
-
-
-  return isAuthenticated ? <Layout /> : <Navigate to="/login" />
+  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />
 }
 
 const router = createBrowserRouter([
   {
-    element: <PrivateRoutes />,
-    children: privateRoutes,
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
+        element: <PrivateRoutes />,
+        children: [
+          {
+            path: '/*',
+            element: <PageNotFound />,
+          },
+          {
+            path: '/',
+            element: <div style={{ marginTop: '300px' }}>Desc</div>,
+          },
+          {
+            path: '/profile',
+            element: <div>Profile</div>,
+          },
+          {
+            path: '/decks/:id?',
+            element: <div style={{ marginTop: '300px' }}>Decks</div>,
+          },
+          {
+            path: '/cards/:id?',
+            element: <div>cards</div>,
+          },
+          {
+            path: '/learn/:id?',
+            element: <div>learn cards</div>,
+          },
+        ],
+      },
+      {
+        path: '/login',
+        element: <SignInPage />,
+      },
+      {
+        path: '/sign-up',
+        element: <SignUpPage />,
+      },
+    ],
   },
-  ...publicRoutes,
 ])
 
 export const Router = () => {
-  const { data } = useGetMeQuery()
+  const { isLoading } = useGetMeQuery()
 
-  return (
-    <>
-      {!!data && <Header />}
-      <RouterProvider router={router} />
-    </>
-  )
+  if (isLoading) return <div>loading...</div>
+
+  return <RouterProvider router={router} />
 }

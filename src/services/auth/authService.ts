@@ -1,9 +1,21 @@
+import {
+  CreateNewAccount,
+  LoginType,
+  ResponseCreateNewAccount,
+} from '@/services/auth/authServise.types.ts'
 import { baseApi } from '@/services/baseApi.ts'
 
 export const authService = baseApi.injectEndpoints({
   endpoints: builder => ({
     getMe: builder.query<any, void>({
-      query: () => '/v1/auth/me',
+      async queryFn(_name, _api, _extraOptions, baseQuery) {
+        const result = await baseQuery({
+          url: `/v1/auth/me`,
+          method: 'GET',
+        })
+
+        return { data: result.data }
+      },
       providesTags: ['Auth'],
     }),
     signUp: builder.mutation<any, CreateNewAccount>({
@@ -28,34 +40,23 @@ export const authService = baseApi.injectEndpoints({
         body: {},
       }),
       invalidatesTags: ['Auth'],
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        const patchResult = dispatch(
+          authService.util.updateQueryData('getMe', undefined, () => {
+            return null
+          })
+        )
+
+        try {
+          await queryFulfilled
+        } catch {
+          patchResult.undo()
+        }
+      },
     }),
   }),
 })
 
-export const {
-  useGetMeQuery,
-  useLoginMutation,
-  useSignUpMutation,
-  useLogoutMutation
-}
-    = authService
+export const { useGetMeQuery, useLoginMutation, useSignUpMutation, useLogoutMutation } = authService
 
-type LoginType = {
-  password: string
-  email: string
-  rememberMe: boolean
-}
 
-type CreateNewAccount = {
-  email: string
-  password: string
-}
-type ResponseCreateNewAccount = {
-  avatar: string
-  id: string
-  email: string
-  isEmailVerified: true
-  name: string
-  created: Date
-  updated: Date
-}

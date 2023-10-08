@@ -1,6 +1,7 @@
 import { FC } from 'react'
 
 import { SubmitHandler } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
 import s from './signUp.module.scss'
 
@@ -19,7 +20,6 @@ export const SignUp: FC<SignUpTypes> = ({ onSubmit }) => {
   const onSubmitHandler: SubmitHandler<SignUpData> = data => {
     onSubmit(data)
   }
-
 
   return (
     <form className={s.formContainer} onSubmit={handleSubmit(onSubmitHandler)}>
@@ -50,14 +50,12 @@ export const SignUp: FC<SignUpTypes> = ({ onSubmit }) => {
 
         <div className={s.buttonWrapper}>
           <Button fullWidth={true}>Sign Up</Button>
-          <a href={''}>
-            <Typography variant={'link1'} className={s.description}>
-              Already have an account?
-            </Typography>
-          </a>
-          <Button as={'a'} variant={'link'}>
+          <Typography variant={'link1'} className={s.description}>
+            Already have an account?
+          </Typography>
+          <Typography variant={'link1'} className={s.linkSignIn} as={Link} to={'/sign-in'}>
             Sign In
-          </Button>
+          </Typography>
         </div>
       </Card>
     </form>
