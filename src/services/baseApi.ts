@@ -18,34 +18,3 @@ export const baseApi = createApi({
 })
 
 export const { useGetDecksQuery } = baseApi
-
-export type DesksResponse = {
-  maxCardsCount: number
-  pagination: Pagination
-  items: DesksItems[]
-}
-export type Pagination = {
-  totalPages: number
-  currentPage: number
-  itemsPerPage: number
-  totalItems: number
-}
-export type Author = {
-  id: string
-  name: string
-}
-export type DesksItems = {
-  id: string
-  userId: string
-  name: string
-  isPrivate: boolean
-  shots: number
-  cover: string
-  rating: number
-  isDeleted?: any
-  isBlocked?: any
-  created: string
-  updated: string
-  cardsCount: number
-  author: Author
-}
