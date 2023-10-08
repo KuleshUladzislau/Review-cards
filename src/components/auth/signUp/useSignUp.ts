@@ -13,13 +13,15 @@ const signUpSchema = z
     path: ['confirmPassword'],
   })
 
-type FormValue = z.infer<typeof signUpSchema>
+type SignUp = z.infer<typeof signUpSchema>
+export type SignUpData = Omit<SignUp, 'confirmPassword'>
+
 export const useSignUp = () => {
   const {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<FormValue>({
+  } = useForm<SignUp>({
     resolver: zodResolver(signUpSchema),
   })
 

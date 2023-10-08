@@ -7,7 +7,9 @@ import { HeaderProps } from '@/components/ui/header/header.tsx'
 import { Typography } from '@/components/ui/typography'
 
 type HeaderMenuProps = Omit<HeaderProps, 'isLoggedIn'>
-export const HeaderMenu = ({ userName, email, userPhoto }: HeaderMenuProps) => {
+export const HeaderMenu = ({ userName, email, userPhoto, logout }: HeaderMenuProps) => {
+
+
   return (
     <CustomDropdown
       trigger={<Avatar src={userPhoto} userName={userName} />}
@@ -28,7 +30,7 @@ export const HeaderMenu = ({ userName, email, userPhoto }: HeaderMenuProps) => {
       <CustomDropdownItem>
         <Profile /> My profile
       </CustomDropdownItem>
-      <CustomDropdownItem>
+      <CustomDropdownItem onClick={logout}>
         <Logout />
         Sign Out
       </CustomDropdownItem>
