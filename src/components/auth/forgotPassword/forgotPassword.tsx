@@ -9,15 +9,18 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
 
-export const ForgotPassword = () => {
+type ForgotPasswordProps = {
+  onSubmit: (email: string) => void
+}
+export const ForgotPassword = ({ onSubmit }: ForgotPasswordProps) => {
   const { handleSubmit, control, errors } = useForgotPassword()
 
-  const onSubmit: SubmitHandler<{ email: string }> = data => {
-    console.log(data)
+  const onSubmitHandler: SubmitHandler<{ email: string }> = data => {
+    onSubmit(data.email)
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={s.formContainer}>
+    <form onSubmit={handleSubmit(onSubmitHandler)} className={s.formContainer}>
       <Card className={s.contentWrapper}>
         <Typography variant="large" as="h1" className={s.title}>
           Forgot your password?
