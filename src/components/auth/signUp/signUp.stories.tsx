@@ -13,6 +13,6 @@ export default meta
 
 export const DefaultSignUp = {
   render: () => {
-    return <SignUp></SignUp>
+    return <SignUp onSubmit={() => {}} />
   },
 }
