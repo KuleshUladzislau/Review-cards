@@ -4,7 +4,7 @@ import s from './layout.module.scss'
 
 
 import { useGetMeQuery, useLogoutMutation } from '@/services/auth/authService.ts'
-import {Header} from "@/components/ui/header";
+import { Header } from '@/components/ui/header'
 
 export const Layout = () => {
   const { data } = useGetMeQuery()
