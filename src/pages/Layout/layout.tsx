@@ -2,9 +2,8 @@ import { Outlet, useNavigate } from 'react-router-dom'
 
 import s from './layout.module.scss'
 
-
+import { Header } from '@/components/ui/header'
 import { useGetMeQuery, useLogoutMutation } from '@/services/auth/authService.ts'
-import {Header} from "@/components/ui/header";
 
 export const Layout = () => {
   const { data } = useGetMeQuery()

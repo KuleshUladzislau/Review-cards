@@ -9,7 +9,7 @@ const signUpSchema = z
     confirmPassword: z.string(),
   })
   .refine(values => values.password === values.confirmPassword, {
-    message: 'Password не совпадает блеать',
+    message: 'Password does not match',
     path: ['confirmPassword'],
   })
 

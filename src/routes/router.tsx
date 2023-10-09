@@ -1,11 +1,12 @@
 import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom'
 
+import { ForgotPassword } from '@/components/auth'
 import { SignInPage } from '@/pages/auth/sign-in-page/SignInPage.tsx'
 import { SignUpPage } from '@/pages/auth/sign-up-page'
+import { Desc } from '@/pages/desc/desc.tsx'
 import { Layout } from '@/pages/Layout/layout.tsx'
 import { PageNotFound } from '@/pages/page-not-found'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
-
 
 function PrivateRoutes() {
   const { data, isLoading } = useGetMeQuery()
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
           },
           {
             path: '/',
-            element: <div style={{ marginTop: '300px' }}>Desc</div>,
+            element: <Desc />,
           },
           {
             path: '/profile',
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: '/sign-up',
         element: <SignUpPage />,
+      },
+      {
+        path: '/recover-password',
+        element: <ForgotPassword />,
       },
     ],
   },
