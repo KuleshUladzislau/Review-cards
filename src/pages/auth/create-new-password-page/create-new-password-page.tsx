@@ -4,11 +4,10 @@ import {useParams} from "react-router-dom";
 
 export const CreateNewPasswordPage = () => {
   const [createNewPassword] = useResetPasswordMutation()
-  const token = useParams()
-  console.log(token)
+  const params = useParams()
 
   const onsubmitHandler = (password: string) => {
-    console.log(password)
+    createNewPassword({ password, token: params?.token })
   }
 
   return <CreateNewPassword onSubmit={onsubmitHandler} />

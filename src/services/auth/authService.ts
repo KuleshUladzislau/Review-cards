@@ -65,7 +65,7 @@ export const authService = baseApi.injectEndpoints({
         },
       }),
     }),
-    resetPassword: builder.mutation<void, { password: string; token: string }>({
+    resetPassword: builder.mutation<void, { password: string; token?: string }>({
       query: ({ password, token }) => ({
         url: `/v1/auth/reset-password/${token}`,
         method: 'POST',
