@@ -61,7 +61,7 @@ export const authService = baseApi.injectEndpoints({
         method: 'POST',
         body: {
           email,
-          html: `<h1>Hi, ##name##</h1><p>Click <a href="https://team-cards-4o4v.vercel.app/login">here</a> to recover your password</p>`,
+          html: `<h1>Hi, ##name##</h1><p>Click <a href="http://localhost:5173/forgot-password/reset-password/##token##">here</a> to recover your password</p>`,
         },
       }),
     }),
@@ -69,7 +69,7 @@ export const authService = baseApi.injectEndpoints({
       query: ({ password, token }) => ({
         url: `/v1/auth/reset-password/${token}`,
         method: 'POST',
-        body: password,
+        body: { password },
       }),
     }),
   }),
