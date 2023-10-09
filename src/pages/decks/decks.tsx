@@ -12,6 +12,7 @@ import {
   Textfield,
   Typography,
 } from '@/components/ui'
+import { Sort } from '@/components/ui/table/types.ts'
 import { DecksTable } from '@/pages/decks/decksTable/decksTable.tsx'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
 import { useGetDecksQuery } from '@/services/decks/decksService.ts'
@@ -24,18 +25,32 @@ export const Decks = () => {
   const searchByName = useAppSelector(state => state.decksSettings.searchByName)
   const currentPage = useAppSelector(state => state.decksSettings.currentPage)
   const itemsPerPage = useAppSelector(state => state.decksSettings.itemsPerPage)
+  const { minCardsCount, maxCardsCount } = useAppSelector(
+    state => state.decksSettings.sliderOptions
+  )
 
   const dispatch = useAppDispatch()
 
   const [switchOption, setSwitchOption] = useState(switcherOptions[1].value)
   const [userId, setUserId] = useState('')
+  const [sliderValue, setSliderValue] = useState({ min: minCardsCount, max: maxCardsCount })
+  const [sort, setSort] = useState<Sort>({ key: 'updated', direction: 'desc' })
 
   const newSearchName = useDebounce(searchByName, 500)
+
+  const sortedString = () => {
+    if (!sort) return null
+
+    return `${sort.key}-${sort.direction}`
+  }
 
   const { data } = useGetDecksQuery({
     name: newSearchName,
     authorId: userId,
+    minCardsCount: sliderValue.min,
+    maxCardsCount: sliderValue.max,
     currentPage,
+    orderBy: sortedString(),
     itemsPerPage: Number(itemsPerPage.value),
   })
 
@@ -62,6 +77,20 @@ export const Decks = () => {
     dispatch(setPageSize({ pageSize }))
   }
 
+  const changeSliderValueHandler = (value: number[]) => {
+    setSliderValue({ min: value[0].toString(), max: value[1].toString() })
+  }
+
+  const clearFiltersHandler = () => {
+    dispatch(setSearchByName({ searchName: '' }))
+    dispatch(setCurrentPage({ currentPage: 1 }))
+    dispatch(setPageSize({ pageSize: 7 }))
+    setSwitchOption(switcherOptions[1].value)
+    setUserId('')
+    changeSliderValueHandler([+minCardsCount, +maxCardsCount])
+    setSort(null)
+  }
+
   return (
     <div className={s.wrapper}>
       <div className={s.headWrap}>
@@ -83,6 +112,7 @@ export const Decks = () => {
         <div className={s.tabsWrap}>
           <Typography variant={'body2'}>Show packs cards</Typography>
           <TabsSwitcher
+            value={switchOption}
             defaultValue={switchOption}
             tabs={switcherOptions}
             onValueChange={onSwitchCardsHandler}
@@ -90,16 +120,22 @@ export const Decks = () => {
         </div>
         <div className={s.sliderWrap}>
           <Typography variant={'body2'}>Number of cards</Typography>
-          <SliderCustom value={[0, 15]} />
+          <SliderCustom
+            min={0}
+            max={Number(data?.maxCardsCount)}
+            value={[Number(sliderValue.min), Number(sliderValue.max)]}
+            defaultValue={[Number(sliderValue.min), Number(sliderValue.max)]}
+            onValueChange={changeSliderValueHandler}
+          />
         </div>
-
-        <Button variant={'secondary'}>
+        <Button onClick={clearFiltersHandler} variant={'secondary'}>
           <Delete />
           Clear Filter
         </Button>
       </div>
-      <DecksTable data={data} />
+      <DecksTable data={data} sort={sort} setSort={setSort} />
       <Pagination
+        portionValue={itemsPerPage.value.toString()}
         totalCount={data?.pagination.totalItems}
         currentPage={currentPage}
         pageSize={Number(itemsPerPage.value)}

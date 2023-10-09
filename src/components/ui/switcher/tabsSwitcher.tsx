@@ -18,7 +18,7 @@ type TabsProps = {
 } & ComponentPropsWithoutRef<typeof Tabs.Root>
 
 export const TabsSwitcher = forwardRef<ElementRef<typeof Tabs.Root>, TabsProps>(
-  ({ tabs, disabled = false, onValueChange, className, defaultValue }, ref) => {
+  ({ tabs, disabled = false, onValueChange, className, defaultValue,...props }, ref) => {
     const mappedTabs = tabs.map(t => {
       return (
         <Tabs.Trigger
@@ -33,7 +33,7 @@ export const TabsSwitcher = forwardRef<ElementRef<typeof Tabs.Root>, TabsProps>(
     })
 
     return (
-      <Tabs.Root defaultValue={defaultValue} ref={ref} onValueChange={onValueChange}>
+      <Tabs.Root defaultValue={defaultValue} ref={ref} {...props} onValueChange={onValueChange}>
         <Tabs.List>{mappedTabs}</Tabs.List>
       </Tabs.Root>
     )

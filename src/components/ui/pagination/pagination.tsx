@@ -3,8 +3,7 @@ import { FC } from 'react'
 import p from './pagination.module.scss'
 
 import Arrow from '@/assets/icons/ArrowUp.tsx'
-import { OptionsType, SelectCustom} from '@/components/ui/select'
-
+import { OptionsType, SelectCustom } from '@/components/ui/select'
 
 export type PaginationProps = {
   totalCount: number | undefined
@@ -14,6 +13,7 @@ export type PaginationProps = {
   onCurrentPageChange: (page: number | string) => void
   siblingCount?: number | string
   options: OptionsType[]
+  portionValue: string
 }
 
 const DOTS = '...'
@@ -64,6 +64,7 @@ export const Pagination: FC<PaginationProps> = ({
   onPageSizeChange,
   onCurrentPageChange,
   options,
+  portionValue,
 }) => {
   //Поставил временную заглушку!!!!!
   const pagesCount = Math.ceil(totalCount! / pageSize)
@@ -116,6 +117,7 @@ export const Pagination: FC<PaginationProps> = ({
         Show
         <SelectCustom
           options={options}
+          value={portionValue}
           defaultValue={pageSize.toString()}
           onValueChange={onPageSizeHandler}
         />

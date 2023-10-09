@@ -1,8 +1,6 @@
-import { useState } from 'react'
-
 import { Delete, Edit, Play } from '@/assets'
 import { Table, TableHead, TBody, TCell, TRow } from '@/components/ui'
-import { Column, Sort } from '@/components/ui/table/types.ts'
+import {Column, Sort} from '@/components/ui/table/types.ts'
 import { GetDecksResponse } from '@/services/decks/types.ts'
 
 const columns: Column[] = [
@@ -19,18 +17,18 @@ const columns: Column[] = [
     title: 'Last Updated',
   },
   {
-    key: 'createdBy',
+    key: 'created',
     title: 'Created by',
   },
 ]
 
 type DecksTableProps = {
   data: GetDecksResponse | undefined
+  sort?: Sort
+  setSort: (sort: Sort) => void
 }
 
-export const DecksTable = ({ data }: DecksTableProps) => {
-  const [sort, setSort] = useState<Sort>(null)
-
+export const DecksTable = ({ data, setSort, sort }: DecksTableProps) => {
   return (
     <Table>
       <TableHead columns={columns} sort={sort} setSort={setSort} />
