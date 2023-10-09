@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 36px 30px;
+  width: 420px;
+  height: 408px;
+}
+.title{
+  margin-bottom: 27px;
+}
+.iconContainer{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 17px;
+}
+
+.description{
+  color: var(--light-900, #C3C1C7);
+  margin-bottom: 65px;
+}
