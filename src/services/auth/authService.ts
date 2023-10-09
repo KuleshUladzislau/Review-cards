@@ -56,13 +56,20 @@ export const authService = baseApi.injectEndpoints({
       },
     }),
     forgotPasswordEmail: builder.mutation<void, createNewPassword>({
-      query: () => ({
+      query: ({ email }) => ({
         url: '/v1/auth/recover-password',
         method: 'POST',
         body: {
-          html: "<h1>Hi, ##name##</h1><p>Click <a href=\"##token##\">here</a> to recover your password</p>",
-          email: "kulesh_uladzislau@mail.ru",
+          email,
+          html: `<h1>Hi, ##name##</h1><p>Click <a href="https://team-cards-4o4v.vercel.app/login">here</a> to recover your password</p>`,
         },
+      }),
+    }),
+    resetPassword: builder.mutation<void, { password: string; token: string }>({
+      query: ({ password, token }) => ({
+        url: `/v1/auth/reset-password/${token}`,
+        method: 'POST',
+        body: password,
       }),
     }),
   }),
@@ -74,4 +81,5 @@ export const {
   useSignUpMutation,
   useLogoutMutation,
   useForgotPasswordEmailMutation,
+  useResetPasswordMutation,
 } = authService

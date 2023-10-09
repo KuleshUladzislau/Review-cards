@@ -8,6 +8,7 @@ import { PageNotFound } from '@/pages/page-not-found'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
 
 import {ForgotPasswordPage} from "@/pages/auth/forgot-password-page";
+import {CreateNewPasswordPage} from "@/pages/auth/create-new-password-page/create-new-password-page.tsx";
 
 function PrivateRoutes() {
   const { data, isLoading } = useGetMeQuery()
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: '/forgot-password',
         element: <ForgotPasswordPage />,
+      },
+      {
+        path: '/reset-password/:token',
+        element: <CreateNewPasswordPage />,
       },
     ],
   },

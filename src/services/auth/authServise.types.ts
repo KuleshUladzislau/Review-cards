@@ -18,7 +18,6 @@ export type ResponseCreateNewAccount = {
   updated: Date
 }
 export type createNewPassword = {
-  html: string
+  html?: string
   email: string
-  subject: string
 }

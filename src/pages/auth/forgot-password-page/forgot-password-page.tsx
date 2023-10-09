@@ -1,11 +1,10 @@
 import { ForgotPassword } from '@/components/auth'
-import { useForgotPasswordEmailMutation} from '@/services/auth/authService.ts'
+import { useForgotPasswordEmailMutation } from '@/services/auth/authService.ts'
 
 export const ForgotPasswordPage = () => {
   const [forgotPassword] = useForgotPasswordEmailMutation()
-  const onSubmitHandler = (data: any) => {
-    console.log(data)
-    forgotPassword(data)
+  const onSubmitHandler = (email: string) => {
+    forgotPassword({ email })
   }
 
   return <ForgotPassword onSubmit={onSubmitHandler} />
