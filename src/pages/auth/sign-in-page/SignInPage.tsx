@@ -1,8 +1,10 @@
 import { Navigate } from 'react-router-dom'
 
-import { useGetMeQuery, useLoginMutation } from '@/services/auth/authService.ts'
+
 import { SignIn } from '@/components/auth'
 import { SignInValuesForm } from '@/components/auth/signIn/useSignInForm.ts'
+import { useGetMeQuery, useLoginMutation } from '@/services/auth/authService.ts'
+import 'react-toastify/dist/ReactToastify.css';
 
 export const SignInPage = () => {
   const [login] = useLoginMutation()
@@ -15,5 +17,9 @@ export const SignInPage = () => {
 
   if (data) return <Navigate to={'/'} />
 
-  return <SignIn onSubmit={onSubmitHandler} />
+  return (
+    <>
+      <SignIn onSubmit={onSubmitHandler} />
+    </>
+  )
 }

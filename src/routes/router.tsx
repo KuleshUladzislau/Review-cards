@@ -1,14 +1,12 @@
 import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom'
 
-
-import {SignInPage} from "@/pages/auth/sign-in-page/SignInPage.tsx";
+import { CreateNewPasswordPage } from '@/pages/auth/create-new-password-page/create-new-password-page.tsx'
+import { ForgotPasswordPage } from '@/pages/auth/forgot-password-page'
+import { SignInPage } from '@/pages/auth/sign-in-page/SignInPage.tsx'
 import { SignUpPage } from '@/pages/auth/sign-up-page'
 import { Layout } from '@/pages/Layout/layout.tsx'
 import { PageNotFound } from '@/pages/page-not-found'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
-
-import {ForgotPasswordPage} from "@/pages/auth/forgot-password-page";
-import {CreateNewPasswordPage} from "@/pages/auth/create-new-password-page/create-new-password-page.tsx";
 
 function PrivateRoutes() {
   const { data, isLoading } = useGetMeQuery()
