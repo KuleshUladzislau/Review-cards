@@ -1,13 +1,14 @@
 import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom'
 
-import { ForgotPassword } from '@/components/auth'
-import { SignInPage } from '@/pages/auth/sign-in-page/SignInPage.tsx'
+
+import {SignInPage} from "@/pages/auth/sign-in-page/SignInPage.tsx";
 import { SignUpPage } from '@/pages/auth/sign-up-page'
-import { Deck } from '@/pages/deck/deck.tsx'
 import { Layout } from '@/pages/Layout/layout.tsx'
 import { PageNotFound } from '@/pages/page-not-found'
-import { Profile } from '@/pages/profile/profile.tsx'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
+
+import {ForgotPasswordPage} from "@/pages/auth/forgot-password-page";
+import {CreateNewPasswordPage} from "@/pages/auth/create-new-password-page/create-new-password-page.tsx";
 
 function PrivateRoutes() {
   const { data, isLoading } = useGetMeQuery()
@@ -33,11 +34,11 @@ const router = createBrowserRouter([
           },
           {
             path: '/',
-            element: <Deck />,
+            element: <div style={{ marginTop: '300px' }}>Desc</div>,
           },
           {
             path: '/profile',
-            element: <Profile />,
+            element: <div>Profile</div>,
           },
           {
             path: '/decks/:id?',
@@ -62,8 +63,12 @@ const router = createBrowserRouter([
         element: <SignUpPage />,
       },
       {
-        path: '/recover-password',
-        element: <ForgotPassword />,
+        path: '/forgot-password',
+        element: <ForgotPasswordPage />,
+      },
+      {
+        path: '/reset-password/:token',
+        element: <CreateNewPasswordPage />,
       },
     ],
   },
