@@ -10,8 +10,8 @@ import {
   Textfield,
   Typography,
 } from '@/components/ui'
-import { DecksTable } from '@/pages/decks/decksTable/decksTable.tsx'
-import { useDeckSettings } from '@/pages/decks/hook/useDeckSettings.ts'
+import { DecksTable } from '@/pages/decks/decksTable'
+import { useDeckSettings } from '@/pages/decks/hook'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
 import { useGetDecksQuery } from '@/services/decks/decksService.ts'
 import { setCurrentPage, setPageSize, setSearchByName } from '@/services/decks/decksSlice.ts'
