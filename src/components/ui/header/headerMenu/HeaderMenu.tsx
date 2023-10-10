@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+
 import s from './headerMenu.module.scss'
 
 import { Logout, Profile } from '@/assets'
@@ -8,7 +10,10 @@ import { Typography } from '@/components/ui/typography'
 
 type HeaderMenuProps = Omit<HeaderProps, 'isLoggedIn'>
 export const HeaderMenu = ({ userName, email, userPhoto, logout }: HeaderMenuProps) => {
-
+  const navigate = useNavigate()
+  const navigateToProfile = () => {
+    navigate('/profile')
+  }
 
   return (
     <CustomDropdown
@@ -27,7 +32,7 @@ export const HeaderMenu = ({ userName, email, userPhoto, logout }: HeaderMenuPro
           </Typography>
         </div>
       </CustomDropdownItem>
-      <CustomDropdownItem>
+      <CustomDropdownItem onClick={navigateToProfile}>
         <Profile /> My profile
       </CustomDropdownItem>
       <CustomDropdownItem onClick={logout}>

@@ -1,0 +1,20 @@
+.cardWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding-top: 33px;
+  padding-bottom: 41px;
+  padding-inline: 92px;
+}
+
+.avatarWrapper{
+  padding-top: 27px;
+  padding-bottom: 6px;
+}
+
+.buttonEdit{
+  position: relative;
+  right: 20px;
+}

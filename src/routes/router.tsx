@@ -3,9 +3,10 @@ import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-rou
 import { ForgotPassword } from '@/components/auth'
 import { SignInPage } from '@/pages/auth/sign-in-page/SignInPage.tsx'
 import { SignUpPage } from '@/pages/auth/sign-up-page'
-import { Desc } from '@/pages/desc/desc.tsx'
+import { Deck } from '@/pages/deck/deck.tsx'
 import { Layout } from '@/pages/Layout/layout.tsx'
 import { PageNotFound } from '@/pages/page-not-found'
+import { Profile } from '@/pages/profile/profile.tsx'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
 
 function PrivateRoutes() {
@@ -32,11 +33,11 @@ const router = createBrowserRouter([
           },
           {
             path: '/',
-            element: <Desc />,
+            element: <Deck />,
           },
           {
             path: '/profile',
-            element: <div>Profile</div>,
+            element: <Profile />,
           },
           {
             path: '/decks/:id?',
