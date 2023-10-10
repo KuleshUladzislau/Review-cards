@@ -10,7 +10,7 @@ import Layer2 from '@/assets/icons/Layer2.tsx'
 //Изменил типы также как и в свитчере
 export type OptionsType = {
   label: string
-  value: string | number
+  value: string
 }
 
 type SelectProps = {
@@ -26,7 +26,7 @@ export const SelectCustom = forwardRef<ElementRef<typeof Select.Trigger>, Select
   ) => {
     //Добавил toString на случай если number, нужен для запроса пагинации
     const mappedOptions = options?.map(o => (
-      <SelectItem key={o.value} value={o.value.toString()}>
+      <SelectItem key={o.value} value={o.value}>
         {o.label}
       </SelectItem>
     ))
@@ -61,14 +61,14 @@ export const SelectCustom = forwardRef<ElementRef<typeof Select.Trigger>, Select
 type ItemProps = ComponentPropsWithoutRef<typeof Select.Item>
 
 export const SelectItem = forwardRef<ElementRef<typeof Select.Item>, ItemProps>(
-  ({ children, className, ...props }, forwardedRef) => {
+  ({ children, className, ...restProps }, ref) => {
     const classNames = {
       item: clsx(s.item, className),
       itemText: clsx(s.itemText),
     }
 
     return (
-      <Select.Item {...props} className={classNames.item} ref={forwardedRef}>
+      <Select.Item {...restProps} className={classNames.item} ref={ref}>
         <Select.ItemText className={classNames.itemText}>{children}</Select.ItemText>
       </Select.Item>
     )

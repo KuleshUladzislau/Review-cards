@@ -1,6 +1,8 @@
+import s from './decksTable.module.scss'
+
 import { Delete, Edit, Play } from '@/assets'
 import { Table, TableHead, TBody, TCell, TRow } from '@/components/ui'
-import {Column, Sort} from '@/components/ui/table/types.ts'
+import { Column, Sort } from '@/components/ui/table/types.ts'
 import { GetDecksResponse } from '@/services/decks/types.ts'
 
 const columns: Column[] = [
@@ -41,10 +43,10 @@ export const DecksTable = ({ data, setSort, sort }: DecksTableProps) => {
               <TCell>{new Date(item.updated).toLocaleDateString()}</TCell>
               <TCell>{item.author.name}</TCell>
               <TCell>
-                <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
-                  <Play />
-                  <Edit />
-                  <Delete />
+                <div className={s.tableButtonsWrap}>
+                  <Play className={s.tableButton} />
+                  <Edit className={s.tableButton} />
+                  <Delete className={s.tableButton} />
                 </div>
               </TCell>
             </TRow>

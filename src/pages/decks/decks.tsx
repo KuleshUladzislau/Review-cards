@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import s from './decks.module.scss'
 
 import Delete from '@/assets/icons/Delete.tsx'
@@ -12,8 +10,8 @@ import {
   Textfield,
   Typography,
 } from '@/components/ui'
-import { Sort } from '@/components/ui/table/types.ts'
 import { DecksTable } from '@/pages/decks/decksTable/decksTable.tsx'
+import { useDeckSettings } from '@/pages/decks/hook/useDeckSettings.ts'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
 import { useGetDecksQuery } from '@/services/decks/decksService.ts'
 import { setCurrentPage, setPageSize, setSearchByName } from '@/services/decks/decksSlice.ts'
@@ -31,24 +29,24 @@ export const Decks = () => {
 
   const dispatch = useAppDispatch()
 
-  const [switchOption, setSwitchOption] = useState(switcherOptions[1].value)
-  const [userId, setUserId] = useState('')
-  const [sliderValue, setSliderValue] = useState({ min: minCardsCount, max: maxCardsCount })
-  const [sort, setSort] = useState<Sort>({ key: 'updated', direction: 'desc' })
-
   const newSearchName = useDebounce(searchByName, 500)
-
-  const sortedString = () => {
-    if (!sort) return null
-
-    return `${sort.key}-${sort.direction}`
-  }
+  const {
+    userId,
+    setUserId,
+    sortedString,
+    sort,
+    setSort,
+    setSliderValue,
+    sliderValue,
+    setSwitchOption,
+    switchOption,
+  } = useDeckSettings(minCardsCount, maxCardsCount, switcherOptions[1].value)
 
   const { data } = useGetDecksQuery({
     name: newSearchName,
     authorId: userId,
-    minCardsCount: sliderValue.min,
-    maxCardsCount: sliderValue.max,
+    minCardsCount: sliderValue.min.toString(),
+    maxCardsCount: sliderValue.max.toString(),
     currentPage,
     orderBy: sortedString(),
     itemsPerPage: Number(itemsPerPage.value),
@@ -74,20 +72,20 @@ export const Decks = () => {
   }
 
   const pageSizeChangeHandler = (pageSize: number) => {
-    dispatch(setPageSize({ pageSize }))
+    dispatch(setPageSize({ pageSize: pageSize.toString() }))
   }
 
   const changeSliderValueHandler = (value: number[]) => {
-    setSliderValue({ min: value[0].toString(), max: value[1].toString() })
+    setSliderValue({ min: value[0], max: value[1] })
   }
 
   const clearFiltersHandler = () => {
     dispatch(setSearchByName({ searchName: '' }))
     dispatch(setCurrentPage({ currentPage: 1 }))
-    dispatch(setPageSize({ pageSize: 7 }))
+    dispatch(setPageSize({ pageSize: itemsPerPage.value }))
     setSwitchOption(switcherOptions[1].value)
     setUserId('')
-    changeSliderValueHandler([+minCardsCount, +maxCardsCount])
+    setSliderValue({ min: minCardsCount, max: maxCardsCount })
     setSort(null)
   }
 
@@ -121,10 +119,10 @@ export const Decks = () => {
         <div className={s.sliderWrap}>
           <Typography variant={'body2'}>Number of cards</Typography>
           <SliderCustom
-            min={0}
+            min={minCardsCount}
             max={Number(data?.maxCardsCount)}
-            value={[Number(sliderValue.min), Number(sliderValue.max)]}
-            defaultValue={[Number(sliderValue.min), Number(sliderValue.max)]}
+            value={[sliderValue.min, sliderValue.max]}
+            defaultValue={[sliderValue.min, sliderValue.max]}
             onValueChange={changeSliderValueHandler}
           />
         </div>

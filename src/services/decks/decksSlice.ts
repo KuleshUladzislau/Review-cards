@@ -3,8 +3,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { OptionsType, SwitcherOptions } from '@/components/ui'
 
 type SliderOptions = {
-  minCardsCount: string
-  maxCardsCount: string
+  minCardsCount: number
+  maxCardsCount: number
 }
 
 type InitialState = {
@@ -20,24 +20,24 @@ const initialState: InitialState = {
   searchByName: '',
   switcherOptions: [
     {
-      id: '1',
-      value: 'My Cards',
+      label: 'My Cards',
+      value: '1',
     },
     {
-      id: '2',
-      value: 'All Cards',
+      label: 'All Cards',
+      value: '2',
     },
   ],
   pageSizeOptions: [
-    { label: '7', value: 7 },
-    { label: '15', value: 15 },
-    { label: '30', value: 30 },
+    { label: '7', value: '7' },
+    { label: '15', value: '15' },
+    { label: '30', value: '30' },
   ],
   currentPage: 1,
-  itemsPerPage: { label: '7', value: 7 },
+  itemsPerPage: { label: '7', value: '7' },
   sliderOptions: {
     minCardsCount: 0,
-    maxCardsCount: 10,
+    maxCardsCount: 52,
   },
 }
 
@@ -51,7 +51,7 @@ const slice = createSlice({
     setCurrentPage(state, action: PayloadAction<{ currentPage: number }>) {
       state.currentPage = action.payload.currentPage
     },
-    setPageSize(state, action: PayloadAction<{ pageSize: number }>) {
+    setPageSize(state, action: PayloadAction<{ pageSize: string }>) {
       state.itemsPerPage.value = action.payload.pageSize
     },
   },

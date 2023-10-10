@@ -6,7 +6,7 @@ import s from './tabsSwitcher.module.scss'
 
 //Добавил типы для options, так как нужен обьект для Slice и key нежелательно чтобы совпадал c value, поэтому нужен id
 export type SwitcherOptions = {
-  id: string
+  label: string
   value: string
 }
 
@@ -18,22 +18,22 @@ type TabsProps = {
 } & ComponentPropsWithoutRef<typeof Tabs.Root>
 
 export const TabsSwitcher = forwardRef<ElementRef<typeof Tabs.Root>, TabsProps>(
-  ({ tabs, disabled = false, onValueChange, className, defaultValue,...props }, ref) => {
+  ({ tabs, disabled = false, onValueChange, className, defaultValue, ...restProps }, ref) => {
     const mappedTabs = tabs.map(t => {
       return (
         <Tabs.Trigger
-          key={t.id}
+          key={t.label}
           value={t.value}
           className={`${s.default} ${className}`}
           disabled={disabled}
         >
-          {t.value}
+          {t.label}
         </Tabs.Trigger>
       )
     })
 
     return (
-      <Tabs.Root defaultValue={defaultValue} ref={ref} {...props} onValueChange={onValueChange}>
+      <Tabs.Root defaultValue={defaultValue} ref={ref} {...restProps} onValueChange={onValueChange}>
         <Tabs.List>{mappedTabs}</Tabs.List>
       </Tabs.Root>
     )

@@ -57,7 +57,7 @@ const renderPageNumbers = (
 }
 
 export const Pagination: FC<PaginationProps> = ({
-  totalCount,
+  totalCount = 10,
   currentPage,
   pageSize,
   siblingCount = 1,
@@ -66,8 +66,7 @@ export const Pagination: FC<PaginationProps> = ({
   options,
   portionValue,
 }) => {
-  //Поставил временную заглушку!!!!!
-  const pagesCount = Math.ceil(totalCount! / pageSize)
+  const pagesCount = Math.ceil(totalCount / pageSize)
 
   const onNext = () => {
     onCurrentPageChange(currentPage + 1)
