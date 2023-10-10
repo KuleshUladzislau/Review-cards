@@ -7,6 +7,7 @@ import { SignUpPage } from '@/pages/auth/sign-up-page'
 import { Layout } from '@/pages/Layout/layout.tsx'
 import { PageNotFound } from '@/pages/page-not-found'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
+import {CheckEmail} from "@/components/auth/check-email";
 
 function PrivateRoutes() {
   const { data, isLoading } = useGetMeQuery()
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
         path: '/reset-password/:token',
         element: <CreateNewPasswordPage />,
       },
+      {
+        path: '/check-email/:email',
+        element: <CheckEmail/>,
+      },
     ],
   },
 ])
@@ -75,7 +80,7 @@ const router = createBrowserRouter([
 export const Router = () => {
   const { isLoading } = useGetMeQuery()
 
-  if (isLoading) return <div>loading...</div>
+  // if (isLoading) return <div>loading...</div>
 
   return <RouterProvider router={router} />
 }

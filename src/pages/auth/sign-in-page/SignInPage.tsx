@@ -5,14 +5,16 @@ import { SignIn } from '@/components/auth'
 import { SignInValuesForm } from '@/components/auth/signIn/useSignInForm.ts'
 import { useGetMeQuery, useLoginMutation } from '@/services/auth/authService.ts'
 import 'react-toastify/dist/ReactToastify.css';
+import {useResponseWithToast} from "@/assets/hooks/useResponseWithToast.ts";
 
 export const SignInPage = () => {
   const [login] = useLoginMutation()
 
   const { data } = useGetMeQuery()
+  const toastHook = useResponseWithToast()
 
-  const onSubmitHandler = (data: SignInValuesForm) => {
-    login(data)
+  const onSubmitHandler = async (data: SignInValuesForm) => {
+    await toastHook(login(data))
   }
 
   if (data) return <Navigate to={'/'} />

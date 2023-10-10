@@ -9,7 +9,6 @@ export const CreateNewPasswordPage = () => {
 
 
   const onsubmitHandler = (password: string) => {
-    console.log(password, params?.token)
     createNewPassword({ password, token: params?.token })
   }
 

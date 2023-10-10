@@ -4,6 +4,7 @@ import s from './layout.module.scss'
 
 import { Header } from '@/components/ui/header'
 import { useGetMeQuery, useLogoutMutation } from '@/services/auth/authService.ts'
+import {Toast} from "@/components/ui";
 
 export const Layout = () => {
   const { data } = useGetMeQuery()
@@ -26,7 +27,7 @@ export const Layout = () => {
         userName={data?.name}
       />
       <Outlet />
-
+      <Toast/>
     </div>
   )
 }
