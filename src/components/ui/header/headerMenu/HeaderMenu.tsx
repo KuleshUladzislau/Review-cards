@@ -12,7 +12,7 @@ export const HeaderMenu = ({ userName, email, userPhoto, logout }: HeaderMenuPro
     <CustomDropdown
       trigger={<Avatar src={userPhoto} userName={userName} />}
       className={s.dropDown}
-      align={'end'}
+      align={'start'}
     >
       <CustomDropdownItem className={s.itemUserInfo}>
         <img src={userPhoto} className={s.photo} />
