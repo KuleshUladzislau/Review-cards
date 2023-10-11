@@ -80,9 +80,6 @@ export const Decks = () => {
   }
 
   const clearFiltersHandler = () => {
-    dispatch(setSearchByName({ searchName: '' }))
-    dispatch(setCurrentPage({ currentPage: 1 }))
-    dispatch(setPageSize({ pageSize: itemsPerPage.value }))
     setSwitchOption(switcherOptions[1].value)
     setUserId('')
     setSliderValue({ min: minCardsCount, max: maxCardsCount })
@@ -93,7 +90,7 @@ export const Decks = () => {
     <div className={s.wrapper}>
       <div className={s.headWrap}>
         <Typography variant={'large'}>Decks</Typography>
-        <Button onClick={() => {}}>Add New Deck</Button>
+        <Button>Add New Deck</Button>
       </div>
 
       <div className={s.settingsWrap}>
