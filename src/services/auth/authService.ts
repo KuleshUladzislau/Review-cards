@@ -62,7 +62,7 @@ export const authService = baseApi.injectEndpoints({
         method: 'POST',
         body: {
           email,
-          html: `<h1>Hi, ##name##</h1><p>Click <a href="https://team-cards-4o4v-cnxhpee5m-kuleshuladzislau.vercel.app/reset-password/##token##">here</a> to recover your password</p>`,
+          html: `<h1>Hi, ##name##</h1><p>Click <a href="https://team-cards-h4mu.vercel.app/reset-password/##token##">here</a> to recover your password</p>`,
         },
       }),
     }),
