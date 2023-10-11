@@ -1,31 +1,30 @@
-.itemUserInfo{
+.itemUserInfo {
   display: flex;
   min-width: 198px;
-  gap:8px;
+  gap: 8px;
 }
 
-.photo{
+.photo {
   display: flex;
   align-items: center;
   width: 36px;
   height: 36px;
   border-radius: 36px;
 }
-.userInfoContainer{
+.userInfoContainer {
   display: flex;
   flex-direction: column;
 }
 
-.userName{
-
+.userName {
 }
 
-.email{
+.email {
   color: var(--dark-100, #808080);
 }
 
 .dropDown {
   position: absolute;
-  top:10px;
+  top: 10px;
   left: 45px;
 }
