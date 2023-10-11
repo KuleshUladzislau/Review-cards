@@ -80,7 +80,7 @@ const router = createBrowserRouter([
 export const Router = () => {
   const { isLoading } = useGetMeQuery()
 
-  // if (isLoading) return <div>loading...</div>
+  //pn if (isLoading) return <div>loading...</div>
 
   return <RouterProvider router={router} />
 }

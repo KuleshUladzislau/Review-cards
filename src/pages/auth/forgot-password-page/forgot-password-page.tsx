@@ -7,8 +7,8 @@ import {useResponseWithToast} from "@/assets/hooks/useResponseWithToast.ts";
 
 export const ForgotPasswordPage = () => {
   const [forgotPassword] = useForgotPasswordEmailMutation()
-    const navigate = useNavigate()
-    const responseWithToast = useResponseWithToast()
+  const navigate = useNavigate()
+  const responseWithToast = useResponseWithToast()
   const onSubmitHandler = async (email: string) => {
       let res = await responseWithToast(forgotPassword({email}))
       if(res?.success){

@@ -14,7 +14,7 @@ export const SignInPage = () => {
   const toastHook = useResponseWithToast()
 
   const onSubmitHandler = async (data: SignInValuesForm) => {
-    await toastHook(login(data))
+    await toastHook(login(data),'invalid email or password')
   }
 
   if (data) return <Navigate to={'/'} />

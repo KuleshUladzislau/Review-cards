@@ -1,8 +1,11 @@
 import { useNavigate, useParams} from 'react-router-dom'
+
 import CheckEmailIcon from '@/assets/icons/CheckEmailIcon.tsx'
 import { Button, Card, Typography } from '@/components/ui'
 
 import s from './check-email.module.scss'
+
+
 
 export const CheckEmail = () => {
     const params = useParams()
