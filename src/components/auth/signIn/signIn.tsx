@@ -1,4 +1,3 @@
-import { DevTool } from '@hookform/devtools'
 import { Link } from 'react-router-dom'
 
 import { ControlledTextField } from '../../controlls/'
@@ -20,7 +19,6 @@ export const SignIn = ({ onSubmit }: SignInProps) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <DevTool control={control} />
       <Card className={s.card}>
         <Typography className={s.signIn} variant={'large'}>
           Sign In
