@@ -16,7 +16,8 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    tabs: ['one', 'two'],
+    tabs: [{label:'one',value:'1'},
+    {label:'two',value:'2'}],
     defaultValue: 'one',
   },
 }
