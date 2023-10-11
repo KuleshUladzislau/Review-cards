@@ -17,17 +17,17 @@ export const TableHead: FC<
     'children'
   >
 > = ({ columns, sort, setSort, ...rest }) => {
-  const handleSort = (key: string) => {
+  const changeSortHandler = (key: string) => {
     if (sort && sort.key === key) {
-      setSort({
-        key,
-        direction: sort.direction === 'asc' ? 'desc' : 'asc',
-      })
+      if (sort.direction === 'asc') {
+        setSort({ key, direction: 'desc' })
+      } else if (sort.direction === 'desc') {
+        setSort(null)
+      } else {
+        setSort({ key, direction: 'asc' })
+      }
     } else {
-      setSort({
-        key,
-        direction: 'asc',
-      })
+      setSort({ key, direction: 'asc' })
     }
   }
 
@@ -37,9 +37,10 @@ export const TableHead: FC<
         {columns.map((column, i) => {
           return (
             <THeadCell
+              className={s.theadCell}
               colSpan={i === columns.length - 1 ? 2 : 0}
               key={column.key}
-              onClick={() => handleSort(column.key)}
+              onClick={() => changeSortHandler(column.key)}
             >
               {column.title}
               {sort && sort.key === column.key && (
