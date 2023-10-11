@@ -7,15 +7,19 @@ import { ControlledTextField } from '@/components/controlls'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
-export const CreateNewPassword = () => {
+
+type CreateNewPasswordProps = {
+  onSubmit: (password: string) => void
+}
+export const CreateNewPassword = ({ onSubmit }: CreateNewPasswordProps) => {
   const { handleSubmit, control, errors } = useCreateNewPassword()
 
-  const onSubmit: SubmitHandler<{ password: string }> = data => {
-    console.log(data)
+  const onSubmitHandler: SubmitHandler<{ password: string }> = data => {
+    onSubmit(data.password)
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={c.formContainer}>
+    <form onSubmit={handleSubmit(onSubmitHandler)} className={c.formContainer}>
       <Card className={c.cardWrapper}>
         <Typography variant={'large'} as={'h1'} className={c.title}>
           Create new password

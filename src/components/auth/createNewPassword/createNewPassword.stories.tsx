@@ -13,6 +13,6 @@ export default meta
 
 export const DefaultCreateNewPassword = {
   render: () => {
-    return <CreateNewPassword />
+    return <CreateNewPassword onSubmit={() => {}} />
   },
 }

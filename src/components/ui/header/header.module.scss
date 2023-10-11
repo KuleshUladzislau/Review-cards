@@ -1,37 +1,29 @@
 .header {
   display: flex;
   align-items: center;
-
-  height: 60px;
-
-  background: var(--color-dark-700);
+  justify-content: space-between;
+  padding: 12px 136px;
+  width: 100%;
   border-bottom: 1px solid var(--dark-500, #333);
-
-  .headerContent {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    width: 80rem;
-    margin: 0 auto;
-
-  }
-
+  background: var(--dark-700, #171717);
+  height: 60px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 
 
 .userInfo{
   display: flex;
-  gap:14px;
   align-items: center;
+  gap:14px;
 
 }
-
 .itemUserInfo{
   display: flex;
-  gap:8px;
   min-width: 198px;
+  gap:8px;
 }
 
 
