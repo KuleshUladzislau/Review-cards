@@ -13,6 +13,7 @@ export const CreateNewPasswordPage = () => {
 
   const onsubmitHandler = async (password: string) => {
     let res = await responseWithToast(createNewPassword({ password, token: params?.token }))
+    console.log(res)
     if(res?.success){
       return navigate('/login')
     }
