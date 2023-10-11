@@ -1,14 +1,13 @@
 import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom'
 
-
-import {SignInPage} from "@/pages/auth/sign-in-page/SignInPage.tsx";
+import { CreateNewPasswordPage } from '@/pages/auth/create-new-password-page/create-new-password-page.tsx'
+import { ForgotPasswordPage } from '@/pages/auth/forgot-password-page'
+import { SignInPage } from '@/pages/auth/sign-in-page/SignInPage.tsx'
 import { SignUpPage } from '@/pages/auth/sign-up-page'
 import { Layout } from '@/pages/Layout/layout.tsx'
 import { PageNotFound } from '@/pages/page-not-found'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
-
-import {ForgotPasswordPage} from "@/pages/auth/forgot-password-page";
-import {CreateNewPasswordPage} from "@/pages/auth/create-new-password-page/create-new-password-page.tsx";
+import {CheckEmail} from "@/components/auth/check-email";
 
 function PrivateRoutes() {
   const { data, isLoading } = useGetMeQuery()
@@ -70,6 +69,10 @@ const router = createBrowserRouter([
         path: '/reset-password/:token',
         element: <CreateNewPasswordPage />,
       },
+      {
+        path: '/check-email/:email',
+        element: <CheckEmail/>,
+      },
     ],
   },
 ])
@@ -77,7 +80,7 @@ const router = createBrowserRouter([
 export const Router = () => {
   const { isLoading } = useGetMeQuery()
 
-  if (isLoading) return <div>loading...</div>
+  //pn if (isLoading) return <div>loading...</div>
 
   return <RouterProvider router={router} />
 }
