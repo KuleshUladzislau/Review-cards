@@ -15,23 +15,14 @@ export type HeaderProps = {
 } & ComponentPropsWithoutRef<'header'>
 
 export const Header = forwardRef<HTMLHeadElement, HeaderProps>(
-  ({
-       children,
-       isLoggedIn,
-       email,
-       className,
-       userName,
-       userPhoto,
-       logout,
-       ...restPros
-   },
-   ref
-  ) => {
+  ({ children, isLoggedIn, email, className, userName, userPhoto, logout, ...restPros }, ref) => {
     return (
       <header ref={ref} className={`${s.header} ${className}`} {...restPros}>
-        <Logo />
-        {!isLoggedIn && <Button>Sign In</Button>}
-        {isLoggedIn && <HeaderMenu {...{ userName, userPhoto, email, logout }} />}
+        <div className={s.headerContent}>
+          <Logo />
+          {!isLoggedIn && <Button>Sign In</Button>}
+          {isLoggedIn && <HeaderMenu {...{ userName, userPhoto, email, logout }} />}
+        </div>
       </header>
     )
   }

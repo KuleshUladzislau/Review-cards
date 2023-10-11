@@ -33,6 +33,7 @@
     2px
   );
 
+  cursor: pointer;
   align-items: center;
   justify-content: center;
 
@@ -59,6 +60,8 @@
     var(--color-light-100),
     2px
   );
+
+
 
   &:hover {
     color: var(--color-dark-900);

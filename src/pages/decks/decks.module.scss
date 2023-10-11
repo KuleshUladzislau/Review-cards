@@ -1,0 +1,42 @@
+.wrapper {
+  max-width: 80rem;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 2rem 0;
+
+  .headWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 7px;
+  }
+
+  .settingsWrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+
+    margin-bottom: 36px;
+
+    .textFieldWrap {
+      margin-right: 24px;
+    }
+
+    .searchInput {
+      width: 300px;
+    }
+
+    .tabsWrap {
+      margin-right: 25px;
+    }
+
+    .sliderWrap {
+      margin-right: 36px;
+    }
+
+  }
+
+}
+
+

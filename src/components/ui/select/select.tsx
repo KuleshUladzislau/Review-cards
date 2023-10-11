@@ -7,9 +7,10 @@ import s from './select.module.scss'
 
 import Layer2 from '@/assets/icons/Layer2.tsx'
 
-type OptionsType = {
+//Изменил типы также как и в свитчере
+export type OptionsType = {
+  label: string
   value: string
-  title: string
 }
 
 type SelectProps = {
@@ -19,21 +20,14 @@ type SelectProps = {
 } & ComponentPropsWithoutRef<typeof Select.Root>
 
 export const SelectCustom = forwardRef<ElementRef<typeof Select.Trigger>, SelectProps>(
-  ({
-     options,
-     defaultValue,
-     placeHolder,
-     onValueChange,
-     value,
-     className,
-     disabled,
-     ...restProps
-   },
+  (
+    { options, defaultValue, placeHolder, onValueChange, value, className, disabled, ...restProps },
     ref
   ) => {
+    //Добавил toString на случай если number, нужен для запроса пагинации
     const mappedOptions = options?.map(o => (
-      <SelectItem key={o.title} value={o.value}>
-        {o.title}
+      <SelectItem key={o.value} value={o.value}>
+        {o.label}
       </SelectItem>
     ))
 
@@ -67,14 +61,14 @@ export const SelectCustom = forwardRef<ElementRef<typeof Select.Trigger>, Select
 type ItemProps = ComponentPropsWithoutRef<typeof Select.Item>
 
 export const SelectItem = forwardRef<ElementRef<typeof Select.Item>, ItemProps>(
-  ({ children, className, ...props }, forwardedRef) => {
+  ({ children, className, ...restProps }, ref) => {
     const classNames = {
       item: clsx(s.item, className),
       itemText: clsx(s.itemText),
     }
 
     return (
-      <Select.Item {...props} className={classNames.item} ref={forwardedRef}>
+      <Select.Item {...restProps} className={classNames.item} ref={ref}>
         <Select.ItemText className={classNames.itemText}>{children}</Select.ItemText>
       </Select.Item>
     )

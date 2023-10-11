@@ -1,12 +1,8 @@
-import { ComponentPropsWithoutRef, ElementRef, forwardRef, useState } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
 import { clsx } from 'clsx'
 
-import { Delete, Edit, Play } from '../../../assets'
-
-import { TableHead } from './table-header.tsx'
 import s from './table.module.scss'
-import { Column, Sort } from './types.ts'
 
 export const Table = forwardRef<HTMLTableElement, ComponentPropsWithoutRef<'table'>>(
   ({ className, ...rest }, ref) => {
@@ -68,66 +64,3 @@ export const TCell = forwardRef<ElementRef<'td'>, ComponentPropsWithoutRef<'td'>
   }
 )
 
-const columns: Column[] = [
-  {
-    key: 'name',
-    title: 'Name',
-  },
-  {
-    key: 'cardsCount',
-    title: 'Cards',
-  },
-  {
-    key: 'updated',
-    title: 'Last Updated',
-  },
-  {
-    key: 'createdBy',
-    title: 'Created by',
-  },
-]
-
-type DataT = {
-  id: number
-  name: string
-  cards: number
-  lastUpdate: string
-  createdBy: string
-}
-
-const data: DataT[] = [
-  { id: 1, name: 'Pack name', cards: 7, lastUpdate: '25.09.2023', createdBy: 'Iliya' },
-  { id: 2, name: 'Pack name', cards: 7, lastUpdate: '25.09.2023', createdBy: 'Iliya' },
-  { id: 3, name: 'Pack name', cards: 7, lastUpdate: '25.09.2023', createdBy: 'Iliya' },
-  { id: 4, name: 'Pack name', cards: 7, lastUpdate: '25.09.2023', createdBy: 'Iliya' },
-  { id: 5, name: 'Pack name', cards: 7, lastUpdate: '25.09.2023', createdBy: 'Iliya' },
-]
-
-export const CustomTable = () => {
-  const [sort, setSort] = useState<Sort>(null)
-
-  return (
-    <Table>
-      <TableHead columns={columns} sort={sort} setSort={setSort} />
-      <TBody>
-        {data.map(item => {
-          return (
-            <TRow key={item.id}>
-              <TCell>{item.name}</TCell>
-              <TCell>{item.cards}</TCell>
-              <TCell>{item.lastUpdate}</TCell>
-              <TCell>{item.createdBy}</TCell>
-              <TCell>
-                <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
-                  <Play />
-                  <Edit />
-                  <Delete />
-                </div>
-              </TCell>
-            </TRow>
-          )
-        })}
-      </TBody>
-    </Table>
-  )
-}

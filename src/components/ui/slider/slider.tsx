@@ -28,6 +28,7 @@ export const SliderCustom: FC<SliderProps> = ({
         step={step}
         min={min}
         max={max}
+        value={value}
         onValueChange={onValueChange}
         disabled={disabled}
         {...restProps}

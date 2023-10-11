@@ -1,13 +1,14 @@
 import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom'
 
+import { CheckEmail } from '@/components/auth/check-email'
 import { CreateNewPasswordPage } from '@/pages/auth/create-new-password-page/create-new-password-page.tsx'
 import { ForgotPasswordPage } from '@/pages/auth/forgot-password-page'
 import { SignInPage } from '@/pages/auth/sign-in-page/SignInPage.tsx'
 import { SignUpPage } from '@/pages/auth/sign-up-page'
+import { Decks } from '@/pages/decks'
 import { Layout } from '@/pages/Layout/layout.tsx'
 import { PageNotFound } from '@/pages/page-not-found'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
-import {CheckEmail} from "@/components/auth/check-email";
 
 function PrivateRoutes() {
   const { data, isLoading } = useGetMeQuery()
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
           },
           {
             path: '/',
-            element: <div style={{ marginTop: '300px' }}>Desc</div>,
+            element: <Decks />,
           },
           {
             path: '/profile',
@@ -71,16 +72,14 @@ const router = createBrowserRouter([
       },
       {
         path: '/check-email/:email',
-        element: <CheckEmail/>,
+        element: <CheckEmail />,
       },
     ],
   },
 ])
 
 export const Router = () => {
-  const {  } = useGetMeQuery()
-
-
+  const {} = useGetMeQuery()
 
   return <RouterProvider router={router} />
 }
