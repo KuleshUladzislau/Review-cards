@@ -1,16 +1,18 @@
-import { Navigate } from 'react-router-dom'
-
-
+import { useNavigate, useParams} from 'react-router-dom'
 
 import CheckEmailIcon from '@/assets/icons/CheckEmailIcon.tsx'
 import { Button, Card, Typography } from '@/components/ui'
 
 import s from './check-email.module.scss'
 
-type CheckEmailProps = {
-  email: string
-}
-export const CheckEmail = ({ email }: CheckEmailProps) => {
+
+
+export const CheckEmail = () => {
+    const params = useParams()
+    const navigate = useNavigate()
+    const onLoginNavigateHandler = ()=>{
+        navigate('/login')
+    }
   return (
     <Card className={s.container}>
       <Typography as={'h1'} variant={'large'} className={s.title}>
@@ -20,9 +22,9 @@ export const CheckEmail = ({ email }: CheckEmailProps) => {
         <CheckEmailIcon className={s.icon} />
       </div>
       <Typography variant={'body2'} className={s.description}>
-        We’ve sent an {`${email}`} with instructions to
+        We’ve sent an {`${params.email}`} with instructions to
       </Typography>
-      <Button onClick={() => <Navigate to={'/login'} />}>Back to Sign In</Button>
+      <Button onClick={onLoginNavigateHandler}>Back to Sign In</Button>
     </Card>
   )
 }
