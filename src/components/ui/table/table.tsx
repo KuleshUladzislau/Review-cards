@@ -63,4 +63,3 @@ export const TCell = forwardRef<ElementRef<'td'>, ComponentPropsWithoutRef<'td'>
     return <td className={classNames.td} ref={ref} {...rest} />
   }
 )
-

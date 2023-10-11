@@ -8,8 +8,6 @@ import { Typography } from '@/components/ui/typography'
 
 type HeaderMenuProps = Omit<HeaderProps, 'isLoggedIn'>
 export const HeaderMenu = ({ userName, email, userPhoto, logout }: HeaderMenuProps) => {
-
-
   return (
     <CustomDropdown
       trigger={<Avatar src={userPhoto} userName={userName} />}
