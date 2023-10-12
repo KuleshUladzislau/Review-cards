@@ -18,7 +18,7 @@ export const authService = baseApi.injectEndpoints({
         return { data: result.data }
       },
       providesTags: ['Auth'],
-      extraOptions:{maxRetries:1}
+      extraOptions: { maxRetries: 1 },
     }),
     signUp: builder.mutation<any, CreateNewAccount>({
       query: ({ email, password }) => ({
@@ -33,7 +33,7 @@ export const authService = baseApi.injectEndpoints({
         method: 'POST',
         body: { email, password, rememberMe },
       }),
-      invalidatesTags:['Auth']
+      invalidatesTags: ['Auth'],
     }),
     logout: builder.mutation<any, void>({
       query: () => ({

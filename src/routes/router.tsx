@@ -5,6 +5,7 @@ import { CreateNewPasswordPage } from '@/pages/auth/create-new-password-page/cre
 import { ForgotPasswordPage } from '@/pages/auth/forgot-password-page'
 import { SignInPage } from '@/pages/auth/sign-in-page/SignInPage.tsx'
 import { SignUpPage } from '@/pages/auth/sign-up-page'
+import { Decks } from '@/pages/decks'
 import { Layout } from '@/pages/Layout/layout.tsx'
 import { PageNotFound } from '@/pages/page-not-found'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
           },
           {
             path: '/',
-            element: <div style={{ marginTop: '300px' }}>Desc</div>,
+            element: <Decks />,
           },
           {
             path: '/profile',

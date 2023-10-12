@@ -1,31 +1,43 @@
-.itemUserInfo{
-  display: flex;
+.itemUserInfo {
+
   min-width: 198px;
-  gap:8px;
+
 }
 
-.photo{
+.photo {
   display: flex;
   align-items: center;
   width: 36px;
   height: 36px;
   border-radius: 36px;
 }
-.userInfoContainer{
+.userInfoContainer {
   display: flex;
   flex-direction: column;
 }
-
-.userName{
-
+.dontHaveAvatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  width: 36px;
+  height: 36px;
+  font-weight: 700;
+  border-radius: 50%;
+  cursor: pointer;
+  background: white;
+  text-transform: uppercase;
 }
 
-.email{
+.userName {
+}
+
+.email {
   color: var(--dark-100, #808080);
 }
 
 .dropDown {
   position: absolute;
-  top:10px;
-  left: 45px;
+  top: 17px;
+  left: -39px;
 }

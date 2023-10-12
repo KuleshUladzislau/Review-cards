@@ -1,30 +1,31 @@
 .header {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-dark-700, #171717);
+  border-bottom: 1px solid var(--color-dark-500, #333);
+}
+
+.headerContent {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 136px;
-  width: 100%;
-  border-bottom: 1px solid var(--dark-500, #333);
-  background: var(--dark-700, #171717);
   height: 60px;
-  position: absolute;
-  top: 0;
-  left: 0;
+  flex-shrink: 0;
+  width: 1280px;
 }
-
-
-
-.userInfo{
+.userInfo {
   display: flex;
   align-items: center;
-  gap:14px;
-
+  gap: 14px;
 }
-.itemUserInfo{
+.itemUserInfo {
   display: flex;
   min-width: 198px;
-  gap:8px;
+  gap: 8px;
 }
-
-
-

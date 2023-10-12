@@ -36,9 +36,7 @@ export const CustomDropdown = forwardRef<ElementRef<typeof DropdownMenu.Trigger>
     return (
       <DropdownMenu.Root open={open} onOpenChange={setOpen}>
         <DropdownMenu.Trigger asChild className={s.trigger} ref={ref}>
-          <button className={s.iconButton} aria-label="dropdown options">
-            {trigger}
-          </button>
+          {trigger}
         </DropdownMenu.Trigger>
         <DropdownMenu.Portal>
           <DropdownMenu.Content
@@ -48,9 +46,7 @@ export const CustomDropdown = forwardRef<ElementRef<typeof DropdownMenu.Trigger>
             onClick={event => event.stopPropagation()}
             align={align}
           >
-            <DropdownMenu.Arrow className={classNames.arrowWrap} asChild>
-              <div className={classNames.arrow} />
-            </DropdownMenu.Arrow>
+            <DropdownMenu.Arrow className={classNames.arrowWrap} />
             <div className={classNames.itemsWrap}>{children}</div>
           </DropdownMenu.Content>
         </DropdownMenu.Portal>

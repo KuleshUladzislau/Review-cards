@@ -18,11 +18,11 @@ export const Defalut = {
     const [currentPage, setCurrentPage] = useState<string | number>(1)
     const totalCount = 1000
     const options = [
-      { title: '10', value: '10' },
-      { title: '20', value: '20' },
-      { title: '30', value: '30' },
-      { title: '40', value: '40' },
-      { title: '50', value: '50' },
+      { label: '10', value: '10' },
+      { label: '20', value: '20' },
+      { label: '30', value: '30' },
+      { label: '40', value: '40' },
+      { label: '50', value: '50' },
     ]
 
     return (
@@ -33,6 +33,7 @@ export const Defalut = {
         currentPage={currentPage as number}
         onCurrentPageChange={setCurrentPage}
         options={options}
+        portionValue={'7'}
       ></Pagination>
     )
   },
