@@ -12,7 +12,7 @@ export const Profile = () => {
     <Card className={p.cardWrapper}>
       <Typography variant={'h1'}>Personal Information</Typography>
       <div className={p.avatarWrapper}>
-        <Avatar src={data.avatar} size={96} showName={false} />
+        <Avatar src={data.avatar} size={96} />
         <Button variant={'secondary'} className={p.buttonEdit}>
           <Edit />
         </Button>
