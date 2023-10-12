@@ -1,10 +1,8 @@
 import { Outlet, useNavigate } from 'react-router-dom'
 
-import s from './layout.module.scss'
-
+import { Toast } from '@/components/ui'
 import { Header } from '@/components/ui/header'
 import { useGetMeQuery, useLogoutMutation } from '@/services/auth/authService.ts'
-import {Toast} from "@/components/ui";
 
 export const Layout = () => {
   const { data } = useGetMeQuery()
@@ -19,7 +17,7 @@ export const Layout = () => {
   }
 
   return (
-    <div className={s.container}>
+    <>
       <Header
         isLoggedIn={!!data}
         logout={onLogoutHandler}
@@ -27,7 +25,7 @@ export const Layout = () => {
         userName={data?.name}
       />
       <Outlet />
-      <Toast/>
-    </div>
+      <Toast />
+    </>
   )
 }
