@@ -35,10 +35,10 @@ export const CustomDropdown = forwardRef<ElementRef<typeof DropdownMenu.Trigger>
 
     return (
       <DropdownMenu.Root open={open} onOpenChange={setOpen}>
-        <DropdownMenu.Trigger asChild className={s.trigger} ref={ref} >
+        <DropdownMenu.Trigger asChild className={s.trigger} ref={ref}>
           {trigger}
         </DropdownMenu.Trigger>
-        <DropdownMenu.Portal >
+        <DropdownMenu.Portal>
           <DropdownMenu.Content
             className={classNames.content}
             sideOffset={8}
@@ -61,7 +61,7 @@ type DropdownItemProps = {
   disabled?: boolean
   className?: string
 } & ComponentPropsWithoutRef<typeof DropdownMenu.Item>
-export const  CustomDropdownItem = ({
+export const CustomDropdownItem = ({
   children,
   style,
   onSelect,

@@ -2,7 +2,7 @@ import { ForgotPassword } from '@/components/auth'
 import { useForgotPasswordEmailMutation } from '@/services/auth/authService.ts'
 import { useNavigate } from 'react-router-dom'
 import { useResponseWithToast } from '@/assets/hooks/useResponseWithToast.ts'
-import {Page} from "@/components/ui";
+import { Page } from '@/components/ui'
 
 export const ForgotPasswordPage = () => {
   const [forgotPassword] = useForgotPasswordEmailMutation()
@@ -16,8 +16,8 @@ export const ForgotPasswordPage = () => {
   }
 
   return (
-  <Page>
-    <ForgotPassword onSubmit={onSubmitHandler} />
-  </Page>
+    <Page>
+      <ForgotPassword onSubmit={onSubmitHandler} />
+    </Page>
   )
 }

@@ -5,7 +5,7 @@ import { SignInValuesForm } from '@/components/auth/signIn/useSignInForm.ts'
 import { useGetMeQuery, useLoginMutation } from '@/services/auth/authService.ts'
 import 'react-toastify/dist/ReactToastify.css'
 import { useResponseWithToast } from '@/assets/hooks/useResponseWithToast.ts'
-import {Page} from "@/components/ui";
+import { Page } from '@/components/ui'
 
 export const SignInPage = () => {
   const [login] = useLoginMutation()

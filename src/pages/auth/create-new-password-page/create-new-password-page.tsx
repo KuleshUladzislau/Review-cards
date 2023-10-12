@@ -2,7 +2,7 @@ import { CreateNewPassword } from '@/components/auth'
 import { useResetPasswordMutation } from '@/services/auth/authService.ts'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useResponseWithToast } from '@/assets/hooks/useResponseWithToast.ts'
-import {Page} from "@/components/ui";
+import { Page } from '@/components/ui'
 
 export const CreateNewPasswordPage = () => {
   const [createNewPassword] = useResetPasswordMutation()
@@ -18,8 +18,8 @@ export const CreateNewPasswordPage = () => {
   }
 
   return (
-     <Page>
-        <CreateNewPassword onSubmit={onsubmitHandler}/>
-     </Page>
+    <Page>
+      <CreateNewPassword onSubmit={onsubmitHandler} />
+    </Page>
   )
 }
