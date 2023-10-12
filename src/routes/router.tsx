@@ -8,6 +8,7 @@ import { SignUpPage } from '@/pages/auth/sign-up-page'
 import { Decks } from '@/pages/decks'
 import { Layout } from '@/pages/Layout/layout.tsx'
 import { PageNotFound } from '@/pages/page-not-found'
+import { Profile } from '@/pages/profile/profile.tsx'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
 
 function PrivateRoutes() {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
           },
           {
             path: '/profile',
-            element: <div>Profile</div>,
+            element: <Profile />,
           },
           {
             path: '/decks/:id?',
