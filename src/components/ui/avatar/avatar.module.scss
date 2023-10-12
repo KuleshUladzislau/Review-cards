@@ -1,6 +1,14 @@
+.avatarContainer {
+  display: flex;
+  align-items: center;
+}
+
 .avatar {
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   margin-left: 8px;
+  cursor: pointer;
 }
 
 .infoWrap {
@@ -13,8 +21,24 @@
   margin-right: 10px;
   padding-right: 2px;
   border-bottom: 2px dashed var(--color-light-100);
+  cursor: pointer;
 }
 
 .email {
   color: var(--color-dark-100);
+}
+
+.dontHaveAvatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  width: 36px;
+  height: 36px;
+  font-weight: 700;
+  border-radius: 50%;
+  margin-left: 8px;
+  cursor: pointer;
+  background: white;
+  text-transform: uppercase;
 }

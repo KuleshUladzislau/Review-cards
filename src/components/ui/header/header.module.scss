@@ -9,18 +9,15 @@
   justify-content: center;
   background: var(--color-dark-700, #171717);
   border-bottom: 1px solid var(--color-dark-500, #333);
-
-
 }
 
-.headerContent{
+.headerContent {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 60px;
   flex-shrink: 0;
   width: 1280px;
-
 }
 .userInfo {
   display: flex;

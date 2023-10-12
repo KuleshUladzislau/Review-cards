@@ -34,7 +34,7 @@ button {
   stroke-width: 2px;
   position: absolute;
   top: -3px;
-  left: calc(50% + 5px);
+  right: -1px;
   transform: rotate(45deg);
 
   width: 7px;
@@ -45,21 +45,6 @@ button {
   border-top: none;
   border-left: none;
 }
-
-//.arrow {
-//  position: absolute;
-//  top: -3px;
-//  left: calc(50% - 3px);
-//  transform: rotate(45deg);
-//
-//  width: 7px;
-//  height: 7px;
-//
-//  background-color: var(--color-dark-700);
-//  border: 1px solid var(--color-dark-300);
-//  border-top: none;
-//  border-left: none;
-//}
 
 .dropdownMenuItem {
   cursor: pointer;

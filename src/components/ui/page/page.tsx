@@ -1,10 +1,9 @@
-import {ReactNode} from "react";
+import { ReactNode } from 'react'
 import s from './page.module.scss'
 
 export type PageProps = {
-    children:ReactNode
+  children: ReactNode
 }
-export const Page = ({children}:PageProps) => {
-    return <div className={s.container}>{children}</div>
-};
-
+export const Page = ({ children }: PageProps) => {
+  return <div className={s.container}>{children}</div>
+}

@@ -24,12 +24,12 @@ export const CreateNewPassword = ({ onSubmit }: CreateNewPasswordProps) => {
         <Typography variant={'large'} as={'h1'} className={c.title}>
           Create new password
         </Typography>
-       <ControlledTextField
-            name="password"
-            control={control}
-            label={'Password'}
-            type={'password'}
-            errorMessage={errors.password?.message}
+        <ControlledTextField
+          name="password"
+          control={control}
+          label={'Password'}
+          type={'password'}
+          errorMessage={errors.password?.message}
         />
         <Typography variant={'body2'} className={c.description}>
           Create new password and we will send you further instructions to email
