@@ -1,7 +1,7 @@
 .itemUserInfo {
-  display: flex;
+
   min-width: 198px;
-  gap: 8px;
+
 }
 
 .photo {
@@ -14,6 +14,19 @@
 .userInfoContainer {
   display: flex;
   flex-direction: column;
+}
+.dontHaveAvatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  width: 36px;
+  height: 36px;
+  font-weight: 700;
+  border-radius: 50%;
+  cursor: pointer;
+  background: white;
+  text-transform: uppercase;
 }
 
 .userName {
