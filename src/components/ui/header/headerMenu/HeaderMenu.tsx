@@ -15,7 +15,7 @@ export const HeaderMenu = ({ userName, email, userPhoto, logout }: HeaderMenuPro
       align={'start'}
     >
       <CustomDropdownItem className={s.itemUserInfo}>
-        {userPhoto && <img src={userPhoto} className={s.photo}/>}
+        {userPhoto && <img src={userPhoto} className={s.photo} />}
         {!userPhoto && <span className={s.dontHaveAvatar}>{userName?.[0]}</span>}
         <div className={s.userInfoContainer}>
           <Typography variant={'subtitle1'} as={'span'} className={s.userName}>
