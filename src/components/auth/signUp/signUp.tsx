@@ -49,7 +49,9 @@ export const SignUp: FC<SignUpTypes> = ({ onSubmit }) => {
         </div>
 
         <div className={s.buttonWrapper}>
-          <Button fullWidth={true}>Sign Up</Button>
+          <Button fullWidth={true} className={s.signUpButton}>
+            Sign Up
+          </Button>
           <Typography variant={'link1'} className={s.description}>
             Already have an account?
           </Typography>

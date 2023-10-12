@@ -1,14 +1,18 @@
 .trigger {
+  cursor: pointer;
+
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  flex-direction: row;
-  background: none;
+
   margin-bottom: -4px;
   padding: 5px;
-  border: 1px solid var(--dark-300, #4c4c4c);
+
   text-transform: capitalize;
-  cursor: pointer;
+
+  background: none;
+  border: 1px solid var(--dark-300, #4c4c4c);
 
   &[data-state='open'] .icon {
     transform: rotate(180deg);
@@ -21,9 +25,9 @@
 }
 
 .trigger:focus {
-  outline: none;
-  border-radius: 2px;
   border: 1px solid var(--info-700, #2f68cc);
+  border-radius: 2px;
+  outline: none;
 }
 
 .trigger:hover {
@@ -36,18 +40,23 @@
 
 .content {
   width: var(--radix-select-trigger-width);
+
+  text-transform: capitalize;
+
   border: 1px solid var(--dark-300, #4c4c4c);
   border-top: none;
-  text-transform: capitalize;
+
   animation: fadeIn 0.5s ease;
 }
 
 .item {
+  cursor: pointer;
+
   display: flex;
   align-items: center;
+
   height: 36px;
   padding: 10px;
-  cursor: pointer;
 }
 
 .item:focus {
@@ -57,6 +66,7 @@
 .item:hover {
   background: var(--primary-900, #382766);
 }
+
 .icon {
   display: flex;
   margin-left: 10px;
@@ -66,6 +76,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }

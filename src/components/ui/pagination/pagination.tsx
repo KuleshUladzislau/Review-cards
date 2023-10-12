@@ -2,7 +2,8 @@ import { FC } from 'react'
 
 import p from './pagination.module.scss'
 
-import Arrow from '@/assets/icons/ArrowUp.tsx'
+import ArrowLeft from '@/assets/icons/ArrowLeft.tsx'
+import ArrowRight from '@/assets/icons/ArrowRight'
 import { OptionsType, SelectCustom } from '@/components/ui/select'
 
 export type PaginationProps = {
@@ -90,7 +91,7 @@ export const Pagination: FC<PaginationProps> = ({
           onClick={onPrevious}
           disabled={currentPage === 1}
         >
-          <Arrow className={p.leftArrow} />
+          <ArrowLeft className={p.arrowStyle} />
         </button>
         {mappedPageNumbers.map((el, i) => (
           <button
@@ -109,7 +110,7 @@ export const Pagination: FC<PaginationProps> = ({
           onClick={onNext}
           disabled={currentPage === pagesCount}
         >
-          <Arrow className={p.rightArrow} />
+          <ArrowRight className={p.arrowStyle} />
         </button>
       </div>
       <div className={p.selectWrapper}>
