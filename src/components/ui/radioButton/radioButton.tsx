@@ -1,9 +1,8 @@
+import s from './radioButton.module.scss'
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import { clsx } from 'clsx'
-
-import s from './radioButton.module.scss'
 
 import { Typography } from '@/components/ui/typography'
 
