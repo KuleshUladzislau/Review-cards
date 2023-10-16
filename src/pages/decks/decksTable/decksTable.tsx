@@ -3,7 +3,9 @@ import s from './decksTable.module.scss'
 import { Delete, Edit, Play } from '@/assets'
 import { Table, TableHead, TBody, TCell, TRow } from '@/components/ui'
 import { Column, Sort } from '@/components/ui/table/types.ts'
-import { GetDecksResponse } from '@/services/decks/types.ts'
+import {GetDecksDataItems, GetDecksResponse} from '@/services/decks/types.ts'
+import { useNavigate } from 'react-router-dom'
+import {toast} from "react-toastify";
 
 const columns: Column[] = [
   {
@@ -31,8 +33,17 @@ type DecksTableProps = {
 }
 
 export const DecksTable = ({ data, setSort, sort }: DecksTableProps) => {
+  const navigate = useNavigate()
+  const onLearnHandler = (decksId: string,name:string,item:GetDecksDataItems) => {
+    if(item.cardsCount){
+      navigate(`decks/learn/${decksId}`, {state: {decksName: name}})
+    }else {
+      toast.error('dont have cards')
+    }
+  }
+
   return (
-    <Table >
+    <Table>
       <TableHead columns={columns} sort={sort} setSort={setSort} />
       <TBody>
         {data?.items.map(item => {
@@ -44,7 +55,7 @@ export const DecksTable = ({ data, setSort, sort }: DecksTableProps) => {
               <TCell>{item.author.name}</TCell>
               <TCell>
                 <div className={s.tableButtonsWrap}>
-                  <Play className={s.tableButton} />
+                  <Play className={s.tableButton} onClick={() => onLearnHandler(item.id,item.name,item)} />
                   <Edit className={s.tableButton} />
                   <Delete className={s.tableButton} />
                 </div>
