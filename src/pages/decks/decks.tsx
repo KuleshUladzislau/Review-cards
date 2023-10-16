@@ -86,7 +86,7 @@ export const Decks = () => {
     setSort(null)
   }
 
-  console.log(switchOption)
+  console.log(data)
 
   return (
     <div className={s.wrapper}>
@@ -130,7 +130,7 @@ export const Decks = () => {
           Clear Filter
         </Button>
       </div>
-      {data?.items && (
+      {data?.items.length !== 0 && (
         <>
           <DecksTable data={data} sort={sort} setSort={setSort} />
           <Pagination

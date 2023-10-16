@@ -7,33 +7,45 @@ import { ProfileInfo } from './profileInfo/profileInfo'
 import { Edit } from '@/assets'
 import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
+import { useUpdateToDataMutation } from '@/pages/profile'
 
 type Props = {
   name: string
   email: string
   src?: string
-  changePhoto: (photo: string | ArrayBuffer) => void
+  changePhoto: (FormData: any) => void
   onLogOut?: () => void
 }
 
 export const EditeProfile = ({ name, email, src, changePhoto, onLogOut }: Props) => {
   const [editeMode, setEditeMode] = useState(false)
+  const [uploadPhoto] = useUpdateToDataMutation()
 
-  const changePhotoHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files ? e.target.files[0] : ''
+  // const changePhotoHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  //   const selectedFile = e.target.files ? e.target.files[0] : ''
+  //
+  //   if (selectedFile) {
+  //     const reader = new FileReader()
+  //
+  //     reader.onload = e => {
+  //       const uploadedFile = e.target?.result
+  //
+  //       // console.log(uploadedFile)
+  //       if (uploadedFile) {
+  //         // console.log('Данные файла:', uploadedFile)
+  //         changePhoto(uploadedFile)
+  //       }
+  //     }
+  //     reader.readAsDataURL(selectedFile)
+  //   }
+  // }
 
-    if (selectedFile) {
-      const reader = new FileReader()
+  const uploadPhotoHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      const formData = new FormData()
 
-      reader.onload = e => {
-        const uploadedFile = e.target?.result
-
-        if (uploadedFile) {
-          // console.log('Данные файла:', uploadedFile)
-          changePhoto(uploadedFile)
-        }
-      }
-      reader.readAsDataURL(selectedFile)
+      formData.append('avatar', event.target.files[0])
+      uploadPhoto(formData)
     }
   }
 
@@ -57,7 +69,7 @@ export const EditeProfile = ({ name, email, src, changePhoto, onLogOut }: Props)
               id="avatarId"
               type={'file'}
               className={s.inputFile}
-              onChange={changePhotoHandler}
+              onChange={uploadPhotoHandler}
             />
           </label>
         )}

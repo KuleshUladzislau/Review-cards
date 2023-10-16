@@ -9,8 +9,10 @@ export const Profile = () => {
   const { data } = useGetMeQuery()
   const [logout] = useLogoutMutation()
   const navigate = useNavigate()
-  const changePhoto = (photo: string | ArrayBuffer) => {
-    useUpdateToDataMutation({ avatar: photo, email: data.email, name: data.name })
+  const [uploadPhoto] = useUpdateToDataMutation()
+  const changePhoto = (file: FormData) => {
+    console.log(file)
+    uploadPhoto(file)
   }
   const onLogoutHandler = () => {
     logout()
@@ -21,10 +23,10 @@ export const Profile = () => {
   return (
     <Page>
       <EditeProfile
-        src={data.src}
+        src={data.avatar}
         name={data.name}
         email={data.email}
-        changePhoto={changePhoto}
+        changePhoto={uploadPhoto}
         onLogOut={onLogoutHandler}
       />
     </Page>
@@ -33,13 +35,13 @@ export const Profile = () => {
 
 export const profileService = baseApi.injectEndpoints({
   endpoints: builder => ({
-    updateToData: builder.mutation<any, any>({
-      query: ({ avatar, name, email }) => ({
+    updateToData: builder.mutation<any, FormData>({
+      query: FormData => ({
         url: '/v1/auth/me',
         method: 'PATCH',
-        body: { avatar, name, email },
-        headers: { 'Content-Type': 'multipart/form-data' },
+        body: FormData,
       }),
+      invalidatesTags: ['Auth'],
     }),
   }),
 })
