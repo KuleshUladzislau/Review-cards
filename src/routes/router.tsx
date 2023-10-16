@@ -5,6 +5,7 @@ import { CreateNewPasswordPage } from '@/pages/auth/create-new-password-page/cre
 import { ForgotPasswordPage } from '@/pages/auth/forgot-password-page'
 import { SignInPage } from '@/pages/auth/sign-in-page/SignInPage.tsx'
 import { SignUpPage } from '@/pages/auth/sign-up-page'
+import { Cards } from '@/pages/cards'
 import { Decks } from '@/pages/decks'
 import { Layout } from '@/pages/Layout/layout.tsx'
 import { PageNotFound } from '@/pages/page-not-found'
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
           },
           {
             path: '/cards/:id?',
-            element: <div>cards</div>,
+            element: <Cards />,
           },
           {
             path: '/learn/:id?',

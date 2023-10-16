@@ -38,6 +38,12 @@ dependencies:
   '@reduxjs/toolkit':
     specifier: ^1.9.6
     version: 1.9.6(react-redux@8.1.3)(react@18.2.0)
+  '@types/react-star-rating-component':
+    specifier: ^1.4.2
+    version: 1.4.2
+  '@types/react-stars':
+    specifier: ^2.2.2
+    version: 2.2.2
   async-mutex:
     specifier: ^0.4.0
     version: 0.4.0
@@ -62,6 +68,9 @@ dependencies:
   react-router-dom:
     specifier: ^6.16.0
     version: 6.16.0(react-dom@18.2.0)(react@18.2.0)
+  react-stars:
+    specifier: ^2.2.5
+    version: 2.2.5
   react-toastify:
     specifier: ^9.1.3
     version: 9.1.3(react-dom@18.2.0)(react@18.2.0)
@@ -4275,6 +4284,18 @@ packages:
     resolution: {integrity: sha512-GRaAEriuT4zp9N4p1i8BDBYmEyfo+xQ3yHjJU4eiK5NDa1RmUZG+unZABUTK4/Ox/M+GaHwb6Ow8rUITrtjszA==}
     dependencies:
       '@types/react': 18.2.21
+
+  /@types/react-star-rating-component@1.4.2:
+    resolution: {integrity: sha512-gf71VtNS6ztXKUGKt2pjIvzaSyDm7kaVhCdEakmrawNWOUQneejxG+SeqRPKhzZQ4UViyJYp+FF404DPsHAwyQ==}
+    dependencies:
+      '@types/react': 18.2.21
+    dev: false
+
+  /@types/react-stars@2.2.2:
+    resolution: {integrity: sha512-MM++hucXSpy11CokSUIkxRKU6drU9lZ7mU768m488u/ZInJEcasmrYb0AA09Bcud8/EQHaOPZkMqrKQh/RBUYg==}
+    dependencies:
+      '@types/react': 18.2.21
+    dev: false
 
   /@types/react@18.2.21:
     resolution: {integrity: sha512-neFKG/sBAwGxHgXiIxnbm3/AAVQ/cMRS93hvBpg8xYRbeQSPVABp9U2bRnPf0iI4+Ucdv3plSxKK+3CW2ENJxA==}
@@ -9224,6 +9245,10 @@ packages:
     dependencies:
       react-dom: 18.2.0(react@18.2.0)
     dev: true
+
+  /react-stars@2.2.5:
+    resolution: {integrity: sha512-O//KS6Z9RZnUOU/r+3+wxCzNalVn/wEWIcbAQFRV3dw8WbV+ys/kgcpBPijqTiNpHGrcwZdtb/7wF/UVem20CQ==}
+    dev: false
 
   /react-style-singleton@2.2.1(@types/react@18.2.21)(react@18.2.0):
     resolution: {integrity: sha512-ZWj0fHEMyWkHzKYUr2Bs/4zU6XLmq9HsgBURm7g5pAVfyn49DgUiNgY2d4lXRlYSiCif9YBGpQleewkcqddc7g==}

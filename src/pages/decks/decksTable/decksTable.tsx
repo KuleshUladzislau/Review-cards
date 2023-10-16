@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+
 import s from './decksTable.module.scss'
 
 import { Delete, Edit, Play } from '@/assets'
@@ -31,6 +33,11 @@ type DecksTableProps = {
 }
 
 export const DecksTable = ({ data, setSort, sort }: DecksTableProps) => {
+  const navigate = useNavigate()
+  const onNavigateTo = (id: string) => {
+    navigate(`/cards/${id}`)
+  }
+
   return (
     <Table>
       <TableHead columns={columns} sort={sort} setSort={setSort} />
@@ -38,7 +45,7 @@ export const DecksTable = ({ data, setSort, sort }: DecksTableProps) => {
         {data?.items.map(item => {
           return (
             <TRow key={item.id}>
-              <TCell>{item.name}</TCell>
+              <TCell onClick={() => onNavigateTo(item.id)}>{item.name}</TCell>
               <TCell>{item.cardsCount}</TCell>
               <TCell>{new Date(item.updated).toLocaleDateString()}</TCell>
               <TCell>{item.author.name}</TCell>
