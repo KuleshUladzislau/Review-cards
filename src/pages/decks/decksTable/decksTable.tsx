@@ -32,7 +32,7 @@ type DecksTableProps = {
 
 export const DecksTable = ({ data, setSort, sort }: DecksTableProps) => {
   return (
-    <Table>
+    <Table >
       <TableHead columns={columns} sort={sort} setSort={setSort} />
       <TBody>
         {data?.items.map(item => {
