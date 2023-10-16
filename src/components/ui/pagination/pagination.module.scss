@@ -3,21 +3,29 @@
   border-radius: $borderRadius;
 }
 
+@mixin paginationColor($color, $backGroundColor) {
+  color: var($color);
+  background-color: $backGroundColor;
+}
+
+@mixin paginationTextAlign($margin-inline, $text-align) {
+  margin-inline: $margin-inline;
+  text-align: $text-align;
+}
+
+@mixin pagination($all, $width, $height) {
+  all: $all;
+  min-width: $width;
+  height: $height;
+}
+
 .pageStyle {
-  @include pagination(
-    unset,
-    24px,
-    24px,
-    center,
-    --color-light-100,
-    rgb(255 255 255 / 0%),
-    rgb(255 255 255 / 0%),
-    2px
-  );
+  @include pagination(unset, 24px, 24px);
+  @include paginationTextAlign(5px, center);
+  @include paginationColor(--color-light-100, rgb(255 255 255 / 0%));
+  @include paginationBorder(rgb(255 255 255 / 0%), 2px);
 
   cursor: pointer;
-  align-items: center;
-  justify-content: center;
 
   &:hover {
     color: var(--color-light-100);
@@ -32,16 +40,11 @@
 }
 
 .activePageStyle {
-  @include pagination(
-    unset,
-    24px,
-    24px,
-    center,
-    --color-dark-900,
-    var(--color-light-100),
-    var(--color-light-100),
-    2px
-  );
+  @include pagination(unset, 24px, 24px);
+  @include pagination(unset, 24px, 24px);
+  @include paginationTextAlign(0, center);
+  @include paginationColor(--color-dark-900, var(--color-light-100));
+  @include paginationBorder(var(--color-light-100), 2px);
 
   &:hover {
     color: var(--color-dark-900);
@@ -54,27 +57,23 @@
   margin-inline: 12px;
 }
 
-@mixin arrowRotation($value) {
-  rotate: $value;
-}
-
 .arrowButtonsStyle {
   position: relative;
-  top: 6px;
+  text-align: center;
 }
 
-.leftArrow {
-  @include arrowRotation(270deg);
-}
-
-.rightArrow {
-  @include arrowRotation(90deg);
+.arrowStyle {
+  position: relative;
+  top: 3px;
+  width: 16px;
+  height: 16px;
 }
 
 .paginationWrapper {
   display: flex;
-  gap: 10px;
-  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .selectWrapper {
@@ -83,5 +82,8 @@
 
   display: flex;
   gap: 10px;
-  align-items: center;
+
+  height: 20px;
+
+  text-align: center;
 }
