@@ -4,28 +4,37 @@
   top: 0;
   right: 0;
   left: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   background: var(--color-dark-700, #171717);
   border-bottom: 1px solid var(--color-dark-500, #333);
 }
 
 .headerContent {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: space-between;
-  height: 60px;
-  flex-shrink: 0;
+
   width: 1280px;
+  height: 60px;
 }
+
 .userInfo {
   display: flex;
-  align-items: center;
   gap: 14px;
+  align-items: center;
 }
+
 .itemUserInfo {
   display: flex;
-  min-width: 198px;
   gap: 8px;
+  min-width: 198px;
+}
+
+.logo{
+  cursor: pointer;
 }

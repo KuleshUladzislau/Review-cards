@@ -8,11 +8,10 @@ type Props = {
   name: string
   email: string
   setEditeMode: (value: boolean) => void
+  onLogOut?: () => void
 }
 
-export const ProfileInfo = ({ name, email, setEditeMode }: Props) => {
-  const logout = () => {}
-
+export const ProfileInfo = ({ name, email, setEditeMode, onLogOut }: Props) => {
   const onEditModHandler = () => setEditeMode(true)
 
   return (
@@ -24,7 +23,7 @@ export const ProfileInfo = ({ name, email, setEditeMode }: Props) => {
       <Typography variant="body2" className={s.email}>
         {email}
       </Typography>
-      <Button variant="secondary" onClick={logout} className={s.button}>
+      <Button variant="secondary" onClick={onLogOut} className={s.button}>
         <Logout />
         Logout
       </Button>
