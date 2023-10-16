@@ -1,11 +1,9 @@
-
 .container {
   display: flex;
   flex-direction: column;
 }
 
-.wrapper{
-
+.wrapper {
   padding: 36px 33px;
   width: 420px;
   min-height: 288px;
@@ -15,18 +13,14 @@
   text-align: center;
 }
 
-
 .question {
   align-items: flex-start;
-
 }
-
 
 .attempts {
   color: var(--dark-100, #808080);
   margin-bottom: 45px;
-
 }
-.button{
+.button {
   width: 81%;
 }
