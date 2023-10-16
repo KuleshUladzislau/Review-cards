@@ -128,20 +128,16 @@ export const Decks = () => {
           Clear Filter
         </Button>
       </div>
-      {data?.items.length !== 0 && (
-        <>
-          <DecksTable data={data} sort={sort} setSort={setSort} />
-          <Pagination
-            portionValue={itemsPerPage.value.toString()}
-            totalCount={data?.pagination.totalItems}
-            currentPage={currentPage}
-            pageSize={Number(itemsPerPage.value)}
-            onPageSizeChange={pageSizeChangeHandler}
-            onCurrentPageChange={currentPageChangeHandler}
-            options={pageSizeOptions}
-          />
-        </>
-      )}
+      <DecksTable data={data} sort={sort} setSort={setSort} />
+      <Pagination
+        portionValue={itemsPerPage.value.toString()}
+        totalCount={data?.pagination.totalItems}
+        currentPage={currentPage}
+        pageSize={Number(itemsPerPage.value)}
+        onPageSizeChange={pageSizeChangeHandler}
+        onCurrentPageChange={currentPageChangeHandler}
+        options={pageSizeOptions}
+      />
     </div>
   )
 }

@@ -11,6 +11,8 @@ import { Layout } from '@/pages/Layout/layout.tsx'
 import { PageNotFound } from '@/pages/page-not-found'
 import { Profile } from '@/pages/profile/profile.tsx'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
+import { LearnCardsPage } from '@/pages/learn-cards-page/learn-cards-page.tsx'
+
 
 function PrivateRoutes() {
   const { data, isLoading } = useGetMeQuery()
@@ -51,8 +53,8 @@ const router = createBrowserRouter([
             element: <Cards />,
           },
           {
-            path: '/learn/:id?',
-            element: <div>learn cards</div>,
+            path: 'decks/learn/:cardsId?',
+            element: <LearnCardsPage />,
           },
         ],
       },
