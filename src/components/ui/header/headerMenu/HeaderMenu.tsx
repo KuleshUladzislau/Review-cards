@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+
 import s from './headerMenu.module.scss'
 
 import { Logout, Profile } from '@/assets'
@@ -5,15 +7,14 @@ import { Avatar } from '@/components/ui/avatar/avatar.tsx'
 import { CustomDropdown, CustomDropdownItem } from '@/components/ui/dropdown'
 import { HeaderProps } from '@/components/ui/header/header.tsx'
 import { Typography } from '@/components/ui/typography'
-import {useNavigate} from "react-router-dom";
 
 type HeaderMenuProps = Omit<HeaderProps, 'isLoggedIn'>
 export const HeaderMenu = ({ userName, email, userPhoto, logout }: HeaderMenuProps) => {
-
   const navigate = useNavigate()
-  const onProfileNavigate = ()=>{
+  const navigateToProfile = () => {
     navigate('/profile')
   }
+
   return (
     <CustomDropdown
       trigger={<Avatar src={userPhoto} userName={userName} />}
@@ -32,7 +33,7 @@ export const HeaderMenu = ({ userName, email, userPhoto, logout }: HeaderMenuPro
           </Typography>
         </div>
       </CustomDropdownItem>
-      <CustomDropdownItem onClick={onProfileNavigate}>
+      <CustomDropdownItem onClick={navigateToProfile}>
         <Profile /> My profile
       </CustomDropdownItem>
       <CustomDropdownItem onClick={logout}>
