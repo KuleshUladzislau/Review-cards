@@ -11,3 +11,15 @@
     transform: scale(1.1);
   }
 }
+
+.nameWrap {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.cover {
+  width: 118px;
+  height: 48px;
+  border-radius: 2px;
+}
