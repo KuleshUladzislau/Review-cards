@@ -1,0 +1,25 @@
+.wrap {
+  padding: 18px 24px;
+}
+
+.deckName {
+  font-size: 16px;
+  font-weight: var(--font-weight-bold);
+  line-height: 24px;
+  color: var(--color-light-100);
+}
+
+.tableButton {
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.buttonsWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px 36px;
+}

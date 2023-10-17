@@ -23,7 +23,7 @@ export const ModalWithTitle = {
         <Button as="button" variant="primary" onClick={() => setOpen(true)}>
           open Modal
         </Button>
-        <Modal {...args} open={open} setOpen={setOpen} title={'Сlose modal'}>
+        <Modal {...args} open={open} setOpen={setOpen} title={'Close modal'}>
           <div style={{ padding: '20px' }}>
             Lorem ipsum dolor sit amet,consectetur adipiscing elit, sed do eiusmod temper ut labore
             et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco

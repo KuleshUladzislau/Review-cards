@@ -1,0 +1,43 @@
+.formWrapper {
+
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+}
+
+.coverWrap {
+  position: relative;
+}
+
+.coverButton {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  width: 88%;
+
+}
+
+.coverInput {
+  cursor: pointer;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  opacity: 0;
+}
+
+
+.buttonsWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px 36px;
+}

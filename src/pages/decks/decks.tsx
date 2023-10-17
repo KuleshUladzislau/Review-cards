@@ -10,10 +10,12 @@ import {
   Textfield,
   Typography,
 } from '@/components/ui'
+import { CreateDeckValuesForm } from '@/pages/decks/createDeckModal/createDeckForm/createDeckForm.tsx'
+import { CreateDeckModal } from '@/pages/decks/createDeckModal/createDeckModal.tsx'
 import { DecksTable } from '@/pages/decks/decksTable'
 import { useDeckSettings } from '@/pages/decks/hook'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
-import { useGetDecksQuery } from '@/services/decks/decksService.ts'
+import { useCreateDeckMutation, useGetDecksQuery } from '@/services/decks/decksService.ts'
 import { setCurrentPage, setPageSize, setSearchByName } from '@/services/decks/decksSlice.ts'
 import { useAppDispatch, useAppSelector } from '@/services/hooks.ts'
 
@@ -54,6 +56,8 @@ export const Decks = () => {
 
   const { data: meData } = useGetMeQuery()
 
+  const [createDeck] = useCreateDeckMutation()
+
   const onSwitchCardsHandler = (value: string) => {
     setSwitchOption(value)
     if (value === switcherOptions[0].value) {
@@ -86,11 +90,21 @@ export const Decks = () => {
     setSort(null)
   }
 
+  const onSubmitHandler = (data: CreateDeckValuesForm) => {
+    const { name, isPrivate, cover } = data
+    const formData = new FormData()
+
+    formData.append('name', name)
+    formData.append('isPrivate', String(isPrivate))
+    cover && formData.append('cover', cover)
+    createDeck(formData)
+  }
+
   return (
     <div className={s.wrapper}>
       <div className={s.headWrap}>
         <Typography variant={'large'}>Decks</Typography>
-        <Button>Add New Deck</Button>
+        <CreateDeckModal onSubmit={onSubmitHandler} />
       </div>
 
       <div className={s.settingsWrap}>
