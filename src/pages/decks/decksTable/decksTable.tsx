@@ -3,9 +3,9 @@ import s from './decksTable.module.scss'
 import { Delete, Edit, Play } from '@/assets'
 import { Table, TableHead, TBody, TCell, TRow } from '@/components/ui'
 import { Column, Sort } from '@/components/ui/table/types.ts'
-import {GetDecksDataItems, GetDecksResponse} from '@/services/decks/types.ts'
+import { GetDecksDataItems, GetDecksResponse } from '@/services/decks/types.ts'
 import { useNavigate } from 'react-router-dom'
-import {toast} from "react-toastify";
+import { toast } from 'react-toastify'
 
 const columns: Column[] = [
   {
@@ -34,10 +34,10 @@ type DecksTableProps = {
 
 export const DecksTable = ({ data, setSort, sort }: DecksTableProps) => {
   const navigate = useNavigate()
-  const onLearnHandler = (decksId: string,name:string,item:GetDecksDataItems) => {
-    if(item.cardsCount){
-      navigate(`decks/learn/${decksId}`, {state: {decksName: name}})
-    }else {
+  const onLearnHandler = (decksId: string, name: string, item: GetDecksDataItems) => {
+    if (item.cardsCount) {
+      navigate(`decks/learn/${decksId}`, { state: { decksName: name } })
+    } else {
       toast.error('dont have cards')
     }
   }
@@ -49,13 +49,19 @@ export const DecksTable = ({ data, setSort, sort }: DecksTableProps) => {
         {data?.items.map(item => {
           return (
             <TRow key={item.id}>
-              <TCell>{item.name}</TCell>
+              <TCell className={s.nameWrap}>
+                {item.cover && <img className={s.cover} src={item.cover} alt={'deck cover'} />}
+                {item.name}
+              </TCell>
               <TCell>{item.cardsCount}</TCell>
               <TCell>{new Date(item.updated).toLocaleDateString()}</TCell>
               <TCell>{item.author.name}</TCell>
               <TCell>
                 <div className={s.tableButtonsWrap}>
-                  <Play className={s.tableButton} onClick={() => onLearnHandler(item.id,item.name,item)} />
+                  <Play
+                    className={s.tableButton}
+                    onClick={() => onLearnHandler(item.id, item.name, item)}
+                  />
                   <Edit className={s.tableButton} />
                   <Delete className={s.tableButton} />
                 </div>
