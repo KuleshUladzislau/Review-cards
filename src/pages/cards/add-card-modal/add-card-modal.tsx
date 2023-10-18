@@ -1,10 +1,12 @@
-import {Button, Modal, SelectCustom, Typography} from "@/components/ui";
+import {Button, Modal,  SelectCustom, Typography} from "@/components/ui";
 import {Control, useForm} from "react-hook-form";
 import { ControlledTextField } from "@/components/controlls";
-import s from './addCard.module.scss'
+
 import {z} from "zod";
 import {useState} from "react";
 import {FilePicker} from "@/components/ui/filePicker/filePicker.tsx";
+
+import s from './addCard.module.scss'
 
 
 type AddCardProps = {
@@ -18,7 +20,7 @@ const useAddCardSchema = z.object({
     question:z.string().nonempty().min(4),
     answer:z.string().nonempty().min(4)
 })
-type FormatType = 'Text'|'Photo'
+type FormatType = 'Text'|'Picture'
 const AddCardModal = (
     {
         open,
@@ -28,6 +30,7 @@ const AddCardModal = (
 ) => {
 
     const [format,setFormat] = useState<FormatType>('Text')
+
     const onChangeFormatHandler = (value:FormatType)=>setFormat(value)
     const {
         control,
@@ -46,11 +49,12 @@ const AddCardModal = (
 
     const options = [
         {label:'Text',value:'Text'},
-        {label:'Photo',value:'Photo'}
+        {label:'Picture',value:'Picture'}
     ]
 
     return (
-        <Modal open={open}  setOpen={setOpen} title={'Add New Card'}>
+
+            <Modal open={open} setOpen={setOpen} title={'Add New Card'} >
             <form onSubmit={handleSubmit(onSubmitHandler)} className={s.formContainer}>
                 <div className={s.selectContainer}>
                     <SelectCustom
@@ -61,12 +65,13 @@ const AddCardModal = (
                         defaultValue={format}
                         value={format}
                         onValueChange={onChangeFormatHandler}
-                     />
+                    />
                 </div>
-                {/*<TextFormat control={control}/>*/}
-                <PhotoFormat/>
+                {format === 'Text' && <TextFormat control={control}/>}
+                {format === 'Picture' && <PhotoFormat/>}
+
                 <div className={s.buttonContainer}>
-                    <Button variant='secondary'>
+                    <Button variant='secondary' onClick={()=>setOpen(false)}>
                         Cancel
                     </Button>
                     <Button variant='primary'>
@@ -75,6 +80,7 @@ const AddCardModal = (
                 </div>
             </form>
         </Modal>
+
     );
 };
 
@@ -107,19 +113,33 @@ const TextFormat = (
 }
 
 const PhotoFormat = ()=>{
+
+    const [questionImg,setQuestionImg] = useState<File | undefined>()
+    const [answerImg,setAnswerImg] = useState<File>()
+    const questionImgUrl = questionImg ? URL.createObjectURL(questionImg) : 'https://placehold.co/484x119'
+    const answerImgUrl = answerImg ?URL.createObjectURL(answerImg) : 'https://placehold.co/484x119'
+    const onQuestionImgHandler = (file:File) => setQuestionImg(file)
+    const onAnswerHandler = (file: File) => setAnswerImg(file)
+
     return(
         <>
             <div>
-                <Typography variant='subtitle2'>
+                <Typography variant='subtitle2' >
                     Question
                 </Typography>
-               <FilePicker/>
+                <div className={s.imgContainer}>
+                    <img src={questionImgUrl}/>
+                </div>
+               <FilePicker setCover={onQuestionImgHandler} className={s.buttonFile}/>
             </div>
-            <div>
+            <div className={s.answerContainer}>
                 <Typography variant='subtitle2'>
                     Answer
                 </Typography>
-                <Button variant={'secondary'} >Change Cover</Button>
+                <div className={s.imgContainer}>
+                    <img src={answerImgUrl}/>
+                </div>
+                <FilePicker setCover={onAnswerHandler} className={s.buttonFile}/>
             </div>
 
 
