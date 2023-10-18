@@ -1,13 +1,13 @@
-.tableButtonsWrap {
+
+.nameWrap {
   display: flex;
   gap: 10px;
-  justify-content: flex-end;
+  align-items: center;
 }
 
-.tableButton {
-  cursor: pointer;
+.cover {
+  width: 118px;
+  height: 48px;
+  border-radius: 2px;
 
-  &:hover {
-    transform: scale(1.1);
-  }
 }

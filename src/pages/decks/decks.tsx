@@ -10,6 +10,7 @@ import {
   Textfield,
   Typography,
 } from '@/components/ui'
+import { CreateDeckModal } from '@/pages/decks/createDeckModal/createDeckModal.tsx'
 import { DecksTable } from '@/pages/decks/decksTable'
 import { useDeckSettings } from '@/pages/decks/hook'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
@@ -57,7 +58,7 @@ export const Decks = () => {
   const onSwitchCardsHandler = (value: string) => {
     setSwitchOption(value)
     if (value === switcherOptions[0].value) {
-      setUserId(meData.id)
+      setUserId(meData?.id)
     } else {
       setUserId('')
     }
@@ -90,7 +91,7 @@ export const Decks = () => {
     <div className={s.wrapper}>
       <div className={s.headWrap}>
         <Typography variant={'large'}>Decks</Typography>
-        <Button>Add New Deck</Button>
+        <CreateDeckModal />
       </div>
 
       <div className={s.settingsWrap}>

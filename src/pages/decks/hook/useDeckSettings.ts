@@ -8,7 +8,7 @@ export const useDeckSettings = (
   switcherOption: string
 ) => {
   const [switchOption, setSwitchOption] = useState(switcherOption)
-  const [userId, setUserId] = useState('')
+  const [userId, setUserId] = useState<string | undefined>('')
   const [sliderValue, setSliderValue] = useState({ min: minCardsCount, max: maxCardsCount })
   const [sort, setSort] = useState<Sort>(null)
 

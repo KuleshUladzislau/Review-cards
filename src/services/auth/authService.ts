@@ -2,20 +2,22 @@ import {
   CreateNewAccount,
   createNewPassword,
   LoginType,
-  ResponseCreateNewAccount,
+  MeResponse,
 } from '@/services/auth/authServise.types.ts'
 import { baseApi } from '@/services/baseApi.ts'
 
+
+
 export const authService = baseApi.injectEndpoints({
   endpoints: builder => ({
-    getMe: builder.query<any, void>({
-      async queryFn(_name, _api, _extraOptions, baseQuery) {
+    getMe: builder.query<MeResponse  , void>({
+      async queryFn(_name , _api, _extraOptions, baseQuery) {
         const result = await baseQuery({
           url: `/v1/auth/me`,
           method: 'GET',
         })
 
-        return { data: result.data }
+        return { data: result.data as MeResponse }
       },
       providesTags: ['Auth'],
       extraOptions: { maxRetries: 1 },
@@ -27,7 +29,7 @@ export const authService = baseApi.injectEndpoints({
         body: { email, password },
       }),
     }),
-    login: builder.mutation<ResponseCreateNewAccount, LoginType>({
+    login: builder.mutation<MeResponse, LoginType>({
       query: ({ email, password, rememberMe }) => ({
         url: '/v1/auth/login',
         method: 'POST',
@@ -35,7 +37,7 @@ export const authService = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['Auth'],
     }),
-    logout: builder.mutation<any, void>({
+    logout: builder.mutation<void, void>({
       query: () => ({
         url: '/v1/auth/logout',
         method: 'POST',
@@ -43,9 +45,10 @@ export const authService = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['Auth'],
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
+
         const patchResult = dispatch(
           authService.util.updateQueryData('getMe', undefined, () => {
-            return null
+            return {} as MeResponse
           })
         )
 
@@ -73,6 +76,15 @@ export const authService = baseApi.injectEndpoints({
         body: { password },
       }),
     }),
+    updateProfileInfo: builder.mutation<any, FormData>({
+      query: FormData => ({
+        url: '/v1/auth/me',
+        method: 'PATCH',
+        body: FormData,
+      }),
+      invalidatesTags: ['Auth'],
+
+    }),
   }),
 })
 
@@ -83,4 +95,6 @@ export const {
   useLogoutMutation,
   useForgotPasswordEmailMutation,
   useResetPasswordMutation,
+  useUpdateProfileInfoMutation
+
 } = authService
