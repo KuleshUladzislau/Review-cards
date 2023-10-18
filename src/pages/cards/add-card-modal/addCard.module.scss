@@ -1,39 +1,51 @@
 .formContainer{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 24px;
   width: 542px;
   padding: 24px;
 }
+.modalStyle{
 
+}
 .selectContainer{
   display: flex;
   flex-direction: column;
   gap:2px;
-  width: 95%;
+  width: 484px;
 
 }
 
 .select{
- padding: 6px;
-
+  padding: 6px;
+  margin-bottom: 24px;
+  z-index: 100;
 }
 .inputContainer{
   display: flex;
   flex-direction: column;
   gap:2px;
-  width: 95%;
+  width: 484px;
+  margin-bottom: 24px;
 
 }
 .lastInput {
-  margin-bottom: 24px;
+  margin-bottom: 36px;
 }
 .buttonContainer{
   display: flex;
-  align-content: center;
+  align-items: center;
   justify-content: space-between;
-  width: 95%;
-  margin-bottom: 36px;
+  width: 484px;
+  padding-bottom: 36px;
+
+}
+
+.imgContainer > img{
+  width: 484px;
+  height: 119px;
+  object-fit: cover;
+}
+.buttonFile{
+  width: 484px;
+}
+.answerContainer{
+  margin-bottom: 24px;
 }

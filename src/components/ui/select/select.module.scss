@@ -10,11 +10,12 @@
   align-items: center;
   justify-content: space-between;
 
+  margin-bottom: -4px;
+  padding: 5px;
 
-  min-height: 24px;
   text-transform: capitalize;
-  padding: 12px 6px;
 
+  background: none;
   border: 1px solid var(--dark-300, #4c4c4c);
 
   &[data-state='open'] .icon {
@@ -26,14 +27,13 @@
     transition: all 0.3s ease-in-out;
   }
 
-  &[data-state='closed'] .icon {
-    padding: 4px;
-  }
+
 
 }
 
 .value{
   margin-left: 6px;
+  margin-right: 6px;
 }
 
 .trigger:focus {
@@ -58,6 +58,7 @@
   border-top: none;
   background: black;
   animation: fadeIn 0.5s ease;
+  z-index: 4;
 }
 
 .item {
@@ -80,7 +81,7 @@
 
 .icon {
   display: flex;
-  margin-left: 10px;
+
 }
 
 @keyframes fadeIn {
