@@ -36,3 +36,11 @@ export type GetDecksRequest = {
   currentPage?: number
   itemsPerPage?: number
 }
+
+export type CreateDeckRequest = {
+  cover?: string
+  name: string
+  isPrivate?: boolean
+}
+
+export type DeleteDeckParamsType = Pick<GetDecksDataItems, 'id'>
