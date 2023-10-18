@@ -22,7 +22,7 @@ import { Raiting } from '@/components/ui/raiting/raiting.tsx'
 import s from '@/pages/decks/decks.module.scss'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
 import { useGetCardsQuery, useGetDeckByIdQuery } from '@/services/cards'
-import { setCurrentPage, setPageSize } from '@/services/decks/decksSlice.ts'
+import { setCurrentPage, setPageSize } from '@/services/cards/cardsSlice.ts'
 import {
   selectCurrentPage,
   selectItemsPerPage,
@@ -50,7 +50,6 @@ const columns = [
 ]
 
 export const Cards = () => {
-  // const searchByName = (state => state.decksSettings.searchByName)
   const currentPage = useAppSelector(selectCurrentPage)
   const pageSizeOptions = useAppSelector(selectPageSizeOptions)
   const itemsPerPage = useAppSelector(selectItemsPerPage)
@@ -63,18 +62,8 @@ export const Cards = () => {
 
   const newSearchName = useDebounce(searchName, 500)
 
-  const { data } = useGetCardsQuery({
-    question: newSearchName,
-    id: id,
-    currentPage,
-    itemsPerPage: Number(itemsPerPage.value),
-  })
   const { data: deck } = useGetDeckByIdQuery({ id })
   const { data: meData } = useGetMeQuery()
-
-  // console.log(data)
-  // console.log(deck?.userId)
-  // console.log(data)
 
   const onSearchByNameHandler = (value: string) => setSearchName(value)
 
@@ -85,6 +74,13 @@ export const Cards = () => {
   const pageSizeChangeHandler = (pageSize: number) => {
     dispatch(setPageSize({ pageSize: pageSize.toString() }))
   }
+
+  const { data } = useGetCardsQuery({
+    currentPage,
+    itemsPerPage: Number(itemsPerPage.value),
+    question: newSearchName,
+    id: id,
+  })
 
   return (
     <div className={s.wrapper}>
