@@ -7,43 +7,25 @@ import { ProfileInfo } from './profileInfo/profileInfo'
 import { Edit } from '@/assets'
 import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
-import { useUpdateToDataMutation } from '@/pages/profile'
+import {useUpdateProfileInfoMutation} from "@/services/auth/authService.ts";
+
 
 type Props = {
-  name: string
-  email: string
+  name?: string
+  email?: string
   src?: string
-  changePhoto: (FormData: any) => void
   onLogOut?: () => void
 }
 
-export const EditeProfile = ({ name, email, src, changePhoto, onLogOut }: Props) => {
-  const [editeMode, setEditeMode] = useState(false)
-  const [uploadPhoto] = useUpdateToDataMutation()
+export const EditeProfile = ({ name, email, src, onLogOut }: Props) => {
+  const [editMode, setEditMode] = useState(false)
+  const [uploadPhoto] = useUpdateProfileInfoMutation()
 
-  // const changePhotoHandler = (e: ChangeEvent<HTMLInputElement>) => {
-  //   const selectedFile = e.target.files ? e.target.files[0] : ''
-  //
-  //   if (selectedFile) {
-  //     const reader = new FileReader()
-  //
-  //     reader.onload = e => {
-  //       const uploadedFile = e.target?.result
-  //
-  //       // console.log(uploadedFile)
-  //       if (uploadedFile) {
-  //         // console.log('Данные файла:', uploadedFile)
-  //         changePhoto(uploadedFile)
-  //       }
-  //     }
-  //     reader.readAsDataURL(selectedFile)
-  //   }
-  // }
+
 
   const uploadPhotoHandler = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const formData = new FormData()
-
       formData.append('avatar', event.target.files[0])
       uploadPhoto(formData)
     }
@@ -62,7 +44,7 @@ export const EditeProfile = ({ name, email, src, changePhoto, onLogOut }: Props)
           </label>
         )}
 
-        {!editeMode && (
+        {!editMode && (
           <label htmlFor={'avatarId'} className={s.edit}>
             <Edit />
             <input
@@ -74,10 +56,10 @@ export const EditeProfile = ({ name, email, src, changePhoto, onLogOut }: Props)
           </label>
         )}
       </div>
-      {!editeMode && (
-        <ProfileInfo name={name} email={email} setEditeMode={setEditeMode} onLogOut={onLogOut} />
+      {!editMode && (
+        <ProfileInfo name={name } email={email} setEditeMode={setEditMode} onLogOut={onLogOut} />
       )}
-      {editeMode && <ChangeName name={name} setEditeMode={setEditeMode} />}
+      {editMode && <ChangeName name={name} setEditeMode={setEditMode} />}
     </Card>
   )
 }
