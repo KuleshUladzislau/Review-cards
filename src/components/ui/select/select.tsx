@@ -7,21 +7,34 @@ import s from './select.module.scss'
 
 import Layer2 from '@/assets/icons/Layer2.tsx'
 
+import {Typography} from "@/components/ui";
+
 //Изменил типы также как и в свитчере
 export type OptionsType = {
   label: string
   value: string
 }
 
-type SelectProps = {
+export type SelectProps = {
   options: OptionsType[]
   className?: string
   placeHolder?: string
+  label?:string
 } & ComponentPropsWithoutRef<typeof Select.Root>
 
 export const SelectCustom = forwardRef<ElementRef<typeof Select.Trigger>, SelectProps>(
   (
-    { options, defaultValue, placeHolder, onValueChange, value, className, disabled, ...restProps },
+    {
+      options,
+      defaultValue,
+      placeHolder,
+      onValueChange,
+      value,
+      className,
+      disabled,
+      label,
+      ...restProps
+    },
     ref
   ) => {
     //Добавил toString на случай если number, нужен для запроса пагинации
@@ -39,8 +52,11 @@ export const SelectCustom = forwardRef<ElementRef<typeof Select.Trigger>, Select
         value={value}
         {...restProps}
       >
-        <Select.Trigger ref={ref} className={`${s.trigger} ${className}`}>
-          <Select.Value placeholder={placeHolder} />
+        {label && <Typography className={s.label} as={'label'}>{label}</Typography>}
+        <Select.Trigger defaultValue={defaultValue} ref={ref} className={`${s.trigger} ${className}`}>
+            <div className={s.value}>
+                <Select.Value  placeholder={placeHolder} />
+            </div>
           <Select.Icon className={s.icon}>
             <Layer2 />
           </Select.Icon>
@@ -48,7 +64,9 @@ export const SelectCustom = forwardRef<ElementRef<typeof Select.Trigger>, Select
         <Select.Portal>
           <Select.Content className={s.content} position="popper">
             <Select.Viewport>
-              <Select.Group>{mappedOptions}</Select.Group>
+              <Select.Group>
+                {mappedOptions}
+              </Select.Group>
               <Select.Separator />
             </Select.Viewport>
           </Select.Content>
