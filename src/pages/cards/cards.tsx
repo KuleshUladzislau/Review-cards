@@ -94,7 +94,7 @@ export const Cards = () => {
       </NavLink>
       <div className={s.headWrap}>
         <Typography variant={'large'}>{deck?.name}</Typography>
-        {meData.id !== deck?.userId ? (
+        {meData?.id !== deck?.userId ? (
           <Button>Learn to Pack</Button>
         ) : (
           <Button>Add New Card</Button>
@@ -127,7 +127,7 @@ export const Cards = () => {
                   <Raiting grade={item.grade} />
                 </TCell>
                 <TCell>
-                  {meData.id === deck?.userId && (
+                  {meData?.id === deck?.userId && (
                     <div className={s.tableButtonsWrap}>
                       <Edit className={s.tableButton} />
                       <Delete className={s.tableButton} />
