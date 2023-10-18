@@ -2,8 +2,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { EditeProfile } from '@/components/auth'
 import { Page } from '@/components/ui'
-import {useGetMeQuery, useLogoutMutation} from '@/services/auth/authService.ts'
-
+import { useGetMeQuery, useLogoutMutation } from '@/services/auth/authService.ts'
 
 export const Profile = () => {
   const { data } = useGetMeQuery()
@@ -27,4 +26,3 @@ export const Profile = () => {
     </Page>
   )
 }
-

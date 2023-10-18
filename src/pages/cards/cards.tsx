@@ -1,0 +1,153 @@
+import { useState } from 'react'
+
+import { NavLink, useParams } from 'react-router-dom'
+
+import c from './cards.module.scss'
+
+import { Delete, Edit } from '@/assets'
+import LeftArrowDirection from '@/assets/icons/LeftArrowDirection.tsx'
+import { useDebounce } from '@/common/hooks/useDebounce.ts'
+import {
+  Button,
+  Pagination,
+  Table,
+  TableHead,
+  TBody,
+  TCell,
+  Textfield,
+  TRow,
+  Typography,
+} from '@/components/ui'
+import { Raiting } from '@/components/ui/raiting/raiting.tsx'
+import s from '@/pages/decks/decks.module.scss'
+import { useGetMeQuery } from '@/services/auth/authService.ts'
+import { useGetCardsQuery, useGetDeckByIdQuery } from '@/services/cards'
+import { setCurrentPage, setPageSize } from '@/services/decks/decksSlice.ts'
+import {
+  selectCurrentPage,
+  selectItemsPerPage,
+  selectPageSizeOptions,
+} from '@/services/decks/selectors.ts'
+import { useAppDispatch, useAppSelector } from '@/services/hooks.ts'
+
+const columns = [
+  {
+    key: 'question',
+    title: 'Question',
+  },
+  {
+    key: 'answer',
+    title: 'Answer',
+  },
+  {
+    key: 'updated',
+    title: 'Last Updated',
+  },
+  {
+    key: 'grade',
+    title: 'Grade',
+  },
+]
+
+export const Cards = () => {
+  // const searchByName = (state => state.decksSettings.searchByName)
+  const currentPage = useAppSelector(selectCurrentPage)
+  const pageSizeOptions = useAppSelector(selectPageSizeOptions)
+  const itemsPerPage = useAppSelector(selectItemsPerPage)
+
+  const [searchName, setSearchName] = useState<string>('')
+  const dispatch = useAppDispatch()
+
+  const [sort, setSort] = useState<any>(null)
+  const { id } = useParams()
+
+  const newSearchName = useDebounce(searchName, 500)
+
+  const { data } = useGetCardsQuery({
+    question: newSearchName,
+    id: id,
+    currentPage,
+    itemsPerPage: Number(itemsPerPage.value),
+  })
+  const { data: deck } = useGetDeckByIdQuery({ id })
+  const { data: meData } = useGetMeQuery()
+
+  // console.log(data)
+  // console.log(deck?.userId)
+  // console.log(data)
+
+  const onSearchByNameHandler = (value: string) => setSearchName(value)
+
+  const currentPageChangeHandler = (page: number | string) => {
+    dispatch(setCurrentPage({ currentPage: Number(page) }))
+  }
+
+  const pageSizeChangeHandler = (pageSize: number) => {
+    dispatch(setPageSize({ pageSize: pageSize.toString() }))
+  }
+
+  return (
+    <div className={s.wrapper}>
+      <NavLink to={'/'} className={c.navLinkStyle}>
+        <LeftArrowDirection />
+        {'Back to Packs List '}
+      </NavLink>
+      <div className={s.headWrap}>
+        <Typography variant={'large'}>{deck?.name}</Typography>
+        {meData?.id !== deck?.userId ? (
+          <Button>Learn to Pack</Button>
+        ) : (
+          <Button>Add New Card</Button>
+        )}
+      </div>
+      <div className={s.settingsWrap}>
+        <div className={`${s.textFieldWrap} ${c.TextFieldFullWith}`}>
+          {/*подправить стиль инпута на full width*/}
+          <Textfield
+            value={searchName}
+            search
+            type={'search'}
+            placeholder={'Input search'}
+            className={s.searchInput}
+            onValueChange={onSearchByNameHandler}
+          />
+        </div>
+      </div>
+
+      <Table>
+        <TableHead columns={columns} sort={sort} setSort={setSort} />
+        <TBody>
+          {data?.items.map(item => {
+            return (
+              <TRow key={item.id}>
+                <TCell>{item.question}</TCell>
+                <TCell>{item.answer}</TCell>
+                <TCell>{new Date(item.updated).toLocaleDateString()}</TCell>
+                <TCell>
+                  <Raiting grade={item.grade} />
+                </TCell>
+                <TCell>
+                  {meData?.id === deck?.userId && (
+                    <div className={s.tableButtonsWrap}>
+                      <Edit className={s.tableButton} />
+                      <Delete className={s.tableButton} />
+                    </div>
+                  )}
+                </TCell>
+              </TRow>
+            )
+          })}
+        </TBody>
+      </Table>
+      <Pagination
+        totalCount={data?.pagination.totalItems}
+        currentPage={currentPage}
+        pageSize={Number(itemsPerPage.value)}
+        onPageSizeChange={pageSizeChangeHandler}
+        onCurrentPageChange={currentPageChangeHandler}
+        options={pageSizeOptions}
+        portionValue={itemsPerPage.value.toString()}
+      />
+    </div>
+  )
+}
