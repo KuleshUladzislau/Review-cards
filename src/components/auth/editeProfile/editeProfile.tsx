@@ -7,8 +7,7 @@ import { ProfileInfo } from './profileInfo/profileInfo'
 import { Edit } from '@/assets'
 import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
-import {useUpdateProfileInfoMutation} from "@/services/auth/authService.ts";
-
+import { useUpdateProfileInfoMutation } from '@/services/auth/authService.ts'
 
 type Props = {
   name?: string
@@ -21,11 +20,10 @@ export const EditeProfile = ({ name, email, src, onLogOut }: Props) => {
   const [editMode, setEditMode] = useState(false)
   const [uploadPhoto] = useUpdateProfileInfoMutation()
 
-
-
   const uploadPhotoHandler = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const formData = new FormData()
+
       formData.append('avatar', event.target.files[0])
       uploadPhoto(formData)
     }
