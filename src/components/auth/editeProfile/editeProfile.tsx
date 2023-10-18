@@ -37,7 +37,7 @@ export const EditeProfile = ({ name, email, src, onLogOut }: Props) => {
         Personal Information
       </Typography>
       <div className={s.avatarContainer}>
-        {src && <img src={src} alt={'img'} className={s.img} />}
+        {src && <img src={src} alt={'img'} className={s.img}/>}
         {!src && (
           <label htmlFor={'avatarId'} className={s.defaultAvatar}>
             <span>{name?.[0]}</span>
