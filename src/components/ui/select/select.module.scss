@@ -1,3 +1,7 @@
+.label{
+  color:var(--dark-100, #808080);
+}
+
 .trigger {
   cursor: pointer;
 
@@ -6,12 +10,11 @@
   align-items: center;
   justify-content: space-between;
 
-  margin-bottom: -4px;
-  padding: 5px;
 
+  min-height: 24px;
   text-transform: capitalize;
+  padding: 12px 6px;
 
-  background: none;
   border: 1px solid var(--dark-300, #4c4c4c);
 
   &[data-state='open'] .icon {
@@ -22,6 +25,15 @@
   &[data-state='closed'] .icon {
     transition: all 0.3s ease-in-out;
   }
+
+  &[data-state='closed'] .icon {
+    padding: 4px;
+  }
+
+}
+
+.value{
+  margin-left: 6px;
 }
 
 .trigger:focus {
@@ -42,10 +54,9 @@
   width: var(--radix-select-trigger-width);
 
   text-transform: capitalize;
-
   border: 1px solid var(--dark-300, #4c4c4c);
   border-top: none;
-
+  background: black;
   animation: fadeIn 0.5s ease;
 }
 
@@ -56,7 +67,7 @@
   align-items: center;
 
   height: 36px;
-  padding: 10px;
+  padding: 12px;
 }
 
 .item:focus {
