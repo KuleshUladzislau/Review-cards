@@ -58,7 +58,7 @@ export const Decks = () => {
   const onSwitchCardsHandler = (value: string) => {
     setSwitchOption(value)
     if (value === switcherOptions[0].value) {
-      setUserId(meData.id)
+      setUserId(meData?.id)
     } else {
       setUserId('')
     }

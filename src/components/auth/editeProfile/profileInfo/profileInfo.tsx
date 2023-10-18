@@ -5,8 +5,8 @@ import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
 
 type Props = {
-  name: string
-  email: string
+  name?: string
+  email?: string
   setEditeMode: (value: boolean) => void
   onLogOut?: () => void
 }
