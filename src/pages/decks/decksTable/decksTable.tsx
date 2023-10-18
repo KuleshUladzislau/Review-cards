@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+
 import s from './decksTable.module.scss'
 
 import { Table, TableHead, TBody, TCell, TRow } from '@/components/ui'
@@ -13,6 +15,11 @@ type DecksTableProps = {
 }
 
 export const DecksTable = ({ data, setSort, sort }: DecksTableProps) => {
+  const navigate = useNavigate()
+  const onNavigateHandler = (id: string) => {
+    navigate(`/cards/${id}`)
+  }
+
   return (
     <Table>
       <TableHead columns={columns} sort={sort} setSort={setSort} />
@@ -20,7 +27,7 @@ export const DecksTable = ({ data, setSort, sort }: DecksTableProps) => {
         {data?.items.map(item => {
           return (
             <TRow key={item.id}>
-              <TCell className={s.nameWrap}>
+              <TCell className={s.nameWrap} onClick={() => onNavigateHandler(item.id)}>
                 {item.cover && <img className={s.cover} src={item.cover} alt={'deck cover'} />}
                 {item.name}
               </TCell>
