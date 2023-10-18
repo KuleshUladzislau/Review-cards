@@ -29,6 +29,7 @@ import {
   selectPageSizeOptions,
 } from '@/services/decks/selectors.ts'
 import { useAppDispatch, useAppSelector } from '@/services/hooks.ts'
+import AddCardModal from "@/pages/cards/add-card-modal/add-card-modal.tsx";
 
 const columns = [
   {
@@ -64,7 +65,8 @@ export const Cards = () => {
 
   const { data: deck } = useGetDeckByIdQuery({ id })
   const { data: meData } = useGetMeQuery()
-
+  const [addCardModal,setAddCardModal] = useState(false)
+  const onAddCardHandler = (open:boolean) => setAddCardModal(open)
   const onSearchByNameHandler = (value: string) => setSearchName(value)
 
   const currentPageChangeHandler = (page: number | string) => {
@@ -93,7 +95,7 @@ export const Cards = () => {
         {meData?.id !== deck?.userId ? (
           <Button>Learn to Pack</Button>
         ) : (
-          <Button>Add New Card</Button>
+          <Button onClick={()=>onAddCardHandler(true)}>Add New Card</Button>
         )}
       </div>
       <div className={s.settingsWrap}>
@@ -144,6 +146,7 @@ export const Cards = () => {
         options={pageSizeOptions}
         portionValue={itemsPerPage.value.toString()}
       />
+      <AddCardModal open={addCardModal} setOpen={onAddCardHandler}/>
     </div>
   )
 }

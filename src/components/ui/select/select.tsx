@@ -22,7 +22,8 @@ export type SelectProps = {
   label?:string
 } & ComponentPropsWithoutRef<typeof Select.Root>
 
-export const SelectCustom = forwardRef<ElementRef<typeof Select.Trigger>, SelectProps>(
+export const SelectCustom =
+    forwardRef<ElementRef<typeof Select.Trigger>, SelectProps>(
   (
     {
       options,
