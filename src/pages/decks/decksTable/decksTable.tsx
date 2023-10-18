@@ -1,11 +1,12 @@
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+
 import s from './decksTable.module.scss'
 
 import { Delete, Edit, Play } from '@/assets'
 import { Table, TableHead, TBody, TCell, TRow } from '@/components/ui'
 import { Column, Sort } from '@/components/ui/table/types.ts'
-import {GetDecksDataItems, GetDecksResponse} from '@/services/decks/types.ts'
-import { useNavigate } from 'react-router-dom'
-import {toast} from "react-toastify";
+import { GetDecksDataItems, GetDecksResponse } from '@/services/decks/types.ts'
 
 const columns: Column[] = [
   {
@@ -38,11 +39,10 @@ export const DecksTable = ({ data, setSort, sort }: DecksTableProps) => {
     navigate(`/cards/${id}`)
   }
 
-
-  const onLearnHandler = (decksId: string,name:string,item:GetDecksDataItems) => {
-    if(item.cardsCount){
-      navigate(`decks/learn/${decksId}`, {state: {decksName: name}})
-    }else {
+  const onLearnHandler = (decksId: string, name: string, item: GetDecksDataItems) => {
+    if (item.cardsCount) {
+      navigate(`decks/learn/${decksId}`, { state: { decksName: name } })
+    } else {
       toast.error('dont have cards')
     }
   }
@@ -60,7 +60,10 @@ export const DecksTable = ({ data, setSort, sort }: DecksTableProps) => {
               <TCell>{item.author.name}</TCell>
               <TCell>
                 <div className={s.tableButtonsWrap}>
-                  <Play className={s.tableButton} onClick={() => onLearnHandler(item.id,item.name,item)} />
+                  <Play
+                    className={s.tableButton}
+                    onClick={() => onLearnHandler(item.id, item.name, item)}
+                  />
                   <Edit className={s.tableButton} />
                   <Delete className={s.tableButton} />
                 </div>

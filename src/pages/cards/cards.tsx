@@ -6,8 +6,10 @@ import c from './cards.module.scss'
 
 import { Delete, Edit } from '@/assets'
 import LeftArrowDirection from '@/assets/icons/LeftArrowDirection.tsx'
+import { useDebounce } from '@/common/hooks/useDebounce.ts'
 import {
   Button,
+  Pagination,
   Table,
   TableHead,
   TBody,
@@ -20,7 +22,12 @@ import { Raiting } from '@/components/ui/raiting/raiting.tsx'
 import s from '@/pages/decks/decks.module.scss'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
 import { useGetCardsQuery, useGetDeckByIdQuery } from '@/services/cards'
-import { setSearchByName } from '@/services/decks/decksSlice.ts'
+import { setCurrentPage, setPageSize } from '@/services/decks/decksSlice.ts'
+import {
+  selectCurrentPage,
+  selectItemsPerPage,
+  selectPageSizeOptions,
+} from '@/services/decks/selectors.ts'
 import { useAppDispatch, useAppSelector } from '@/services/hooks.ts'
 
 const columns = [
@@ -43,22 +50,40 @@ const columns = [
 ]
 
 export const Cards = () => {
-  const searchByName = useAppSelector(state => state.decksSettings.searchByName)
+  // const searchByName = (state => state.decksSettings.searchByName)
+  const currentPage = useAppSelector(selectCurrentPage)
+  const pageSizeOptions = useAppSelector(selectPageSizeOptions)
+  const itemsPerPage = useAppSelector(selectItemsPerPage)
+
+  const [searchName, setSearchName] = useState<string>('')
   const dispatch = useAppDispatch()
 
   const [sort, setSort] = useState<any>(null)
   const { id } = useParams()
 
-  const { data } = useGetCardsQuery({ id })
+  const newSearchName = useDebounce(searchName, 500)
+
+  const { data } = useGetCardsQuery({
+    question: newSearchName,
+    id: id,
+    currentPage,
+    itemsPerPage: Number(itemsPerPage.value),
+  })
   const { data: deck } = useGetDeckByIdQuery({ id })
   const { data: meData } = useGetMeQuery()
 
-  console.log(data)
-  console.log(deck?.userId)
-  console.log(meData.id)
+  // console.log(data)
+  // console.log(deck?.userId)
+  // console.log(data)
 
-  const onSearchByNameHandler = (value: string) => {
-    dispatch(setSearchByName({ searchName: value }))
+  const onSearchByNameHandler = (value: string) => setSearchName(value)
+
+  const currentPageChangeHandler = (page: number | string) => {
+    dispatch(setCurrentPage({ currentPage: Number(page) }))
+  }
+
+  const pageSizeChangeHandler = (pageSize: number) => {
+    dispatch(setPageSize({ pageSize: pageSize.toString() }))
   }
 
   return (
@@ -79,7 +104,7 @@ export const Cards = () => {
         <div className={`${s.textFieldWrap} ${c.TextFieldFullWith}`}>
           {/*подправить стиль инпута на full width*/}
           <Textfield
-            value={searchByName}
+            value={searchName}
             search
             type={'search'}
             placeholder={'Input search'}
@@ -114,6 +139,15 @@ export const Cards = () => {
           })}
         </TBody>
       </Table>
+      <Pagination
+        totalCount={data?.pagination.totalItems}
+        currentPage={currentPage}
+        pageSize={Number(itemsPerPage.value)}
+        onPageSizeChange={pageSizeChangeHandler}
+        onCurrentPageChange={currentPageChangeHandler}
+        options={pageSizeOptions}
+        portionValue={itemsPerPage.value.toString()}
+      />
     </div>
   )
 }

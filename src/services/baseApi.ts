@@ -5,6 +5,6 @@ import { baseQueryWithMutex } from '@/services/base-api-query-with-reauth.ts'
 export const baseApi = createApi({
   reducerPath: 'baseApi',
   baseQuery: baseQueryWithMutex,
-  tagTypes: ['Auth', 'Decks', 'Learn'],
+  tagTypes: ['Auth', 'Decks', 'Learn', 'Cards'],
   endpoints: () => ({}),
 })

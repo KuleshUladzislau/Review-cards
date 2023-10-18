@@ -10,10 +10,6 @@ export const Profile = () => {
   const [logout] = useLogoutMutation()
   const navigate = useNavigate()
   const [uploadPhoto] = useUpdateToDataMutation()
-  const changePhoto = (file: FormData) => {
-    console.log(file)
-    uploadPhoto(file)
-  }
   const onLogoutHandler = () => {
     logout()
       .unwrap()
