@@ -1,11 +1,12 @@
-import ChangeCover from '@/assets/icons/ChangeCover.tsx'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+
 import { ControlledTextField } from '@/components/controlls'
 import { ControlledCheckbox } from '@/components/controlls/controlled-checkbox/controlled-checkbox.tsx'
 import { Button } from '@/components/ui'
+import { FilePicker } from '@/components/ui/filePicker/filePicker.tsx'
 import s from '@/pages/decks/createDeckModal/createDeckModal.module.scss'
-import { z } from 'zod'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
 
 export type CreateDeckValuesForm = z.infer<typeof createDeckSchema>
 
@@ -34,17 +35,7 @@ export const CreateDeckForm = ({ onSubmit, setOpen }: CreateDeckFormProps) => {
     <form className={s.formWrapper} onSubmit={handleSubmit(onSubmit)}>
       <div className={s.content}>
         <img src={'https://placehold.co/484x119'} alt={''} />
-        <div className={s.coverWrap}>
-          <Button type={'button'} className={s.coverButton} variant={'secondary'}>
-            <ChangeCover /> Change Cover
-          </Button>
-          {/*<ControlledTextField*/}
-          {/*  control={control}*/}
-          {/*  name={'cover'}*/}
-          {/*  className={s.coverInput}*/}
-          {/*  type={'file'}*/}
-          {/*/>*/}
-        </div>
+        <FilePicker />
         <ControlledTextField
           control={control}
           name={'name'}
