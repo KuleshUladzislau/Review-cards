@@ -8,7 +8,7 @@ export type CreateNewAccount = {
   email: string
   password: string
 }
-export type ResponseCreateNewAccount = {
+export type MeResponse = {
   avatar: string
   id: string
   email: string

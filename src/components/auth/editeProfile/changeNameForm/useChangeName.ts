@@ -7,7 +7,7 @@ const nameValidation = z.object({
 })
 
 export type ChangeNameValidation = z.infer<typeof nameValidation>
-export const useChangeName = (name: string) => {
+export const useChangeName = (name: string | undefined) => {
   const {
     handleSubmit,
     control,
