@@ -6,12 +6,10 @@ import {
 } from '@/services/auth/authServise.types.ts'
 import { baseApi } from '@/services/baseApi.ts'
 
-
-
 export const authService = baseApi.injectEndpoints({
   endpoints: builder => ({
-    getMe: builder.query<MeResponse  , void>({
-      async queryFn(_name , _api, _extraOptions, baseQuery) {
+    getMe: builder.query<MeResponse, void>({
+      async queryFn(_name, _api, _extraOptions, baseQuery) {
         const result = await baseQuery({
           url: `/v1/auth/me`,
           method: 'GET',
@@ -45,7 +43,6 @@ export const authService = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['Auth'],
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
-
         const patchResult = dispatch(
           authService.util.updateQueryData('getMe', undefined, () => {
             return {} as MeResponse
@@ -83,7 +80,6 @@ export const authService = baseApi.injectEndpoints({
         body: FormData,
       }),
       invalidatesTags: ['Auth'],
-
     }),
   }),
 })
@@ -95,6 +91,5 @@ export const {
   useLogoutMutation,
   useForgotPasswordEmailMutation,
   useResetPasswordMutation,
-  useUpdateProfileInfoMutation
-
+  useUpdateProfileInfoMutation,
 } = authService

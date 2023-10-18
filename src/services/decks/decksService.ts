@@ -17,13 +17,6 @@ export const decksService = baseApi.injectEndpoints({
       },
       providesTags: ['Decks'],
     }),
-    // getDecksById: builder.query<any, any>({
-    //   query: args => {
-    //     return {
-    //       url: `v1/decks/${args.id}`,
-    //     }
-    //   },
-    // }),
     createDeck: builder.mutation<GetDecksDataItems, FormData>({
       query: formData => {
         return {

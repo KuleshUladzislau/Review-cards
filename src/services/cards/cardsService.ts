@@ -4,7 +4,7 @@ import { GetCardsResponse, getDeckByIdResponse } from '@/services/cards/types.ts
 export const cardsService = baseApi.injectEndpoints({
   endpoints: builder => ({
     getCards: builder.query<GetCardsResponse, any>({
-      query: ({ question, id, currentPage, itemsPerPage }) => ({
+      query: ({ id, question, currentPage, itemsPerPage }) => ({
         url: `/v1/decks/${id}/cards`,
         method: 'GET',
         params: { question, currentPage, itemsPerPage },
