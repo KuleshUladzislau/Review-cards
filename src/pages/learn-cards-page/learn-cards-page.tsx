@@ -1,5 +1,6 @@
-import { Button, Card, Page, Typography } from '@/components/ui'
 import s from './LearnCardsPage.module.scss'
+import { Button, Card, Page, Typography } from '@/components/ui'
+
 import { useState } from 'react'
 import { AnswerPage } from '@/pages/learn-cards-page/answer-page/answer-page.tsx'
 import {useLocation, useParams} from 'react-router-dom'
