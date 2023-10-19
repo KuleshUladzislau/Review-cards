@@ -129,7 +129,7 @@ export const Decks = () => {
           Clear Filter
         </Button>
       </div>
-      <DecksTable data={data} sort={sort} setSort={setSort} />
+      <DecksTable data={data} sort={sort} setSort={setSort}  />
       <Pagination
         portionValue={itemsPerPage.value.toString()}
         totalCount={data?.pagination.totalItems}
