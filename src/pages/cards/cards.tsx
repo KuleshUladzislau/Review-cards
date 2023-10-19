@@ -192,7 +192,7 @@ export const Cards = () => {
         options={pageSizeOptions}
         portionValue={itemsPerPage.value.toString()}
       />
-      <AddCardModal open={addCardModal} setOpen={onAddCardHandler}/>
+      <AddCardModal open={addCardModal} setOpen={onAddCardHandler} deckId={id}/>
     </div>
   )
 }

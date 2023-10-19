@@ -8,8 +8,8 @@ export const cardsService = baseApi.injectEndpoints({
         url: `/v1/decks/${id}/cards`,
         method: 'GET',
         params: { question, currentPage, itemsPerPage },
-        providesTags: ['Cards'],
       }),
+      providesTags: ['Cards'],
     }),
     getDeckById: builder.query<getDeckByIdResponse, any>({
       query: ({ id }) => ({
@@ -17,7 +17,19 @@ export const cardsService = baseApi.injectEndpoints({
         method: 'GET',
       }),
     }),
+    addCard:builder.mutation<void,{id?:string,body:FormData}>({
+      query:({id,body})=>({
+        url:`/v1/decks/${id}/cards`,
+        method:'POST',
+        body:body,
+      }),
+      invalidatesTags:['Cards']
+    })
   }),
 })
 
-export const { useGetCardsQuery, useGetDeckByIdQuery } = cardsService
+export const {
+  useGetCardsQuery,
+  useGetDeckByIdQuery,
+  useAddCardMutation
+} = cardsService
