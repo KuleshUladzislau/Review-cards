@@ -12,7 +12,6 @@ const useAddCardSchema = z.object({
     if(!arg.answer && !arg.question){
         toast.error('add text question and answer')
     }else {
-        toast.success('card has been added')
         return true
     }
 })

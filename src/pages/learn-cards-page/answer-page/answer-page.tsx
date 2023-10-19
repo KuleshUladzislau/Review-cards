@@ -25,7 +25,8 @@ export const AnswerPage = (
     answer,
     cardId,
     decksId,
-    showAnswer
+    showAnswer,
+    answerImg
   }
   : AnswerPageProps) => {
 
@@ -47,6 +48,7 @@ export const AnswerPage = (
     <>
       <Typography variant={'subtitle1'} className={s.answer}>
         Answer:{answer}
+          {answerImg && <img src={answerImg} className={s.answerImg} />}
       </Typography>
       <Typography variant={'subtitle1'} className={s.rateTitle}>
         Rate yourself:

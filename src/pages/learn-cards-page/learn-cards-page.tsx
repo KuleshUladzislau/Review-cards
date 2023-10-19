@@ -25,10 +25,12 @@ export const LearnCardsPage = () => {
         <div className={s.container}>
           <Typography as={'h1'} variant={'large'} className={s.title}>
             Learn “{decksName}”
+
           </Typography>
 
           <Typography as={'div'} variant={'subtitle1'} className={s.question}>
             Question:{data?.question}
+            {data?.questionImg && <img className={s.questionImg} src={data?.questionImg}/>}
           </Typography>
           <Typography variant={'body2'} className={s.attempts}>
             Количество попыток ответов на вопрос: {data?.shots}
@@ -41,6 +43,7 @@ export const LearnCardsPage = () => {
               cardId={data?.id}
               decksId={data?.deckId}
               showAnswer={setShowAnswer}
+              answerImg={data?.answerImg}
             />
           )}
         </div>
