@@ -97,7 +97,7 @@ export const Cards = () => {
         )}
       </div>
       <div className={s.settingsWrap}>
-        <div className={`${s.textFieldWrap} ${c.TextFieldFullWith}`}>
+        <div className={`${c.TextFieldFullWith}`}>
           {/*подправить стиль инпута на full width*/}
           <Textfield
             value={searchName}

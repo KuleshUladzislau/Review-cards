@@ -40,7 +40,14 @@
 }
 
 .signUp {
-  font-weight: var(--font-weight-bold);
+  font-size: 16px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 24px;
   color: var(--color-accent-500);
-  text-align: center;
+
+  //font-weight: var(--font-weight-bold);
+  //color: var(--color-accent-500);
+  //text-align: center;
+  text-decoration-line: underline;
 }

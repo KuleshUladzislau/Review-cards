@@ -22,9 +22,9 @@ export const SignUp: FC<SignUpTypes> = ({ onSubmit }) => {
   }
 
   return (
-    <form className={s.formContainer} onSubmit={handleSubmit(onSubmitHandler)}>
+    <form onSubmit={handleSubmit(onSubmitHandler)}>
       <Card className={s.cardWrapper}>
-        <Typography variant={'h1'}>Sign Up</Typography>
+        <Typography variant={'large'}>Sign Up</Typography>
         <div className={s.textFieldWrapper}>
           <ControlledTextField
             name="email"
@@ -52,11 +52,11 @@ export const SignUp: FC<SignUpTypes> = ({ onSubmit }) => {
           <Button fullWidth={true} className={s.signUpButton}>
             Sign Up
           </Button>
-          <Typography variant={'link1'} className={s.description}>
+          <Typography variant={'body2'} className={s.description}>
             Already have an account?
           </Typography>
-          <Typography variant={'link1'} className={s.linkSignIn} as={Link} to={'/sign-in'}>
-            Sign In
+          <Typography variant={'link2'} as={Link} to={'/sign-in'}>
+            <p className={s.SignIn}>Sign In</p>
           </Typography>
         </div>
       </Card>
