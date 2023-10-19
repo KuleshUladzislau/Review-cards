@@ -54,8 +54,8 @@ export const SignIn = ({ onSubmit }: SignInProps) => {
         <Typography className={s.dontHaveAcc} variant={'body2'}>
           Don`t have an account?
         </Typography>
-        <Typography as={Link} to={'/sign-up'} variant={'link2'}>
-          <div className={s.SignUp}>Sign Up</div>
+        <Typography as={Link} className={s.signUp} to={'/sign-up'} variant={'link2'}>
+          <div className={s.Sign}>Sign Up</div>
         </Typography>
       </Card>
     </form>

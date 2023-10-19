@@ -6,9 +6,8 @@
   justify-content: center;
 
   width: 420px;
-  margin-top: 95px;
+  margin-top: 96px;
   padding: 33px 36px 29px;
-
 
   word-wrap: anywhere;
 }
@@ -19,7 +18,7 @@
   gap: 24px;
 
   width: 100%;
-  margin-top: 27px;
+  margin-top: 0;
 }
 
 .buttonWrapper {
@@ -28,17 +27,20 @@
   align-items: center;
   justify-content: center;
 
-  width: 82%;
-  margin-top: 60px;
+  width:103%;
+  margin-top: 48px;
 
 }
 
 .description {
-  margin-top: 20px;
+  margin-top: 24px;
   color:var(--color-light-900)
 }
 
 .SignIn {
+  margin-top: 23px;
+  margin-bottom: 16px;
+
   font-size: 16px;
   font-weight: 700;
   font-style: normal;

@@ -49,14 +49,12 @@ export const SignUp: FC<SignUpTypes> = ({ onSubmit }) => {
         </div>
 
         <div className={s.buttonWrapper}>
-          <Button fullWidth={true} className={s.signUpButton}>
-            Sign Up
-          </Button>
+          <Button fullWidth={true}>Sign Up</Button>
           <Typography variant={'body2'} className={s.description}>
             Already have an account?
           </Typography>
           <Typography variant={'link2'} as={Link} to={'/sign-in'}>
-            <p className={s.SignIn}>Sign In</p>
+            <div className={s.SignIn}>Sign In</div>
           </Typography>
         </div>
       </Card>
