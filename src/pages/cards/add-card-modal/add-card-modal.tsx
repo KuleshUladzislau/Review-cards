@@ -53,18 +53,22 @@ const AddCardModal = (
         validatePhotoHelper
     } = useAddCardValidate()
 
-    const onSubmitHandler = (data:AddCardValuesForm)=>{
+
+
+
+    const onSubmitHandler  = (data:AddCardValuesForm)=>{
 
         const formData = new FormData()
-        formData.append('question',data.question)
-        formData.append('answer',data.answer)
-        questionImg && formData.append('questionImg',questionImg)
-        answerImg && formData.append('answerImg',answerImg)
-        createCard({id:deckId,body:formData})
+        formData.append('question', data.question)
+        formData.append('answer', data.answer)
+        questionImg && formData.append('questionImg', questionImg)
+        answerImg && formData.append('answerImg', answerImg)
+        createCard({id: deckId, body: formData})
         setOpen(false)
         reset()
-
     }
+
+
 
 
 
