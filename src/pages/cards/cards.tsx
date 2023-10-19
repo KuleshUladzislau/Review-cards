@@ -29,6 +29,7 @@ import {
   selectPageSizeOptions,
 } from '@/services/decks/selectors.ts'
 import { useAppDispatch, useAppSelector } from '@/services/hooks.ts'
+import AddCardModal from "@/pages/cards/add-card-modal/add-card-modal.tsx";
 
 const columns = [
   {
@@ -156,6 +157,7 @@ export const Cards = () => {
           <Button variant={'primary'}>Add New Card</Button>
         </div>
       )}
+      <AddCardModal open={addCardModal} setOpen={setAddCardModal}/>
     </div>
   )
 }
