@@ -12,7 +12,11 @@
   margin-bottom: 45px;
   text-align: center;
 }
-
+.questionImg{
+  width: 350px;
+  height: 120px;
+  object-fit: cover;
+}
 .question {
   align-items: flex-start;
 }
