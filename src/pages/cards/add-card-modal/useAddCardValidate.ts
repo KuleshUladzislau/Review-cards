@@ -6,8 +6,15 @@ import {toast} from "react-toastify";
 export type AddCardValuesForm = z.infer<typeof useAddCardSchema>
 
 const useAddCardSchema = z.object({
-    question:z.string().nonempty('field is required'),
-    answer:z.string().nonempty('field is required')
+    question:z.string().nonempty(),
+    answer:z.string().nonempty()
+}).refine((arg)=>{
+    if(!arg.answer && !arg.question){
+        toast.error('add text question and answer')
+    }else {
+        toast.success('card has been added')
+        return true
+    }
 })
 
 
