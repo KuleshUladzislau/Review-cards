@@ -1,11 +1,11 @@
-import s from './radioButton.module.scss'
+
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import { clsx } from 'clsx'
 
 import { Typography } from '@/components/ui/typography'
-
+import s from './radioButton.module.scss'
 type Options = {
   title: string
   value: string

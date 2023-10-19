@@ -2,10 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { EditeProfile } from './editeProfile.tsx'
 
+
 const meta = {
   title: 'Auth/EditeProfile',
   component: EditeProfile,
   tags: ['autodocs'],
+
 } satisfies Meta<typeof EditeProfile>
 
 export default meta

@@ -1,3 +1,7 @@
+.label{
+  color:var(--dark-100, #808080);
+}
+
 .trigger {
   cursor: pointer;
 
@@ -22,6 +26,14 @@
   &[data-state='closed'] .icon {
     transition: all 0.3s ease-in-out;
   }
+
+
+
+}
+
+.value{
+  margin-left: 6px;
+  margin-right: 6px;
 }
 
 .trigger:focus {
@@ -42,11 +54,11 @@
   width: var(--radix-select-trigger-width);
 
   text-transform: capitalize;
-
   border: 1px solid var(--dark-300, #4c4c4c);
   border-top: none;
-
+  background: black;
   animation: fadeIn 0.5s ease;
+  z-index: 4;
 }
 
 .item {
@@ -56,7 +68,7 @@
   align-items: center;
 
   height: 36px;
-  padding: 10px;
+  padding: 12px;
 }
 
 .item:focus {
@@ -69,7 +81,7 @@
 
 .icon {
   display: flex;
-  margin-left: 10px;
+
 }
 
 @keyframes fadeIn {
