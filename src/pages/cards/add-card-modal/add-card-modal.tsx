@@ -23,7 +23,7 @@ type AddCardProps = {
 
 type FormatType = 'Text'|'Picture'
 
-const AddCardModal = (
+export const AddCardModal = (
     {
         open,
         setOpen,
