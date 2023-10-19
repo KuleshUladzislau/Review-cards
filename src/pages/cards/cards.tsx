@@ -109,41 +109,52 @@ export const Cards = () => {
           />
         </div>
       </div>
-
-      <Table>
-        <TableHead columns={columns} sort={sort} setSort={setSort} />
-        <TBody>
-          {data?.items.map(item => {
-            return (
-              <TRow key={item.id}>
-                <TCell>{item.question}</TCell>
-                <TCell>{item.answer}</TCell>
-                <TCell>{new Date(item.updated).toLocaleDateString()}</TCell>
-                <TCell>
-                  <Raiting grade={item.grade} />
-                </TCell>
-                <TCell>
-                  {meData?.id === deck?.userId && (
-                    <div className={s.tableButtonsWrap}>
-                      <Edit className={s.tableButton} />
-                      <Delete className={s.tableButton} />
-                    </div>
-                  )}
-                </TCell>
-              </TRow>
-            )
-          })}
-        </TBody>
-      </Table>
-      <Pagination
-        totalCount={data?.pagination.totalItems}
-        currentPage={currentPage}
-        pageSize={Number(itemsPerPage.value)}
-        onPageSizeChange={pageSizeChangeHandler}
-        onCurrentPageChange={currentPageChangeHandler}
-        options={pageSizeOptions}
-        portionValue={itemsPerPage.value.toString()}
-      />
+      {data?.items.length !== 0 && (
+        <>
+          <Table>
+            <TableHead columns={columns} sort={sort} setSort={setSort} />
+            <TBody>
+              {data?.items.map(item => {
+                return (
+                  <TRow key={item.id}>
+                    <TCell>{item.question}</TCell>
+                    <TCell>{item.answer}</TCell>
+                    <TCell>{new Date(item.updated).toLocaleDateString()}</TCell>
+                    <TCell>
+                      <Raiting grade={item.grade} />
+                    </TCell>
+                    <TCell>
+                      {meData?.id === deck?.userId && (
+                        <div className={s.tableButtonsWrap}>
+                          <Edit className={s.tableButton} />
+                          <Delete className={s.tableButton} />
+                        </div>
+                      )}
+                    </TCell>
+                  </TRow>
+                )
+              })}
+            </TBody>
+          </Table>
+          <Pagination
+            totalCount={data?.pagination.totalItems}
+            currentPage={currentPage}
+            pageSize={Number(itemsPerPage.value)}
+            onPageSizeChange={pageSizeChangeHandler}
+            onCurrentPageChange={currentPageChangeHandler}
+            options={pageSizeOptions}
+            portionValue={itemsPerPage.value.toString()}
+          />
+        </>
+      )}
+      {data?.items.length === 0 && meData?.id === deck?.userId && (
+        <div className={c.addCardsWrapper}>
+          <Typography variant={'body2'}>
+            This pack is empty. Click add new card to fill this pack
+          </Typography>
+          <Button variant={'primary'}>Add New Card</Button>
+        </div>
+      )}
     </div>
   )
 }
