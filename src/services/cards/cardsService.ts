@@ -8,8 +8,8 @@ export const cardsService = baseApi.injectEndpoints({
         url: `/v1/decks/${id}/cards`,
         method: 'GET',
         params: { question, currentPage, itemsPerPage },
-        providesTags: ['Cards'],
       }),
+      providesTags: ['Cards'],
     }),
     getDeckById: builder.query<getDeckByIdResponse, any>({
       query: ({ id }) => ({
