@@ -8,11 +8,10 @@ import { SignUpPage } from '@/pages/auth/sign-up-page'
 import { Cards } from '@/pages/cards'
 import { Decks } from '@/pages/decks'
 import { Layout } from '@/pages/Layout/layout.tsx'
+import { LearnCardsPage } from '@/pages/learn-cards-page/learn-cards-page.tsx'
 import { PageNotFound } from '@/pages/page-not-found'
 import { Profile } from '@/pages/profile/profile.tsx'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
-import { LearnCardsPage } from '@/pages/learn-cards-page/learn-cards-page.tsx'
-
 
 function PrivateRoutes() {
   const { data, isLoading } = useGetMeQuery()

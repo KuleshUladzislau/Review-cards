@@ -2,11 +2,10 @@ import { Button, Card, Page, Typography } from '@/components/ui'
 import s from './LearnCardsPage.module.scss'
 import { useState } from 'react'
 import { AnswerPage } from '@/pages/learn-cards-page/answer-page/answer-page.tsx'
-import {useLocation, useParams} from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { useGetCardQuery } from '@/services/learnCards/learn-cards-service.ts'
 
 export const LearnCardsPage = () => {
-
   const params = useParams()
   const location = useLocation()
 
@@ -16,7 +15,6 @@ export const LearnCardsPage = () => {
   const showAnswerHandler = () => setShowAnswer(true)
 
   const decksName = location.state.decksName
-
 
   return (
     <Page>

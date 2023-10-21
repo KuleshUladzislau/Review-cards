@@ -28,7 +28,13 @@ export const FilePicker = ({ setCover }: FilePickerProps) => {
       <Button onClick={pickHandler} type={'button'} className={s.coverButton} variant={'secondary'}>
         <ChangeCover /> Change Cover
       </Button>
-      <input ref={fileRef} className={s.hidden} onChange={uploadHandler} type={'file'}  accept={'image/*,'}/>
+      <input
+        ref={fileRef}
+        className={s.hidden}
+        onChange={uploadHandler}
+        type={'file'}
+        accept={'image/*,'}
+      />
     </div>
   )
 }
