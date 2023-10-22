@@ -4,16 +4,17 @@ import { toast } from 'react-toastify'
 import s from './tableIcons.module.scss'
 
 import { Edit, Play } from '@/assets'
-import { DeleteModalMutation } from '@/pages/decks/deleteDeckModal/deleteModalMutation.tsx'
+import { DeleteModalMutation } from '../../deleteDeckModal/deleteModalMutation.tsx'
 import { useDeleteDeckMutation } from '@/services/decks'
 
 type TableIconsProps = {
   cardsCount: number
   id: string
   name: string
+  isMeDecks?:boolean
 }
 
-export const TableIcons = ({ cardsCount, name, id }: TableIconsProps) => {
+export const TableIcons = ({ cardsCount, name, id ,isMeDecks}: TableIconsProps) => {
   const navigate = useNavigate()
 
   const [deleteDeck] = useDeleteDeckMutation()
@@ -34,14 +35,14 @@ export const TableIcons = ({ cardsCount, name, id }: TableIconsProps) => {
   return (
     <div className={s.tableButtonsWrap}>
       <Play className={s.tableButton} onClick={() => onLearnHandler(id, name)} />
-      <Edit className={s.tableButton} />
-      <DeleteModalMutation
+      {isMeDecks && <Edit className={s.tableButton}/>}
+      {isMeDecks && <DeleteModalMutation
           deleteItem={deleteDeckHandler}
           itemName={name}
           id={id}
           titleForModal={'Delete Deck'}
           buttonName={'Delete Deck'}
-      />
+      />}
     </div>
   )
 }

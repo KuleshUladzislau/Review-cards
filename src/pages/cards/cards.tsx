@@ -26,8 +26,8 @@ import {
   selectPageSizeOptions,
 } from '@/services/decks/selectors.ts'
 import { useAppDispatch, useAppSelector } from '@/services/hooks.ts'
-import AddCardModal from '@/pages/cards/add-card-modal/add-card-modal.tsx'
-import { CardsTable } from '@/pages/cards/cardsTable/cards-table.tsx'
+import AddCardModal from './add-card-modal/add-card-modal.tsx'
+import { CardsTable } from './cardsTable/cards-table.tsx'
 
 export const Cards = () => {
   const currentPage = useAppSelector(selectCurrentPage)
