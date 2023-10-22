@@ -1,19 +1,16 @@
-import {ChangeEvent, useRef} from 'react'
+import { ChangeEvent, useRef } from 'react'
 
 import s from './filePicker.module.scss'
 
 import ChangeCover from '@/assets/icons/ChangeCover.tsx'
-import {Button} from '@/components/ui'
+import { Button } from '@/components/ui'
 
-
-
-
-type FilePickerProps  = {
+type FilePickerProps = {
   setCover: (cover: File) => void
-  className?:string
+  className?: string
 }
 
-export const FilePicker = ({ setCover,className } :FilePickerProps) => {
+export const FilePicker = ({ setCover, className }: FilePickerProps) => {
   const fileRef = useRef<HTMLInputElement>(null)
 
   const pickHandler = () => {
@@ -32,11 +29,13 @@ export const FilePicker = ({ setCover,className } :FilePickerProps) => {
       <Button onClick={pickHandler} type={'button'} className={s.coverButton} variant={'secondary'}>
         <ChangeCover /> Change Cover
       </Button>
-      <input ref={fileRef} className={s.hidden} onChange={uploadHandler} type={'file'}  accept={'image/*,'}/>
+      <input
+        ref={fileRef}
+        className={s.hidden}
+        onChange={uploadHandler}
+        type={'file'}
+        accept={'image/*,'}
+      />
     </div>
   )
 }
-
-
-
-

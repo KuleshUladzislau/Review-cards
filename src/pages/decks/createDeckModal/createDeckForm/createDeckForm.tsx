@@ -35,7 +35,6 @@ export const CreateDeckForm = ({ setOpen }: CreateDeckFormProps) => {
   const imageUrl = cover ? URL.createObjectURL(cover) : 'https://placehold.co/484x119'
 
   const onSubmitHandler = (data: CreateDeckValuesForm) => {
-
     const { name, isPrivate } = data
     const formData = new FormData()
 
@@ -51,7 +50,7 @@ export const CreateDeckForm = ({ setOpen }: CreateDeckFormProps) => {
     <form className={s.formWrapper} onSubmit={handleSubmit(onSubmitHandler)}>
       <div className={s.content}>
         <img className={s.cover} src={imageUrl} alt={'cover'} />
-        <FilePicker setCover={setCover}  />
+        <FilePicker setCover={setCover} />
         <ControlledTextField
           control={control}
           name={'name'}

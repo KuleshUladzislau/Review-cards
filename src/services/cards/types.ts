@@ -31,7 +31,7 @@ export type GetCardsRequest = {
   itemsPerPage?: number
 }
 
-export type getDeckByIdResponse = {
+export type GetDeckByIdResponse = {
   id: string
   userId: string
   name: string

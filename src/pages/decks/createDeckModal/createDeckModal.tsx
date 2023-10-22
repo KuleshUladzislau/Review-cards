@@ -8,8 +8,6 @@ type CreateDeckModalProps = {}
 export const CreateDeckModal = ({}: CreateDeckModalProps) => {
   const [open, setOpen] = useState(false)
 
-
-
   return (
     <>
       <Button onClick={() => setOpen(true)}>Add New Deck</Button>
