@@ -1,27 +1,24 @@
 import { useState } from 'react'
 
-import {NavLink, useNavigate, useParams} from 'react-router-dom'
+import { NavLink, useNavigate, useParams } from 'react-router-dom'
 
 import c from './cards.module.scss'
 
-import {Delete, DropdownMenu, Edit, Play} from '@/assets'
+import { Delete, DropdownMenu, Edit, Play } from '@/assets'
 import LeftArrowDirection from '@/assets/icons/LeftArrowDirection.tsx'
 import { useDebounce } from '@/common/hooks/useDebounce.ts'
 import {
-  Button, CustomDropdown, CustomDropdownItemWithIcon,
+  Button,
+  CustomDropdown,
+  CustomDropdownItemWithIcon,
   Pagination,
-  Table,
-  TableHead,
-  TBody,
-  TCell,
   Textfield,
-  TRow,
   Typography,
 } from '@/components/ui'
-import { Raiting } from '@/components/ui/raiting/raiting.tsx'
+
 import s from '@/pages/decks/decks.module.scss'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
-import {useAddCardMutation, useGetCardsQuery, useGetDeckByIdQuery} from '@/services/cards'
+import { useAddCardMutation, useGetCardsQuery, useGetDeckByIdQuery } from '@/services/cards'
 import { setCurrentPage, setPageSize } from '@/services/cards/cardsSlice.ts'
 import {
   selectCurrentPage,
@@ -29,49 +26,26 @@ import {
   selectPageSizeOptions,
 } from '@/services/decks/selectors.ts'
 import { useAppDispatch, useAppSelector } from '@/services/hooks.ts'
-import AddCardModal from "@/pages/cards/add-card-modal/add-card-modal.tsx";
-
-
-
-const columns = [
-  {
-    key: 'question',
-    title: 'Question',
-  },
-  {
-    key: 'answer',
-    title: 'Answer',
-  },
-  {
-    key: 'updated',
-    title: 'Last Updated',
-  },
-  {
-    key: 'grade',
-    title: 'Grade',
-  },
-]
+import AddCardModal from '@/pages/cards/add-card-modal/add-card-modal.tsx'
+import { CardsTable } from '@/pages/cards/cardsTable/cards-table.tsx'
 
 export const Cards = () => {
   const currentPage = useAppSelector(selectCurrentPage)
   const pageSizeOptions = useAppSelector(selectPageSizeOptions)
   const itemsPerPage = useAppSelector(selectItemsPerPage)
 
-
-
   const [searchName, setSearchName] = useState<string>('')
   const dispatch = useAppDispatch()
 
-  const [sort, setSort] = useState<any>(null)
   const { id } = useParams()
 
   const newSearchName = useDebounce(searchName, 500)
 
   const { data: deck } = useGetDeckByIdQuery({ id })
   const { data: meData } = useGetMeQuery()
-  const [addCardModal,setAddCardModal] = useState(false)
 
-  const onAddCardHandler = (open:boolean) => setAddCardModal(open)
+  const [addCardModal, setAddCardModal] = useState(false)
+  const onAddCardHandler = () => setAddCardModal(true)
   const onSearchByNameHandler = (value: string) => setSearchName(value)
 
   const currentPageChangeHandler = (page: number | string) => {
@@ -92,80 +66,53 @@ export const Cards = () => {
   const [createCard] = useAddCardMutation()
 
   const navigate = useNavigate()
-  const onLearnHandler = () =>{
-    navigate(`/decks/learn/${deck?.id}`,{state:{ decksName: deck?.name}})
+  const onLearnHandler = () => {
+    navigate(`/decks/learn/${deck?.id}`, { state: { decksName: deck?.name } })
   }
 
-  const createCardHandler = (data:FormData) =>{
-      createCard({id,body:data})
+  const createCardHandler = (data: FormData) => {
+    createCard({ id, body: data })
   }
 
-
-
-
+  const isMeCards = meData?.id === deck?.userId
+  const isEmptyDecks = data?.items.length === 0
 
   return (
     <div className={s.wrapper}>
       <NavLink to={'/'} className={c.navLinkStyle}>
         <LeftArrowDirection />
-        {'Back to Packs List '}
+        Back to Packs List
       </NavLink>
       <div className={s.headWrap}>
         <Typography variant={'large'} as={'div'}>
           {deck?.name}
-          <CustomDropdown trigger={<DropdownMenu/>} align={"end"}>
-            <CustomDropdownItemWithIcon title={'Learn'} icon={<Play />} onClick={onLearnHandler}/>
+          <CustomDropdown trigger={<DropdownMenu />} align={'end'}>
+            <CustomDropdownItemWithIcon title={'Learn'} icon={<Play />} onClick={onLearnHandler} />
             <CustomDropdownItemWithIcon title={'Edit'} icon={<Edit />} />
             <CustomDropdownItemWithIcon title={'Delete'} icon={<Delete />} />
           </CustomDropdown>
         </Typography>
-        {meData?.id !== deck?.userId ? (
-          <Button onClick={onLearnHandler}>Learn to Pack</Button>
-        ) : (
-          <Button onClick={()=>onAddCardHandler(true)}>Add New Card</Button>
-        )}
+        {!isMeCards && <Button onClick={onLearnHandler}>Learn to Pack</Button>}
+        {isMeCards && !isEmptyDecks && <Button onClick={onAddCardHandler}>Add New Card</Button>}
       </div>
       <div className={s.settingsWrap}>
         <div className={`${c.TextFieldFullWith}`}>
           {/*подправить стиль инпута на full width*/}
-          <Textfield
-            value={searchName}
-            search
-            type={'search'}
-            placeholder={'Input search'}
-            className={s.searchInput}
-            onValueChange={onSearchByNameHandler}
-          />
+          {!isEmptyDecks && <Textfield
+              value={searchName}
+              search
+              type={'search'}
+              placeholder={'Input search'}
+              className={s.searchInput}
+              onValueChange={onSearchByNameHandler}
+          />}
         </div>
       </div>
-      {data?.items.length !== 0 && (
-        <>
-          <Table>
-            <TableHead columns={columns} sort={sort} setSort={setSort} />
-            <TBody>
-              {data?.items.map(item => {
-                return (
-                  <TRow key={item.id}>
-                    <TCell>{item.question}</TCell>
-                    <TCell>{item.answer}</TCell>
-                    <TCell>{new Date(item.updated).toLocaleDateString()}</TCell>
-                    <TCell>
-                      <Raiting grade={item.grade} />
-                    </TCell>
-                    <TCell>
-                      {meData?.id === deck?.userId && (
-                        <div className={s.tableButtonsWrap}>
-                          <Edit className={s.tableButton}  />
-                          <Delete className={s.tableButton} />
-                        </div>
-                      )}
-                    </TCell>
-                  </TRow>
-                )
-              })}
-            </TBody>
-          </Table>
-          <Pagination
+
+
+      {!isEmptyDecks && <>
+        <CardsTable isMeCards={isMeCards} data={data}/>
+        <Pagination
             totalCount={data?.pagination.totalItems}
             currentPage={currentPage}
             pageSize={Number(itemsPerPage.value)}
@@ -173,18 +120,19 @@ export const Cards = () => {
             onCurrentPageChange={currentPageChangeHandler}
             options={pageSizeOptions}
             portionValue={itemsPerPage.value.toString()}
-          />
-        </>
-      )}
-      {data?.items.length === 0 && meData?.id === deck?.userId && (
+        />
+      </>}
+
+
+      {isEmptyDecks && isMeCards && (
         <div className={c.addCardsWrapper}>
           <Typography variant={'body2'}>
             This pack is empty. Click add new card to fill this pack
           </Typography>
-          <Button variant={'primary'}>Add New Card</Button>
+          <Button variant={'primary'} onClick={onAddCardHandler}>Add New Card</Button>
         </div>
       )}
-      <AddCardModal open={addCardModal} setOpen={setAddCardModal} onSubmit={createCardHandler}/>
+      <AddCardModal open={addCardModal} setOpen={setAddCardModal} onSubmit={createCardHandler} />
     </div>
   )
 }

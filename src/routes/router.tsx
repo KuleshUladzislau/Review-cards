@@ -13,7 +13,6 @@ import { Profile } from '@/pages/profile/profile.tsx'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
 import { LearnCardsPage } from '@/pages/learn-cards-page/learn-cards-page.tsx'
 
-
 function PrivateRoutes() {
   const { data, isLoading } = useGetMeQuery()
 

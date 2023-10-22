@@ -1,7 +1,7 @@
 export type AnswerPageProps = {
-    answer?: string
-    cardId?: string
-    decksId?: string
-    showAnswer: (value: boolean) => void
-    answerImg?:string | null
+  answer?: string
+  cardId?: string
+  decksId?: string
+  showAnswer: (value: boolean) => void
+  answerImg?: string | null
 }
