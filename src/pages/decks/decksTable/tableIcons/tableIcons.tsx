@@ -29,6 +29,8 @@ export const TableIcons = ({ cardsCount, name, id }: TableIconsProps) => {
     deleteDeck({ id })
   }
 
+  const editDeckHandler = (id: string) => {}
+
   return (
     <div className={s.tableButtonsWrap}>
       <Play className={s.tableButton} onClick={() => onLearnHandler(id, name)} />

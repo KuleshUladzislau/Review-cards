@@ -1,5 +1,6 @@
 import { baseApi } from '@/services/baseApi.ts'
 import {
+  CreateDeckRequest,
   DeleteDeckParamsType,
   GetDecksDataItems,
   GetDecksRequest,
@@ -27,7 +28,7 @@ export const decksService = baseApi.injectEndpoints({
       },
       invalidatesTags: ['Decks'],
     }),
-    deleteDeck: builder.mutation<any, DeleteDeckParamsType>({
+    deleteDeck: builder.mutation<void, DeleteDeckParamsType>({
       query: ({ id }) => {
         return {
           url: `/v1/decks/${id}`,
@@ -35,6 +36,15 @@ export const decksService = baseApi.injectEndpoints({
         }
       },
       invalidatesTags: ['Decks'],
+    }),
+    editDeck: builder.mutation<GetDecksDataItems, { id: string; body: CreateDeckRequest }>({
+      query: ({ id, body }) => {
+        return {
+          url: `/v1/decks/${id}`,
+          method: 'PATCH',
+          body,
+        }
+      },
     }),
   }),
 })
