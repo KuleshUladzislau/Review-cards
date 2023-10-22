@@ -44,4 +44,3 @@ export type CreateDeckRequest = {
 }
 
 export type DeleteDeckParamsType = Pick<GetDecksDataItems, 'id'>
-

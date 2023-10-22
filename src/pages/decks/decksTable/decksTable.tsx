@@ -12,10 +12,10 @@ type DecksTableProps = {
   data: GetDecksResponse | undefined
   sort?: Sort
   setSort: (sort: Sort) => void
-  meDecks?:string
+  meDecks?: string
 }
 
-export const DecksTable = ({ data, setSort, sort,meDecks }: DecksTableProps) => {
+export const DecksTable = ({ data, setSort, sort, meDecks }: DecksTableProps) => {
   const navigate = useNavigate()
   const onNavigateHandler = (id: string) => {
     navigate(`/cards/${id}`)
@@ -36,12 +36,7 @@ export const DecksTable = ({ data, setSort, sort,meDecks }: DecksTableProps) => 
               <TCell>{new Date(item.updated).toLocaleDateString()}</TCell>
               <TCell>{item.author.name}</TCell>
               <TCell>
-                <TableIcons
-                    cardsCount={item.cardsCount}
-                    name={item.name}
-                    id={item.id}
-                    isMeDecks={item.userId === meDecks}
-                />
+                <TableIcons deck={item} isMeDecks={item.userId === meDecks} />
               </TCell>
             </TRow>
           )
