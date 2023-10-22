@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { NavLink, useParams } from 'react-router-dom'
+import {NavLink, useNavigate, useParams} from 'react-router-dom'
 
 import c from './cards.module.scss'
 
@@ -31,6 +31,7 @@ import {
 import { useAppDispatch, useAppSelector } from '@/services/hooks.ts'
 import AddCardModal from "@/pages/cards/add-card-modal/add-card-modal.tsx";
 
+
 const columns = [
   {
     key: 'question',
@@ -54,6 +55,8 @@ export const Cards = () => {
   const currentPage = useAppSelector(selectCurrentPage)
   const pageSizeOptions = useAppSelector(selectPageSizeOptions)
   const itemsPerPage = useAppSelector(selectItemsPerPage)
+
+
 
   const [searchName, setSearchName] = useState<string>('')
   const dispatch = useAppDispatch()
@@ -84,6 +87,14 @@ export const Cards = () => {
     id: id,
   })
 
+  console.log(deck?.id)
+
+  const navigate = useNavigate()
+  const onLearnHandler = () =>{
+    navigate(`/decks/learn/${deck?.id}`,{state:{ decksName: deck?.name}})
+  }
+
+
   return (
     <div className={s.wrapper}>
       <NavLink to={'/'} className={c.navLinkStyle}>
@@ -93,7 +104,7 @@ export const Cards = () => {
       <div className={s.headWrap}>
         <Typography variant={'large'}>{deck?.name}</Typography>
         {meData?.id !== deck?.userId ? (
-          <Button>Learn to Pack</Button>
+          <Button onClick={onLearnHandler}>Learn to Pack</Button>
         ) : (
           <Button onClick={()=>onAddCardHandler(true)}>Add New Card</Button>
         )}
