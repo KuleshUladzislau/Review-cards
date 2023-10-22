@@ -19,6 +19,7 @@ type AddCardProps = {
     deckId?:string
     open:boolean,
     setOpen:(open:boolean)=>void
+    onSubmit?:()=>void
 }
 
 type FormatType = 'Text'|'Picture'

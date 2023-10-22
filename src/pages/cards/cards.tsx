@@ -4,11 +4,11 @@ import {NavLink, useNavigate, useParams} from 'react-router-dom'
 
 import c from './cards.module.scss'
 
-import { Delete, Edit } from '@/assets'
+import {Delete, DropdownMenu, Edit, Play} from '@/assets'
 import LeftArrowDirection from '@/assets/icons/LeftArrowDirection.tsx'
 import { useDebounce } from '@/common/hooks/useDebounce.ts'
 import {
-  Button,
+  Button, CustomDropdown, CustomDropdownItemWithIcon,
   Pagination,
   Table,
   TableHead,
@@ -87,7 +87,7 @@ export const Cards = () => {
     id: id,
   })
 
-  console.log(deck?.id)
+
 
   const navigate = useNavigate()
   const onLearnHandler = () =>{
@@ -102,7 +102,14 @@ export const Cards = () => {
         {'Back to Packs List '}
       </NavLink>
       <div className={s.headWrap}>
-        <Typography variant={'large'}>{deck?.name}</Typography>
+        <Typography variant={'large'} as={'div'}>
+          {deck?.name}
+          <CustomDropdown trigger={<DropdownMenu/>} align={"end"}>
+            <CustomDropdownItemWithIcon title={'Learn'} icon={<Play />} onClick={onLearnHandler}/>
+            <CustomDropdownItemWithIcon title={'Edit'} icon={<Edit />} />
+            <CustomDropdownItemWithIcon title={'Delete'} icon={<Delete />} />
+          </CustomDropdown>
+        </Typography>
         {meData?.id !== deck?.userId ? (
           <Button onClick={onLearnHandler}>Learn to Pack</Button>
         ) : (
@@ -168,7 +175,7 @@ export const Cards = () => {
           <Button variant={'primary'}>Add New Card</Button>
         </div>
       )}
-      <AddCardModal open={addCardModal} setOpen={setAddCardModal}/>
+      <AddCardModal open={addCardModal} setOpen={setAddCardModal} deckId={id}/>
     </div>
   )
 }

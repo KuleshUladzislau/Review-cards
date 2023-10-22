@@ -20,7 +20,7 @@ export const authService = baseApi.injectEndpoints({
       providesTags: ['Auth'],
       extraOptions: { maxRetries: 1 },
     }),
-    signUp: builder.mutation<any, CreateNewAccount>({
+    signUp: builder.mutation<void, CreateNewAccount>({
       query: ({ email, password }) => ({
         url: '/v1/auth/sign-up',
         method: 'POST',
