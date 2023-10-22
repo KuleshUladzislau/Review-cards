@@ -26,9 +26,10 @@ export const Default = {
     render:()=>{
         const [open,setOpen] = useState(true)
         const openModalHandler = ()=> setOpen(!open)
+
         return (
         <>
-            <AddCardModal open={open} setOpen={openModalHandler}/>
+            <AddCardModal open={open} setOpen={openModalHandler} onSubmit={()=>{}}/>
             <Button onClick={openModalHandler}>AddNewCard</Button>
         </>
         )

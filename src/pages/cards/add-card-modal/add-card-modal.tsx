@@ -7,7 +7,7 @@ import {useState} from "react";
 
 
 import s from './addCard.module.scss'
-import {useAddCardMutation} from "@/services/cards";
+
 
 import {AddCardValuesForm, useAddCardValidate} from "./useAddCardValidate.ts";
 
@@ -16,10 +16,10 @@ import {AddCardValuesForm, useAddCardValidate} from "./useAddCardValidate.ts";
 
 
 type AddCardProps = {
-    deckId?:string
+    itemId?:string
     open:boolean,
     setOpen:(open:boolean)=>void
-    onSubmit?:()=>void
+    onSubmit:(data:FormData,itemId?:string)=>void
 }
 
 type FormatType = 'Text'|'Picture'
@@ -28,7 +28,8 @@ export const AddCardModal = (
     {
         open,
         setOpen,
-        deckId
+        itemId,
+        onSubmit
     }:AddCardProps
 ) => {
 
@@ -42,7 +43,7 @@ export const AddCardModal = (
     const [questionImg,setQuestionImg] = useState<File>()
     const [answerImg,setAnswerImg] = useState<File>()
 
-    const [createCard] = useAddCardMutation()
+
 
     const onChangeFormatHandler = (value:FormatType)=>setFormat(value)
 
@@ -64,7 +65,7 @@ export const AddCardModal = (
         formData.append('answer', data.answer)
         questionImg && formData.append('questionImg', questionImg)
         answerImg && formData.append('answerImg', answerImg)
-        createCard({id: deckId, body: formData})
+        onSubmit(formData,itemId)
         setOpen(false)
         reset()
     }
