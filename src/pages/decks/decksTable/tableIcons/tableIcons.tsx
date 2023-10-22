@@ -30,7 +30,7 @@ export const TableIcons = ({ cardsCount, name, id ,isMeDecks}: TableIconsProps) 
     deleteDeck({ id })
   }
 
-  const editDeckHandler = (id: string) => {}
+
 
   return (
     <div className={s.tableButtonsWrap}>
