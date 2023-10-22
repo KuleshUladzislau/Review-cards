@@ -1,51 +1,47 @@
-.formContainer{
+.formContainer {
   width: 542px;
   padding: 24px;
 }
-.modalStyle{
-
+.modalStyle {
 }
-.selectContainer{
+.selectContainer {
   display: flex;
   flex-direction: column;
-  gap:2px;
+  gap: 2px;
   width: 484px;
-
 }
 
-.select{
+.select {
   padding: 6px;
   margin-bottom: 24px;
   z-index: 100;
 }
-.inputContainer{
+.inputContainer {
   display: flex;
   flex-direction: column;
-  gap:2px;
+  gap: 2px;
   width: 484px;
   margin-bottom: 24px;
-
 }
 .lastInput {
   margin-bottom: 36px;
 }
-.buttonContainer{
+.buttonContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 484px;
   padding-bottom: 36px;
-
 }
 
-.imgContainer > img{
+.imgContainer > img {
   width: 484px;
   height: 119px;
   object-fit: cover;
 }
-.buttonFile{
+.buttonFile {
   width: 484px;
 }
-.answerContainer{
+.answerContainer {
   margin-bottom: 24px;
 }

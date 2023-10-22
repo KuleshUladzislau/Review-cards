@@ -7,7 +7,7 @@ import s from './select.module.scss'
 
 import Layer2 from '@/assets/icons/Layer2.tsx'
 
-import {Typography} from "@/components/ui";
+import { Typography } from '@/components/ui'
 
 //Изменил типы также как и в свитчере
 export type OptionsType = {
@@ -19,11 +19,10 @@ export type SelectProps = {
   options: OptionsType[]
   className?: string
   placeHolder?: string
-  label?:string
+  label?: string
 } & ComponentPropsWithoutRef<typeof Select.Root>
 
-export const SelectCustom =
-    forwardRef<ElementRef<typeof Select.Trigger>, SelectProps>(
+export const SelectCustom = forwardRef<ElementRef<typeof Select.Trigger>, SelectProps>(
   (
     {
       options,
@@ -53,11 +52,19 @@ export const SelectCustom =
         value={value}
         {...restProps}
       >
-        {label && <Typography className={s.label} as={'label'}>{label}</Typography>}
-        <Select.Trigger defaultValue={defaultValue} ref={ref} className={`${s.trigger} ${className}`}>
-            <div className={s.value}>
-                <Select.Value  placeholder={placeHolder} />
-            </div>
+        {label && (
+          <Typography className={s.label} as={'label'}>
+            {label}
+          </Typography>
+        )}
+        <Select.Trigger
+          defaultValue={defaultValue}
+          ref={ref}
+          className={`${s.trigger} ${className}`}
+        >
+          <div className={s.value}>
+            <Select.Value placeholder={placeHolder} />
+          </div>
           <Select.Icon className={s.icon}>
             <Layer2 />
           </Select.Icon>
@@ -65,9 +72,7 @@ export const SelectCustom =
         <Select.Portal>
           <Select.Content className={s.content} position="popper">
             <Select.Viewport>
-              <Select.Group>
-                {mappedOptions}
-              </Select.Group>
+              <Select.Group>{mappedOptions}</Select.Group>
               <Select.Separator />
             </Select.Viewport>
           </Select.Content>

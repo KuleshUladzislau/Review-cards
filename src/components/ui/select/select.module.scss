@@ -1,5 +1,5 @@
-.label{
-  color:var(--dark-100, #808080);
+.label {
+  color: var(--dark-100, #808080);
 }
 
 .trigger {
@@ -26,12 +26,9 @@
   &[data-state='closed'] .icon {
     transition: all 0.3s ease-in-out;
   }
-
-
-
 }
 
-.value{
+.value {
   margin-left: 6px;
   margin-right: 6px;
 }
@@ -81,7 +78,6 @@
 
 .icon {
   display: flex;
-
 }
 
 @keyframes fadeIn {

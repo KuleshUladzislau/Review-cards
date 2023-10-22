@@ -12,13 +12,13 @@ export const TableHead: FC<
     ComponentPropsWithoutRef<'thead'> & {
       columns: Column[]
       sort?: Sort
-      setSort: (sort: Sort) => void
+      setSort?: (sort: Sort) => void
     },
     'children'
   >
 > = ({ columns, sort, setSort, ...rest }) => {
   const changeSortHandler = (key: string) => {
-    if (sort && sort.key === key) {
+    if (setSort && sort && sort.key === key) {
       if (sort.direction === 'asc') {
         setSort({ key, direction: 'desc' })
       } else if (sort.direction === 'desc') {
@@ -27,7 +27,7 @@ export const TableHead: FC<
         setSort({ key, direction: 'asc' })
       }
     } else {
-      setSort({ key, direction: 'asc' })
+      setSort && setSort({ key, direction: 'asc' })
     }
   }
 

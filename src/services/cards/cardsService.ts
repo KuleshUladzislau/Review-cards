@@ -1,5 +1,5 @@
 import { baseApi } from '@/services/baseApi.ts'
-import { GetCardsResponse, getDeckByIdResponse } from '@/services/cards/types.ts'
+import { GetCardsResponse, GetDeckByIdResponse } from '@/services/cards/types.ts'
 
 export const cardsService = baseApi.injectEndpoints({
   endpoints: builder => ({
@@ -11,27 +11,34 @@ export const cardsService = baseApi.injectEndpoints({
       }),
       providesTags: ['Cards'],
     }),
-    getDeckById: builder.query<getDeckByIdResponse, any>({
+    getDeckById: builder.query<GetDeckByIdResponse, any>({
       query: ({ id }) => ({
         url: `/v1/decks/${id}`,
         method: 'GET',
       }),
     }),
-    addCard:builder.mutation<void,{id?:string,body:FormData}>({
-      query:({id,body})=>({
-        url:`/v1/decks/${id}/cards`,
-        method:'POST',
-        body:body,
+    addCard: builder.mutation<void, { id?: string; body: FormData }>({
+      query: ({ id, body }) => ({
+        url: `/v1/decks/${id}/cards`,
+        method: 'POST',
+        body: body,
       }),
-      invalidatesTags:['Cards']
+      invalidatesTags: ['Cards'],
     }),
-    editCard:builder.mutation<void,{id?:string,body:FormData}>({
-      query:({id,body})=>({
-        url:`/v1/cards/${id}`,
-        method:'POST',
-        body:body,
+    editCard: builder.mutation<void, { id?: string; body: FormData }>({
+      query: ({ id, body }) => ({
+        url: `/v1/cards/${id}`,
+        method: 'PATCH',
+        body: body,
       }),
-      invalidatesTags:['Cards']
+      invalidatesTags: ['Cards'],
+    }),
+    deleteCard: builder.mutation<void, { id: string }>({
+      query: ({ id}) => ({
+        url: `/v1/cards/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Cards'],
     }),
   }),
 })
@@ -40,5 +47,7 @@ export const {
   useGetCardsQuery,
   useGetDeckByIdQuery,
   useAddCardMutation,
-  useEditCardMutation
-} = cardsService
+  useEditCardMutation,
+  useDeleteCardMutation
+} =
+  cardsService
