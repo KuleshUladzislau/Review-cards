@@ -87,13 +87,11 @@ export const Decks = () => {
     setSort(null)
   }
 
-
-
   return (
     <div className={s.wrapper}>
       <div className={s.headWrap}>
         <Typography variant={'large'}>Decks</Typography>
-        <CreateDeckModal />
+        <CreateDeckModal buttonTitle={'Add New Deck'} />
       </div>
 
       <div className={s.settingsWrap}>
@@ -148,7 +146,7 @@ export const Decks = () => {
       {data?.items.length === 0 && (
         <div className={s.addDeckWrapper}>
           <Typography variant={'body2'}>This decks is Empty. Click add new pack </Typography>
-          <CreateDeckModal />
+          <CreateDeckModal buttonTitle={'Add New Deck'} />
         </div>
       )}
     </div>
