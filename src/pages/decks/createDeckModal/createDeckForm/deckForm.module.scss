@@ -1,4 +1,5 @@
 .formWrapper {
+
 }
 
 .content {
@@ -11,7 +12,9 @@
 .cover {
   width: 484px;
   height: 119px;
+  object-fit: cover;
 }
+
 
 .buttonsWrap {
   display: flex;

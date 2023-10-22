@@ -3,18 +3,19 @@ import { toast } from 'react-toastify'
 
 import s from './tableIcons.module.scss'
 
-import { Edit, Play } from '@/assets'
+import { Play } from '@/assets'
 import { DeleteModalMutation } from '../../deleteDeckModal/deleteModalMutation.tsx'
 import { useDeleteDeckMutation } from '@/services/decks'
+import { EditDeckModal } from '@/pages/decks/editDeckModal/editDeckModal.tsx'
+import { GetDecksDataItems } from '@/services/decks/types.ts'
 
 type TableIconsProps = {
-  cardsCount: number
-  id: string
-  name: string
-  isMeDecks?:boolean
+  deck: GetDecksDataItems
+  isMeDecks?: boolean
 }
 
-export const TableIcons = ({ cardsCount, name, id ,isMeDecks}: TableIconsProps) => {
+export const TableIcons = ({ deck, isMeDecks }: TableIconsProps) => {
+  const { name, cover, id, isPrivate, cardsCount } = deck
   const navigate = useNavigate()
 
   const [deleteDeck] = useDeleteDeckMutation()
@@ -30,19 +31,21 @@ export const TableIcons = ({ cardsCount, name, id ,isMeDecks}: TableIconsProps) 
     deleteDeck({ id })
   }
 
-
-
   return (
     <div className={s.tableButtonsWrap}>
       <Play className={s.tableButton} onClick={() => onLearnHandler(id, name)} />
-      {isMeDecks && <Edit className={s.tableButton}/>}
-      {isMeDecks && <DeleteModalMutation
+      {isMeDecks && (
+        <EditDeckModal buttonTitle={'Save Changes'} id={id} values={{ name, cover, isPrivate }} />
+      )}
+      {isMeDecks && (
+        <DeleteModalMutation
           deleteItem={deleteDeckHandler}
           itemName={name}
           id={id}
           titleForModal={'Delete Deck'}
           buttonName={'Delete Deck'}
-      />}
+        />
+      )}
     </div>
   )
 }
