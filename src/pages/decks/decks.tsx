@@ -87,6 +87,8 @@ export const Decks = () => {
     setSort(null)
   }
 
+
+
   return (
     <div className={s.wrapper}>
       <div className={s.headWrap}>
@@ -131,7 +133,7 @@ export const Decks = () => {
       </div>
       {data?.items.length !== 0 && (
         <>
-          <DecksTable data={data} sort={sort} setSort={setSort} />
+          <DecksTable data={data} sort={sort} setSort={setSort} meDecks={meData?.id} />
           <Pagination
             portionValue={itemsPerPage.value.toString()}
             totalCount={data?.pagination.totalItems}
