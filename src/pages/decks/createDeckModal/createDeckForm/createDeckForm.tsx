@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
@@ -13,13 +11,15 @@ import {
   createDeckSchema,
   CreateDeckValuesForm,
 } from '@/pages/decks/createDeckModal/createDeckForm/createDeckSchema.ts'
-import { useCreateDeckMutation } from '@/services/decks'
 
 type CreateDeckFormProps = {
+  cover: File | null
+  setCover: (file: File | null) => void
   setOpen: (open: boolean) => void
+  onSubmit: (data: CreateDeckValuesForm) => void
 }
 
-export const CreateDeckForm = ({ setOpen }: CreateDeckFormProps) => {
+export const CreateDeckForm = ({ setOpen, onSubmit , cover, setCover}: CreateDeckFormProps) => {
   const {
     handleSubmit,
     control,
@@ -29,25 +29,10 @@ export const CreateDeckForm = ({ setOpen }: CreateDeckFormProps) => {
     defaultValues: { name: '', isPrivate: false },
   })
 
-  const [cover, setCover] = useState<File | null>(null)
-  const [createDeck] = useCreateDeckMutation()
-
   const imageUrl = cover ? URL.createObjectURL(cover) : 'https://placehold.co/484x119'
 
-  const onSubmitHandler = (data: CreateDeckValuesForm) => {
-    const { name, isPrivate } = data
-    const formData = new FormData()
-
-    formData.append('name', name)
-    formData.append('isPrivate', String(isPrivate))
-    cover && formData.append('cover', cover)
-    createDeck(formData)
-
-    setOpen(false)
-  }
-
   return (
-    <form className={s.formWrapper} onSubmit={handleSubmit(onSubmitHandler)}>
+    <form className={s.formWrapper} onSubmit={handleSubmit(onSubmit)}>
       <div className={s.content}>
         <img className={s.cover} src={imageUrl} alt={'cover'} />
         <FilePicker setCover={setCover} />
