@@ -21,7 +21,7 @@ import {
 import { Raiting } from '@/components/ui/raiting/raiting.tsx'
 import s from '@/pages/decks/decks.module.scss'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
-import { useGetCardsQuery, useGetDeckByIdQuery } from '@/services/cards'
+import {useAddCardMutation, useGetCardsQuery, useGetDeckByIdQuery} from '@/services/cards'
 import { setCurrentPage, setPageSize } from '@/services/cards/cardsSlice.ts'
 import {
   selectCurrentPage,
@@ -30,6 +30,7 @@ import {
 } from '@/services/decks/selectors.ts'
 import { useAppDispatch, useAppSelector } from '@/services/hooks.ts'
 import AddCardModal from "@/pages/cards/add-card-modal/add-card-modal.tsx";
+
 
 
 const columns = [
@@ -69,6 +70,7 @@ export const Cards = () => {
   const { data: deck } = useGetDeckByIdQuery({ id })
   const { data: meData } = useGetMeQuery()
   const [addCardModal,setAddCardModal] = useState(false)
+
   const onAddCardHandler = (open:boolean) => setAddCardModal(open)
   const onSearchByNameHandler = (value: string) => setSearchName(value)
 
@@ -87,12 +89,19 @@ export const Cards = () => {
     id: id,
   })
 
-
+  const [createCard] = useAddCardMutation()
 
   const navigate = useNavigate()
   const onLearnHandler = () =>{
     navigate(`/decks/learn/${deck?.id}`,{state:{ decksName: deck?.name}})
   }
+
+  const createCardHandler = (data:FormData) =>{
+      createCard({id,body:data})
+  }
+
+
+
 
 
   return (
@@ -146,7 +155,7 @@ export const Cards = () => {
                     <TCell>
                       {meData?.id === deck?.userId && (
                         <div className={s.tableButtonsWrap}>
-                          <Edit className={s.tableButton} />
+                          <Edit className={s.tableButton}  />
                           <Delete className={s.tableButton} />
                         </div>
                       )}
@@ -175,7 +184,7 @@ export const Cards = () => {
           <Button variant={'primary'}>Add New Card</Button>
         </div>
       )}
-      <AddCardModal open={addCardModal} setOpen={setAddCardModal} deckId={id}/>
+      <AddCardModal open={addCardModal} setOpen={setAddCardModal} onSubmit={createCardHandler}/>
     </div>
   )
 }

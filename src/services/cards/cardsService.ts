@@ -24,12 +24,21 @@ export const cardsService = baseApi.injectEndpoints({
         body:body,
       }),
       invalidatesTags:['Cards']
-    })
+    }),
+    editCard:builder.mutation<void,{id?:string,body:FormData}>({
+      query:({id,body})=>({
+        url:`/v1/cards/${id}`,
+        method:'POST',
+        body:body,
+      }),
+      invalidatesTags:['Cards']
+    }),
   }),
 })
 
 export const {
   useGetCardsQuery,
   useGetDeckByIdQuery,
-  useAddCardMutation
+  useAddCardMutation,
+  useEditCardMutation
 } = cardsService
