@@ -2,10 +2,11 @@ import { useState } from 'react'
 
 import { NavLink, useParams } from 'react-router-dom'
 
-import c from './cards.module.scss'
+import cards from './cards.module.scss'
 
 import { Delete, Edit } from '@/assets'
 import LeftArrowDirection from '@/assets/icons/LeftArrowDirection.tsx'
+import Loader from '@/assets/loader/loader.tsx'
 import { useDebounce } from '@/common/hooks/useDebounce.ts'
 import {
   Button,
@@ -19,7 +20,6 @@ import {
   Typography,
 } from '@/components/ui'
 import { Raiting } from '@/components/ui/raiting/raiting.tsx'
-import s from '@/pages/decks/decks.module.scss'
 import { useGetMeQuery } from '@/services/auth/authService.ts'
 import { useGetCardsQuery, useGetDeckByIdQuery } from '@/services/cards'
 import { setCurrentPage, setPageSize } from '@/services/cards/cardsSlice.ts'
@@ -60,7 +60,7 @@ export const Cards = () => {
   const [sort, setSort] = useState<any>(null)
   const { id } = useParams()
 
-  const newSearchName = useDebounce(searchName, 500)
+  const newSearchName = useDebounce(searchName)
 
   const { data: deck } = useGetDeckByIdQuery({ id })
   const { data: meData } = useGetMeQuery()
@@ -75,7 +75,7 @@ export const Cards = () => {
     dispatch(setPageSize({ pageSize: pageSize.toString() }))
   }
 
-  const { data } = useGetCardsQuery({
+  const { data, isLoading } = useGetCardsQuery({
     currentPage,
     itemsPerPage: Number(itemsPerPage.value),
     question: newSearchName,
@@ -83,12 +83,12 @@ export const Cards = () => {
   })
 
   return (
-    <div className={s.wrapper}>
-      <NavLink to={'/'} className={c.navLinkStyle}>
+    <div className={cards.wrapper}>
+      <NavLink to={'/'} className={cards.navLinkStyle}>
         <LeftArrowDirection />
         {'Back to Packs List '}
       </NavLink>
-      <div className={s.headWrap}>
+      <div className={cards.headWrap}>
         <Typography variant={'large'}>{deck?.name}</Typography>
         {meData?.id !== deck?.userId ? (
           <Button>Learn to Pack</Button>
@@ -96,59 +96,62 @@ export const Cards = () => {
           <Button>Add New Card</Button>
         )}
       </div>
-      <div className={s.settingsWrap}>
-        <div className={`${c.TextFieldFullWith}`}>
-          {/*подправить стиль инпута на full width*/}
+      <div className={cards.settingsWrap}>
+        <div className={`${cards.TextFieldFullWith}`}>
           <Textfield
             value={searchName}
             search
             type={'search'}
             placeholder={'Input search'}
-            className={s.searchInput}
+            className={cards.searchInput}
             onValueChange={onSearchByNameHandler}
           />
         </div>
       </div>
-      {data?.items.length !== 0 && (
-        <>
-          <Table>
-            <TableHead columns={columns} sort={sort} setSort={setSort} />
-            <TBody>
-              {data?.items.map(item => {
-                return (
-                  <TRow key={item.id}>
-                    <TCell>{item.question}</TCell>
-                    <TCell>{item.answer}</TCell>
-                    <TCell>{new Date(item.updated).toLocaleDateString()}</TCell>
-                    <TCell>
-                      <Raiting grade={item.grade} />
-                    </TCell>
-                    <TCell>
-                      {meData?.id === deck?.userId && (
-                        <div className={s.tableButtonsWrap}>
-                          <Edit className={s.tableButton} />
-                          <Delete className={s.tableButton} />
-                        </div>
-                      )}
-                    </TCell>
-                  </TRow>
-                )
-              })}
-            </TBody>
-          </Table>
-          <Pagination
-            totalCount={data?.pagination.totalItems}
-            currentPage={currentPage}
-            pageSize={Number(itemsPerPage.value)}
-            onPageSizeChange={pageSizeChangeHandler}
-            onCurrentPageChange={currentPageChangeHandler}
-            options={pageSizeOptions}
-            portionValue={itemsPerPage.value.toString()}
-          />
-        </>
+      {isLoading ? (
+        <Loader className={cards.loaderWrapper} />
+      ) : (
+        data?.items.length !== 0 && (
+          <>
+            <Table>
+              <TableHead columns={columns} sort={sort} setSort={setSort} />
+              <TBody>
+                {data?.items.map(item => {
+                  return (
+                    <TRow key={item.id}>
+                      <TCell>{item.question}</TCell>
+                      <TCell>{item.answer}</TCell>
+                      <TCell>{new Date(item.updated).toLocaleDateString()}</TCell>
+                      <TCell>
+                        <Raiting grade={item.grade} />
+                      </TCell>
+                      <TCell>
+                        {meData?.id === deck?.userId && (
+                          <div className={cards.tableButtonsWrap}>
+                            <Edit className={cards.tableButton} />
+                            <Delete className={cards.tableButton} />
+                          </div>
+                        )}
+                      </TCell>
+                    </TRow>
+                  )
+                })}
+              </TBody>
+            </Table>
+            <Pagination
+              totalCount={data?.pagination.totalItems}
+              currentPage={currentPage}
+              pageSize={Number(itemsPerPage.value)}
+              onPageSizeChange={pageSizeChangeHandler}
+              onCurrentPageChange={currentPageChangeHandler}
+              options={pageSizeOptions}
+              portionValue={itemsPerPage.value.toString()}
+            />
+          </>
+        )
       )}
       {data?.items.length === 0 && meData?.id === deck?.userId && (
-        <div className={c.addCardsWrapper}>
+        <div className={cards.addCardsWrapper}>
           <Typography variant={'body2'}>
             This pack is empty. Click add new card to fill this pack
           </Typography>

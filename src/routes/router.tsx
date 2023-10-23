@@ -1,5 +1,6 @@
 import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom'
 
+import Loader from '@/assets/loader/loader.tsx'
 import { CheckEmail } from '@/components/auth/check-email'
 import { CreateNewPasswordPage } from '@/pages/auth/create-new-password-page/create-new-password-page.tsx'
 import { ForgotPasswordPage } from '@/pages/auth/forgot-password-page'
@@ -18,7 +19,7 @@ function PrivateRoutes() {
 
   const isAuthenticated = !!data
 
-  if (isLoading) return <div>loading</div>
+  if (isLoading) return <Loader />
 
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" />
 }

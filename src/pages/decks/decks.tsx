@@ -1,7 +1,7 @@
-import s from './decks.module.scss'
+import style from './decks.module.scss'
 
 import Delete from '@/assets/icons/Delete.tsx'
-import { useDebounce } from '@/common/hooks/useDebounce.ts'
+import { useDebounce, useDebounceForSlider } from '@/common/hooks/useDebounce.ts'
 import {
   Button,
   Pagination,
@@ -30,7 +30,8 @@ export const Decks = () => {
 
   const dispatch = useAppDispatch()
 
-  const newSearchName = useDebounce(searchByName, 500)
+  const newSearchName = useDebounce(searchByName)
+
   const {
     userId,
     setUserId,
@@ -43,11 +44,13 @@ export const Decks = () => {
     switchOption,
   } = useDeckSettings(minCardsCount, maxCardsCount, switcherOptions[1].value)
 
+  const newSliderValue = useDebounceForSlider([sliderValue.min, sliderValue.max])
+
   const { data } = useGetDecksQuery({
     name: newSearchName,
     authorId: userId,
-    minCardsCount: sliderValue.min.toString(),
-    maxCardsCount: sliderValue.max.toString(),
+    minCardsCount: newSliderValue.min.toString(),
+    maxCardsCount: newSliderValue.max.toString(),
     currentPage,
     orderBy: sortedString(),
     itemsPerPage: Number(itemsPerPage.value),
@@ -88,24 +91,24 @@ export const Decks = () => {
   }
 
   return (
-    <div className={s.wrapper}>
-      <div className={s.headWrap}>
+    <div className={style.wrapper}>
+      <div className={style.headWrap}>
         <Typography variant={'large'}>Decks</Typography>
         <CreateDeckModal />
       </div>
 
-      <div className={s.settingsWrap}>
-        <div className={s.textFieldWrap}>
+      <div className={style.settingsWrap}>
+        <div className={style.textFieldWrap}>
           <Textfield
             value={searchByName}
             search
             type={'search'}
             placeholder={'Input search'}
-            className={s.searchInput}
+            className={style.searchInput}
             onValueChange={onSearchByNameHandler}
           />
         </div>
-        <div className={s.tabsWrap}>
+        <div className={style.tabsWrap}>
           <Typography variant={'body2'}>Show packs cards</Typography>
           <TabsSwitcher
             value={switchOption}
@@ -114,7 +117,7 @@ export const Decks = () => {
             onValueChange={onSwitchCardsHandler}
           />
         </div>
-        <div className={s.sliderWrap}>
+        <div className={style.sliderWrap}>
           <Typography variant={'body2'}>Number of cards</Typography>
           <SliderCustom
             min={minCardsCount}
@@ -144,7 +147,7 @@ export const Decks = () => {
         </>
       )}
       {data?.items.length === 0 && (
-        <div className={s.addDeckWrapper}>
+        <div className={style.addDeckWrapper}>
           <Typography variant={'body2'}>This decks is Empty. Click add new pack </Typography>
           <CreateDeckModal />
         </div>

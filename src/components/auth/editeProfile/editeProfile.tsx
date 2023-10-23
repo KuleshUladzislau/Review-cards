@@ -26,6 +26,7 @@ export const EditeProfile = ({ name, email, src, onLogOut }: Props) => {
 
       formData.append('avatar', event.target.files[0])
       uploadPhoto(formData)
+      console.log(formData)
     }
   }
 

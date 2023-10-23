@@ -1,9 +1,10 @@
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
+import { clsx } from 'clsx'
+
 import s from './avatar.module.scss'
 
 import { Typography } from '@/components/ui/typography'
-import { clsx } from 'clsx'
 
 type AvatarProps = {
   name?: string
@@ -19,6 +20,7 @@ export const Avatar = forwardRef<ElementRef<'div'>, AvatarProps>(
       avatarContainer: clsx(s.avatarContainer),
       dontHaveAvatar: clsx(s.dontHaveAvatar),
     }
+
     return (
       <div ref={ref} {...restProps} className={classNames.avatarContainer}>
         <Typography variant={'subtitle1'} as={'span'} className={classNames.userName}>
