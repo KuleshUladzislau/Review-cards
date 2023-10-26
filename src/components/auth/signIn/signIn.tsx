@@ -18,27 +18,31 @@ export const SignIn = ({ onSubmit }: SignInProps) => {
   const { handleSubmit, control, errors } = useSignInForm()
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Card className={s.card}>
-        <Typography className={s.signIn} variant={'large'}>
-          Sign In
-        </Typography>
-        <div className={s.form}>
-          <ControlledTextField
-            name={'email'}
-            control={control}
-            label={'Email'}
-            errorMessage={errors.email?.message}
-          />
-          <ControlledTextField
-            type={'password'}
-            name={'password'}
-            control={control}
-            label={'Password'}
-            errorMessage={errors.password?.message}
-          />
-        </div>
-        <ControlledCheckbox control={control} name={'rememberMe'} label={'Remember me'} />
+    <Card className={s.formWrapper}>
+      <Typography className={s.signIn} variant={'large'}>
+        Sign In
+      </Typography>
+      <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
+        <ControlledTextField
+          name={'email'}
+          control={control}
+          label={'Email'}
+          errorMessage={errors.email?.message}
+        />
+        <ControlledTextField
+          type={'password'}
+          name={'password'}
+          control={control}
+          label={'Password'}
+          errorMessage={errors.password?.message}
+        />
+        <ControlledCheckbox
+          className={s.checkbox}
+          control={control}
+          name={'rememberMe'}
+          position={'left'}
+          label={'Remember me'}
+        />
         <Typography
           className={s.forgotPassword}
           as={Link}
@@ -50,14 +54,13 @@ export const SignIn = ({ onSubmit }: SignInProps) => {
         <Button className={s.signInBtn} variant={'primary'}>
           Sign In
         </Button>
-
-        <Typography className={s.dontHaveAcc} variant={'body2'}>
-          Don`t have an account?
-        </Typography>
-        <Typography as={Link} className={s.signUp} to={'/sign-up'} variant={'link2'}>
-          <div className={s.Sign}>Sign Up</div>
-        </Typography>
-      </Card>
-    </form>
+      </form>
+      <Typography className={s.dontHaveAcc} variant={'body2'}>
+        Don`t have an account?
+      </Typography>
+      <Typography as={Link} className={s.signUp} to={'/sign-up'} variant={'link2'}>
+        <div className={s.Sign}>Sign Up</div>
+      </Typography>
+    </Card>
   )
 }
