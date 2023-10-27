@@ -1,12 +1,13 @@
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
+import { DeleteModalMutation } from '../../deleteDeckModal/deleteModalMutation.tsx'
+
 import s from './tableIcons.module.scss'
 
 import { Play } from '@/assets'
-import { DeleteModalMutation } from '../../deleteDeckModal/deleteModalMutation.tsx'
-import { useDeleteDeckMutation } from '@/services/decks'
 import { EditDeckModal } from '@/pages/decks/editDeckModal/editDeckModal.tsx'
+import { useDeleteDeckMutation } from '@/services/decks'
 import { GetDecksDataItems } from '@/services/decks/types.ts'
 
 type TableIconsProps = {
