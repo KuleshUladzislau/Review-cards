@@ -1,31 +1,40 @@
 .itemUserInfo {
   min-width: 198px;
+
 }
 
 .photo {
   display: flex;
   align-items: center;
+
   width: 36px;
   height: 36px;
-  border-radius: 36px;
+
   object-fit: cover;
+  border-radius: 36px;
 }
+
 .userInfoContainer {
   display: flex;
   flex-direction: column;
 }
+
 .dontHaveAvatar {
+  cursor: pointer;
+
   display: flex;
-  justify-content: center;
   align-items: center;
-  color: black;
+  justify-content: center;
+
   width: 36px;
   height: 36px;
+
   font-weight: 700;
-  border-radius: 50%;
-  cursor: pointer;
-  background: white;
+  color: black;
   text-transform: uppercase;
+
+  background: white;
+  border-radius: 50%;
 }
 
 .userName {
@@ -38,5 +47,5 @@
 .dropDown {
   position: absolute;
   top: 17px;
-  left: -39px;
+  left: -90px;
 }
