@@ -1,6 +1,5 @@
 import { GetCardsResponse } from '@/services/cards/types.ts'
 import { Table, TableHead, TBody, TCell, TRow } from '@/components/ui'
-import { Raiting } from '@/components/ui/raiting/raiting.tsx'
 import { Edit } from '@/assets'
 import s from './cardsTable.module.scss'
 import AddCardModal from "@/pages/cards/add-card-modal/add-card-modal.tsx";
@@ -62,7 +61,7 @@ export const CardsTable = ({ data, isMeCards }: CardsProps) => {
                   <TCell>{item.answer}</TCell>
                   <TCell>{new Date(item.updated).toLocaleDateString()}</TCell>
                   <TCell>
-                    <Raiting grade={item.grade}/>
+                    {/*<Raiting grade={item.grade}/>*/}
                   </TCell>
                   <TCell>
                     {isMeCards && (
